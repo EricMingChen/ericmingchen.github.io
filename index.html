@@ -208,7 +208,6 @@
       font-size: 14px;
       color: var(--muted);
       margin-bottom: 4px;
-      padding-left: 0;
     }
 
     .pub-venue {
@@ -235,11 +234,6 @@
       color: #334155;
       font-weight: 500;
       font-size: 12px;
-    }
-
-    .citation-badge {
-      background: var(--accent-soft);
-      color: var(--accent);
     }
 
     .doi-badge {
@@ -359,11 +353,11 @@
       <h2 id="pub-title">Publications</h2>
 
       <div id="pub-container">
-        <p>Loading publications from Google Scholar...</p>
+        <p>Loading publications from ORCID...</p>
       </div>
 
       <p class="scholar-sync-note">
-        synced from <a href="https://scholar.google.com/citations?user=bhmuN8YAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar Profile (ID: bhmuN8YAAAAJ)</a>.
+        synced from <a href="https://orcid.org/0000-0003-4099-1606" target="_blank" rel="noopener">ORCID Profile (0000-0003-4099-1606)</a>.
       </p>
     </section>
 
@@ -409,7 +403,7 @@
         const pubs = await res.json();
         
         if (!pubs || pubs.length === 0) {
-          container.innerHTML = '<p>No publications found on Google Scholar profile.</p>';
+          container.innerHTML = '<p>No publications found on ORCID profile.</p>';
           return;
         }
 
@@ -439,10 +433,9 @@
                       ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">${p.title}</a>` : p.title}
                     </div>
                   </div>
-                  <div class="pub-authors">${p.authors}</div>
+                  ${p.authors ? `<div class="pub-authors">${p.authors}</div>` : ''}
                   <div class="pub-venue">${p.venue} ${p.year ? `(${p.year})` : ''}</div>
                   <div class="pub-meta">
-                    ${p.citations !== undefined ? `<span class="badge citation-badge">Citations: ${p.citations}</span>` : ''}
                     ${p.year ? `<span class="badge">${p.year}</span>` : ''}
                     ${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="badge doi-badge">DOI: ${p.doi}</a>` : ''}
                   </div>

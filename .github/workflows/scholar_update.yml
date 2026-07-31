@@ -1,4 +1,4 @@
-name: Auto Update Google Scholar Publications
+name: Auto Sync ORCID Publications
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-scholar:
+  update-publications:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -18,12 +18,12 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Run Fetch Scholar Script
+      - name: Run Fetch Publications Script (ORCID API)
         run: |
-          python scripts/fetch_scholar.py
+          python scripts/fetch_publications.py
 
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Auto-update Google Scholar publications data"
+          commit_message: "Auto-sync ORCID publications data"
           file_pattern: "publications.json"

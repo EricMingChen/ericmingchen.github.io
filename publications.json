@@ -1,72 +1,72 @@
 [
   {
-    "title": "Challenges encountered by overseas Chinese students during online learning amid COVID-19",
-    "authors": "M Chen, M Liu, A Yu",
-    "venue": "International Journal of Smart Technology and Learning 4 (1), 18-31",
-    "year": "2024",
-    "citations": 4,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=bhmuN8YAAAAJ&pagesize=100&citation_for_view=bhmuN8YAAAAJ:u5HHmVD_uO8C",
-    "category": "Journal Paper",
-    "doi": "10.1504/ijsmarttl.2024.10064868"
-  },
-  {
-    "title": "Evaluating “Reading Bear”: An analysis of a multimedia phonics programme using Mayer’s principles of multimedia learning",
-    "authors": "M Chen",
-    "venue": "Studies in Technology Enhanced Learning 4 (2)",
-    "year": "2024",
-    "citations": 3,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=bhmuN8YAAAAJ&pagesize=100&citation_for_view=bhmuN8YAAAAJ:u-x6o8ySG0sC",
-    "category": "Journal Paper",
-    "doi": "10.21428/8c225f6e.f4a4ff76"
-  },
-  {
-    "title": "The development of research literacy among early career teachers in China: An exploratory study",
-    "authors": "M Liu, M CHEN, L Zhong, W Hua, F Pan",
-    "venue": "International Journal of Higher Education and Sustainability",
-    "year": "2025",
-    "citations": 2,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=bhmuN8YAAAAJ&pagesize=100&citation_for_view=bhmuN8YAAAAJ:2osOgNQ5qMEC",
-    "category": "Journal Paper",
-    "doi": "10.1504/ijhes.2024.10068147"
-  },
-  {
     "title": "Book Review 2025",
-    "authors": "S Jeon, FR Madiseh, Hastangka, M Chen",
-    "venue": "Journal of Interactive Media in Education 2025 (1), 1-12",
+    "authors": "Seeun Jeon, Fatemeh Ranjbaran Madiseh, Hastangka, Ming Chen",
+    "venue": "Journal of Interactive Media in Education",
     "year": "2025",
-    "citations": 0,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=bhmuN8YAAAAJ&pagesize=100&citation_for_view=bhmuN8YAAAAJ:zYLM7Y9cAGgC",
     "category": "Book Review",
-    "doi": "10.5334/jime.1102"
-  },
-  {
-    "title": "Review of Using Video to Support Teacher Reflection and Development in ELT",
-    "authors": "M Chen, AYMA Islam",
-    "venue": "Language learning & Technology 29 (1), 1-5",
-    "year": "2025",
-    "citations": 0,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=bhmuN8YAAAAJ&pagesize=100&citation_for_view=bhmuN8YAAAAJ:Tyk-4Ss8FVUC",
-    "category": "Book Review",
-    "doi": "10.64152/10125/73663"
+    "doi": "10.5334/jime.1102",
+    "link": "https://doi.org/10.5334/jime.1102",
+    "orcid_type": "journal-article"
   },
   {
     "title": "From “effectiveness” to “access”: Rethinking the logic of technology-enhanced language learning",
-    "authors": "M Chen",
-    "venue": "Studies in Technology Enhanced Learning 4 (2)",
+    "authors": "Ming Chen",
+    "venue": "Studies in Technology Enhanced Learning",
     "year": "2025",
-    "citations": 0,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=bhmuN8YAAAAJ&pagesize=100&citation_for_view=bhmuN8YAAAAJ:IjCSPb-OGe4C",
     "category": "Journal Paper",
-    "doi": "10.21428/8c225f6e.6cf3a869"
+    "doi": "10.21428/8c225f6e.6cf3a869",
+    "link": "https://doi.org/10.21428/8c225f6e.6cf3a869",
+    "orcid_type": "journal-article"
   },
   {
-    "title": "Book Review: Virtual Reality, Artificial Intelligence, and Language Learning: The Need for Attention, Ulf Schütze, John Benjamins, Amsterdam/Philadelphia (2024), https://doi …",
-    "authors": "M Chen, AYMA Islam",
-    "venue": "System 133, 103758",
+    "title": "Book review",
+    "authors": "Ming Chen, A.Y.M. Atiquil Islam",
+    "venue": "System",
     "year": "2025",
-    "citations": 0,
-    "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=bhmuN8YAAAAJ&pagesize=100&citation_for_view=bhmuN8YAAAAJ:qjMakFHDy7sC",
     "category": "Book Review",
-    "doi": ""
+    "doi": "10.1016/j.system.2025.103758",
+    "link": "https://doi.org/10.1016/j.system.2025.103758",
+    "orcid_type": "journal-article"
+  },
+  {
+    "title": "Review of Using Video to Support Teacher Reflection and Development in ELT",
+    "authors": "Ming Chen, Islam, A. Y. M. Atiquil",
+    "venue": "Language Learning & Technology",
+    "year": "2025",
+    "category": "Book Review",
+    "doi": "10.64152/10125/73663",
+    "link": "https://doi.org/10.64152/10125/73663",
+    "orcid_type": "journal-article"
+  },
+  {
+    "title": "Evaluating “Reading Bear”: An analysis of a multimedia phonics programme using Mayer’s principles of multimedia learning",
+    "authors": "Ming Chen",
+    "venue": "Studies in Technology Enhanced Learning",
+    "year": "2024",
+    "category": "Journal Paper",
+    "doi": "10.21428/8c225f6e.f4a4ff76",
+    "link": "https://doi.org/10.21428/8c225f6e.f4a4ff76",
+    "orcid_type": "journal-article"
+  },
+  {
+    "title": "Challenges Encountered by Overseas Chinese Students during Online Learning amid COVID-19",
+    "authors": "Aiqin Yu, Meiyan Liu, Ming Chen",
+    "venue": "International Journal of Smart Technology and Learning",
+    "year": "2024",
+    "category": "Journal Paper",
+    "doi": "10.1504/IJSMARTTL.2024.10064868",
+    "link": "https://doi.org/10.1504/IJSMARTTL.2024.10064868",
+    "orcid_type": "journal-article"
+  },
+  {
+    "title": "The development of research literacy among early career teachers in China: An exploratory study",
+    "authors": "Ling Zhong, Ming Chen, Meiyan Liu, Weiyong Hua, Fengqin Pan",
+    "venue": "International Journal of Higher Education and Sustainability",
+    "year": "2024",
+    "category": "Journal Paper",
+    "doi": "10.1504/ijhes.2024.10068147",
+    "link": "https://doi.org/10.1504/ijhes.2024.10068147",
+    "orcid_type": "journal-article"
   }
 ]
