@@ -19,7 +19,7 @@ PUBLICATIONS_FILE = os.path.join(os.path.dirname(__file__), "..", "publications.
 def assign_category(title, venue, orcid_type):
     """
     Priority-based publication categorization combining ORCID native types and keywords:
-    1. Scholarship Synthesis (systematic review, meta-analysis, scoping review)
+    1. Scholarship Synthesis (systematic review, meta-analysis, scoping review, a systematic review of...)
     2. Book Review (ORCID type 'book-review', title starts with 'review of' or contains 'book review', or venue contains 'book review')
     3. Book Chapter (ORCID type 'book-chapter')
     4. Journal Paper (Default for 'journal-article' or unrecognized types)
@@ -28,8 +28,8 @@ def assign_category(title, venue, orcid_type):
     v_lower = (venue or "").lower().strip()
     o_type = (orcid_type or "").lower().strip()
 
-    # Priority 1: Scholarship Synthesis
-    synthesis_keywords = ['systematic review', 'meta-analysis', 'meta analysis', 'scoping review']
+    # Priority 1: Scholarship Synthesis (文献综述类，匹配 systematic review, meta-analysis, scoping review 等)
+    synthesis_keywords = ['systematic review', 'meta-analysis', 'meta analysis', 'scoping review', 'systematic literature review', 'systematic synthesis']
     if any(kw in t_lower or kw in v_lower for kw in synthesis_keywords):
         return "Scholarship Synthesis"
 
@@ -107,12 +107,10 @@ def fetch_orcid_data():
             except Exception as ex:
                 print(f"  Note: Could not fetch detail contributors for work {put_code}: {ex}")
 
-        # Fallback link
         link = f"https://doi.org/{doi}" if doi else (s.get('url', {}).get('value', '') if s.get('url') else '')
         if not link:
             link = f"https://orcid.org/{ORCID_ID}"
 
-        # Assign category
         category = assign_category(title, venue, orcid_type)
 
         pub_obj = {
@@ -128,7 +126,6 @@ def fetch_orcid_data():
 
         parsed_pubs.append(pub_obj)
 
-        # Print debug log
         print(f"[{idx+1}/{len(groups)}] Title: [{title}]")
         print(f"       Venue: [{venue}] | Year: [{year}] | ORCID Type: [{orcid_type}]")
         print(f"       Category: [{category}] | DOI: [{doi}]")
