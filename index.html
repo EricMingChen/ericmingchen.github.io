@@ -6,10 +6,10 @@
   <meta name="description" content="Ming CHEN (Eric) - Academic Website & Research Portfolio" />
   <title>Ming CHEN (Eric) | Academic Website</title>
 
-  <!-- Google Fonts: Merriweather for Academic Headings, Inter for Body -->
+  <!-- Google Fonts: Open Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -19,8 +19,8 @@
       --bg-main: #ffffff;         /* Pure White */
       --bg-card: #F8F9FA;         /* Ultra-light Warm Gray */
       --link-accent: #0052a3;     /* Navy Blue Interactive Accent */
-      --border-line: #e0e0e0;     /* Fine Light Gray Line */
-      --max-width: 1000px;
+      --border-line: #e8eaed;     /* Fine Light Line */
+      --max: 780px;
     }
 
     * {
@@ -34,11 +34,11 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: var(--text-main);
       background: var(--bg-main);
-      font-size: 16px;
       line-height: 1.7;
+      font-size: 16px;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -53,109 +53,134 @@
     }
 
     h1, h2, h3, h4 {
-      font-family: 'Merriweather', Georgia, serif;
+      font-family: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
       color: var(--primary-title);
       margin: 0;
       font-weight: 700;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
     }
 
-    /* Page Layout Container */
-    .page-container {
-      max-width: var(--max-width);
+    /* Top Navigation */
+    .nav {
+      max-width: 980px;
       margin: 0 auto;
-      padding: 48px 24px 64px;
-      display: grid;
-      grid-template-columns: 270px 1fr;
-      gap: 56px;
-    }
-
-    /* Left Sidebar */
-    .sidebar {
-      position: sticky;
-      top: 40px;
-      align-self: start;
+      padding: 22px 24px;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .avatar {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      margin-bottom: 24px;
-      border: 2px solid var(--bg-card);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .sidebar-name {
-      font-size: 26px;
-      line-height: 1.25;
-      margin-bottom: 12px;
-    }
-
-    .sidebar-title {
-      font-size: 14.5px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-
-    .sidebar-title span {
-      display: block;
-    }
-
-    .sidebar-socials {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 100%;
-      font-size: 14px;
-      border-top: 1px solid var(--border-line);
-      padding-top: 18px;
-    }
-
-    .sidebar-socials a {
-      display: inline-flex;
+      justify-content: space-between;
       align-items: center;
-      color: var(--text-secondary);
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-title);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 15px;
       font-weight: 500;
     }
 
-    .sidebar-socials a:hover {
+    .nav-links a {
+      color: var(--text-secondary);
+    }
+
+    .nav-links a:hover {
       color: var(--primary-title);
       text-decoration: none;
     }
 
-    /* Right Main Content */
-    .main-content {
-      min-width: 0;
+    /* Main Container (Single Column Spacious Layout) */
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 40px 24px 56px;
     }
 
+    /* Profile Header Section */
+    .profile {
+      text-align: center;
+      padding: 20px 0 44px;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .avatar {
+      width: 136px;
+      height: 136px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border-line);
+      box-shadow: 0 4px 16px rgba(0, 42, 92, 0.06);
+    }
+
+    h1 {
+      font-size: clamp(34px, 5.5vw, 44px);
+      line-height: 1.15;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      margin: 16px auto 0;
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 630px;
+      line-height: 1.5;
+    }
+
+    .subtitle span {
+      display: block;
+    }
+
+    /* Contact Links Pills */
+    .socials {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .socials a {
+      padding: 6px 16px;
+      border-radius: 999px;
+      color: var(--primary-title);
+      background: var(--bg-card);
+      border: 1px solid #e0e6ed;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+
+    .socials a:hover {
+      text-decoration: none;
+      background: var(--primary-title);
+      color: #ffffff;
+      border-color: var(--primary-title);
+    }
+
+    /* Main Sections */
     section {
-      margin-bottom: 44px;
+      padding: 40px 0 0;
     }
 
-    section:last-child {
-      margin-bottom: 0;
-    }
-
-    h2.section-title {
-      font-size: 22px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--primary-title);
-      margin-bottom: 20px;
+    h2 {
+      font-size: 24px;
+      margin-bottom: 18px;
     }
 
     h3.category-title {
-      font-size: 17px;
-      color: var(--primary-title);
       margin: 32px 0 16px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-title);
+      border-bottom: 1.5px solid var(--bg-card);
       padding-bottom: 6px;
-      border-bottom: 1px dashed var(--border-line);
     }
 
     p {
@@ -165,20 +190,24 @@
       line-height: 1.75;
     }
 
-    /* Publications List (Border-Bottom Divider Layout) */
+    /* Publications List Cards */
     .pub-list {
       display: flex;
       flex-direction: column;
+      gap: 16px;
     }
 
-    .pub-item {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border-line);
-      transition: background 0.15s ease;
+    .pub-card {
+      padding: 18px 20px;
+      border: 1px solid var(--border-line);
+      border-radius: 10px;
+      background: var(--bg-card);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .pub-item:last-child {
-      border-bottom: none;
+    .pub-card:hover {
+      border-color: var(--primary-title);
+      box-shadow: 0 2px 10px rgba(0, 42, 92, 0.05);
     }
 
     .pub-header {
@@ -189,19 +218,18 @@
     }
 
     .paper-number {
-      font-family: 'Merriweather', Georgia, serif;
       font-weight: 700;
       color: var(--primary-title);
-      font-size: 15px;
-      line-height: 1.5;
+      font-size: 15.5px;
+      line-height: 1.45;
       flex-shrink: 0;
     }
 
     .pub-title {
-      font-weight: 600;
+      font-weight: 650;
       font-size: 16px;
       color: var(--text-main);
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     .pub-title a {
@@ -219,7 +247,7 @@
     }
 
     .pub-venue {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-secondary);
       font-style: italic;
     }
@@ -230,30 +258,29 @@
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 12px;
+      font-size: 13px;
     }
 
-    /* Oxford Badge Styles */
+    /* Badge Styles */
     .badge {
       display: inline-flex;
       align-items: center;
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 4px;
-      font-size: 12px;
       font-weight: 600;
+      font-size: 12px;
       line-height: 1.2;
     }
 
-    /* Premium Academic Deep Blue SSCI/SCI Badge */
     .index-badge {
       background: var(--primary-title);
       color: #ffffff;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
     }
 
     .year-badge {
-      background: var(--bg-card);
-      color: var(--text-secondary);
-      border: 1px solid var(--border-line);
+      background: #e2e8f0;
+      color: #334155;
     }
 
     .doi-badge {
@@ -276,15 +303,15 @@
     }
 
     .contact-actions {
-      margin-top: 16px;
+      margin-top: 20px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 9px 20px;
-      border-radius: 4px;
+      padding: 9px 22px;
+      border-radius: 999px;
       color: #ffffff;
       background: var(--primary-title);
       font-size: 15px;
@@ -298,109 +325,105 @@
     }
 
     footer {
-      max-width: var(--max-width);
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 32px 24px 48px;
+      padding: 36px 24px 48px;
       color: var(--text-secondary);
-      font-size: 13.5px;
+      font-size: 14px;
+      text-align: center;
       border-top: 1px solid var(--border-line);
     }
 
-    /* Mobile Responsive Layout (< 768px) */
-    @media (max-width: 767px) {
-      .page-container {
-        grid-template-columns: 1fr;
-        gap: 36px;
-        padding: 32px 20px 48px;
+    @media (max-width: 560px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px 20px;
       }
 
-      .sidebar {
-        position: static;
-        align-items: center;
-        text-align: center;
-        border-bottom: 1px solid var(--border-line);
-        padding-bottom: 28px;
+      .nav-links {
+        gap: 14px;
+      }
+
+      main {
+        padding-top: 32px;
       }
 
       .avatar {
-        width: 140px;
-        height: 140px;
-        margin-bottom: 18px;
-      }
-
-      .sidebar-socials {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 14px;
-        border-top: none;
-        padding-top: 0;
+        width: 118px;
+        height: 118px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="page-container">
-    <!-- Left Sidebar -->
-    <aside class="sidebar">
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top">Ming CHEN (Eric)</a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="profile" aria-labelledby="name">
       <img class="avatar" src="images/profile.jpg" alt="Ming CHEN">
 
-      <h1 class="sidebar-name">Ming CHEN</h1>
+      <h1 id="name">Ming CHEN (Eric)</h1>
 
-      <div class="sidebar-title">
+      <p class="subtitle">
         <span>PhD Candidate in Education</span>
-        <span>University of Bristol</span>
-      </div>
+        <span>School of Education, University of Bristol</span>
+      </p>
 
-      <div class="sidebar-socials" aria-label="Contact links">
+      <div class="socials" aria-label="Contact links">
         <a href="mailto:Ming.Chen@bristol.ac.uk">Email</a>
         <a href="https://scholar.google.com/citations?user=bhmuN8YAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
         <a href="https://orcid.org/0000-0003-4099-1606" target="_blank" rel="noopener">ORCID</a>
         <a href="https://www.linkedin.com/in/ming-chen-35b051407/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-    </aside>
+    </section>
 
-    <!-- Right Main Content -->
-    <main class="main-content">
-      <section id="about" aria-labelledby="about-title">
-        <h2 id="about-title" class="section-title">About</h2>
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
 
-        <p>
-          I am a PhD candidate in Education at the University of Bristol (fully funded by the CSC-UoB Joint PhD Scholarship). My research sits at the intersection of educational technology, emerging learning sciences, and language learning, with a focus on virtual reality (VR), AI-assisted learning, and computer-supported collaborative learning (CSCL).
-        </p>
-      </section>
+      <p>
+        I am a PhD candidate in Education at the University of Bristol (fully funded by CSC-UoB Joint PhD Scholarship). My research sits at the intersection of educational technology, emerging learning sciences, and language learning, with a focus on virtual reality (VR), AI-assisted learning, and computer-supported collaborative learning (CSCL).
+      </p>
+    </section>
 
-      <section id="publications" aria-labelledby="pub-title">
-        <h2 id="pub-title" class="section-title">Publications</h2>
+    <section id="publications" aria-labelledby="pub-title">
+      <h2 id="pub-title">Publications</h2>
 
-        <div id="pub-container">
-          <p>Loading publications from ORCID...</p>
-        </div>
+      <div id="pub-container">
+        <p>Loading publications from ORCID...</p>
+      </div>
 
-        <p class="scholar-sync-note">
-          Synced from <a href="https://orcid.org/0000-0003-4099-1606" target="_blank" rel="noopener">ORCID Profile (0000-0003-4099-1606)</a>.
-        </p>
-      </section>
+      <p class="scholar-sync-note">
+        Synced from <a href="https://orcid.org/0000-0003-4099-1606" target="_blank" rel="noopener">ORCID Profile (0000-0003-4099-1606)</a>.
+      </p>
+    </section>
 
-      <section id="contact" aria-labelledby="contact-title">
-        <h2 id="contact-title" class="section-title">Contact</h2>
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
 
-        <p>
-          If you share similar research interests or are interested in potential academic collaboration, please feel free to get in touch via email.
-        </p>
+      <p>
+        If you share similar research interests or are interested in collaboration, please feel free to reach out via email.
+      </p>
 
-        <div class="contact-actions">
-          <a class="button" href="mailto:Ming.Chen@bristol.ac.uk">Email Me</a>
-        </div>
-      </section>
-    </main>
-  </div>
+      <div class="contact-actions">
+        <a class="button" href="mailto:Ming.Chen@bristol.ac.uk">Email me</a>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <div style="max-width: var(--max-width); margin: 0 auto; text-align: center;">
-      © <span id="year"></span> Ming CHEN (Eric). All rights reserved.
-    </div>
+    © <span id="year"></span> Ming CHEN (Eric). All rights reserved.
   </footer>
 
   <script>
@@ -451,7 +474,7 @@
               const reverseNumber = catPubs.length - index;
               const doiLink = p.doi ? `https://doi.org/${p.doi}` : '';
               html += `
-                <div class="pub-item">
+                <div class="pub-card">
                   <div class="pub-header">
                     <span class="paper-number">[${reverseNumber}]</span>
                     <div class="pub-title">
