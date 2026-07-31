@@ -102,8 +102,8 @@ def assign_category(title, venue, orcid_type):
     if o_type == 'book-chapter':
         return "Book Chapter"
 
-    # Priority 4: Journal Paper (Default)
-    return "Journal Paper"
+    # Priority 4: Research Article (Default)
+    return "Research Article"
 
 def fetch_orcid_data():
     headers = {
