@@ -149,32 +149,25 @@
       letter-spacing: -0.03em;
     }
 
+    h3.category-title {
+      margin: 28px 0 14px;
+      font-size: 18px;
+      font-weight: 650;
+      color: var(--accent);
+      border-bottom: 1.5px solid var(--accent-soft);
+      padding-bottom: 4px;
+    }
+
     p {
       margin: 0 0 16px;
       color: var(--muted);
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .tag {
-      padding: 6px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 14px;
     }
 
     /* Publications styling */
     .pub-list {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-top: 14px;
+      gap: 14px;
     }
 
     .pub-card {
@@ -212,14 +205,17 @@
     .pub-meta {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-top: 8px;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
       font-size: 13px;
     }
 
     .badge {
-      padding: 2px 8px;
-      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 6px;
       background: #e2e8f0;
       color: #334155;
       font-weight: 500;
@@ -231,8 +227,20 @@
       color: var(--accent);
     }
 
+    .doi-badge {
+      background: #f1f5f9;
+      color: var(--accent);
+      border: 1px solid var(--line);
+      text-decoration: none;
+    }
+
+    .doi-badge:hover {
+      background: var(--accent-soft);
+      text-decoration: underline;
+    }
+
     .scholar-sync-note {
-      margin-top: 16px;
+      margin-top: 24px;
       font-size: 13px;
       color: var(--muted);
       font-style: italic;
@@ -300,7 +308,6 @@
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#publications">Publications</a>
-        <a href="#interests">Research Interests</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -336,25 +343,13 @@
     <section id="publications" aria-labelledby="pub-title">
       <h2 id="pub-title">Publications</h2>
 
-      <div id="pub-container" class="pub-list">
+      <div id="pub-container">
         <p>Loading publications from Google Scholar...</p>
       </div>
 
       <p class="scholar-sync-note">
         Automatically synced daily from <a href="https://scholar.google.com/citations?user=bhmuN8YAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar Profile (ID: bhmuN8YAAAAJ)</a>.
       </p>
-    </section>
-
-    <section id="interests" aria-labelledby="interests-title">
-      <h2 id="interests-title">Research Interests</h2>
-
-      <div class="tags" aria-label="Research interests">
-        <span class="tag">Technology-enhanced language learning</span>
-        <span class="tag">Computer-supported collaborative learning</span>
-        <span class="tag">AI-assisted learning</span>
-        <span class="tag">Virtual reality & immersive learning</span>
-        <span class="tag">Innovative pedagogical designs</span>
-      </div>
     </section>
 
     <section id="contact" aria-labelledby="contact-title">
@@ -377,6 +372,20 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    const CATEGORY_ORDER = [
+      'Journal Paper',
+      'Book Chapter',
+      'Scholarship Synthesis',
+      'Book Review'
+    ];
+
+    const CATEGORY_LABELS = {
+      'Journal Paper': 'Journal Papers',
+      'Book Chapter': 'Book Chapters',
+      'Scholarship Synthesis': 'Scholarship Synthesis',
+      'Book Review': 'Book Reviews'
+    };
+
     async function loadPublications() {
       const container = document.getElementById('pub-container');
       try {
@@ -389,19 +398,45 @@
           return;
         }
 
-        container.innerHTML = pubs.map(p => `
-          <div class="pub-card">
-            <div class="pub-title">
-              ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">${p.title}</a>` : p.title}
-            </div>
-            <div class="pub-authors">${p.authors}</div>
-            <div class="pub-venue">${p.venue} ${p.year ? `(${p.year})` : ''}</div>
-            <div class="pub-meta">
-              ${p.citations !== undefined ? `<span class="badge citation-badge">Citations: ${p.citations}</span>` : ''}
-              ${p.year ? `<span class="badge">${p.year}</span>` : ''}
-            </div>
-          </div>
-        `).join('');
+        // Group publications by category
+        const grouped = {};
+        CATEGORY_ORDER.forEach(cat => grouped[cat] = []);
+        
+        pubs.forEach(p => {
+          const cat = p.category || 'Journal Paper';
+          if (!grouped[cat]) grouped[cat] = [];
+          grouped[cat].push(p);
+        });
+
+        // Build HTML by category
+        let html = '';
+        CATEGORY_ORDER.forEach(cat => {
+          const catPubs = grouped[cat];
+          if (catPubs && catPubs.length > 0) {
+            html += `<h3 class="category-title">${CATEGORY_LABELS[cat] || cat}</h3>`;
+            html += `<div class="pub-list">`;
+            catPubs.forEach(p => {
+              const doiLink = p.doi ? `https://doi.org/${p.doi}` : '';
+              html += `
+                <div class="pub-card">
+                  <div class="pub-title">
+                    ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">${p.title}</a>` : p.title}
+                  </div>
+                  <div class="pub-authors">${p.authors}</div>
+                  <div class="pub-venue">${p.venue} ${p.year ? `(${p.year})` : ''}</div>
+                  <div class="pub-meta">
+                    ${p.citations !== undefined ? `<span class="badge citation-badge">Citations: ${p.citations}</span>` : ''}
+                    ${p.year ? `<span class="badge">${p.year}</span>` : ''}
+                    ${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="badge doi-badge">DOI: ${p.doi}</a>` : ''}
+                  </div>
+                </div>
+              `;
+            });
+            html += `</div>`;
+          }
+        });
+
+        container.innerHTML = html || '<p>No categorized publications found.</p>';
       } catch (err) {
         container.innerHTML = '<p>Unable to load publications automatically. Please check back later.</p>';
         console.error(err);
