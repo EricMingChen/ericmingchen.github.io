@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Automated ORCID Public API Publications Fetcher with Local Journal Index Tagging:
-1. Loads local dataset from data/journal_index.csv (SSCI, SCIE, SCI, AHCI, ESCI, etc.)
-2. Performs fuzzy matching using difflib to automatically attach index_tag
+Automated ORCID Public API Publications Fetcher with Strict Web of Science Index Tagging:
+1. Loads strict WoS (SSCI, SCIE, AHCI, ESCI) dataset from data/journal_index.csv
+2. Performs strict exact and high-threshold (>=0.88) fuzzy matching
 3. Queries ORCID Public API v3.0 for 100% structured DOIs, titles, venues, and authors
 4. Applies priority-based categorization
 5. Outputs structured data to publications.json
@@ -23,7 +23,6 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PUBLICATIONS_FILE = os.path.join(SCRIPT_DIR, "..", "publications.json")
 JOURNAL_INDEX_FILE = os.path.join(SCRIPT_DIR, "..", "data", "journal_index.csv")
 
-# 1. Load local journal index dataset into memory dictionary
 def load_journal_index():
     index_dict = {}
     if not os.path.exists(JOURNAL_INDEX_FILE):
@@ -40,7 +39,7 @@ def load_journal_index():
                     j_cat = row[1].strip()
                     if j_name:
                         index_dict[j_name] = j_cat
-        print(f"Successfully loaded {len(index_dict)} journal index records into memory.")
+        print(f"Successfully loaded {len(index_dict)} strict WoS journal index records into memory.")
     except Exception as e:
         print(f"Error loading journal index CSV: {e}")
 
@@ -51,8 +50,8 @@ JOURNAL_INDEX_KEYS = list(JOURNAL_INDEX.keys())
 
 def match_journal_index(venue):
     """
-    Fuzzy matches venue string against local journal_index database.
-    Returns matched Index_Category (e.g. 'SSCI', 'ESCI') if similarity >= 0.80, else ''.
+    Matches venue string against Web of Science journal_index database.
+    Returns matched Index_Category (e.g. 'SSCI', 'ESCI') if exact or high-threshold similarity >= 0.88, else ''.
     """
     if not venue or not JOURNAL_INDEX:
         return ""
@@ -66,8 +65,8 @@ def match_journal_index(venue):
     if v_clean in JOURNAL_INDEX:
         return JOURNAL_INDEX[v_clean]
 
-    # Fuzzy matching using difflib
-    matches = difflib.get_close_matches(v_clean, JOURNAL_INDEX_KEYS, n=1, cutoff=0.80)
+    # Strict fuzzy matching using difflib with high cutoff (0.88)
+    matches = difflib.get_close_matches(v_clean, JOURNAL_INDEX_KEYS, n=1, cutoff=0.88)
     if matches:
         matched_key = matches[0]
         return JOURNAL_INDEX[matched_key]
@@ -172,7 +171,7 @@ def fetch_orcid_data():
         # Assign category
         category = assign_category(title, venue, orcid_type)
 
-        # Match journal index tag (e.g. SSCI, ESCI)
+        # Match journal index tag (e.g. SSCI)
         index_tag = match_journal_index(venue)
 
         pub_obj = {
