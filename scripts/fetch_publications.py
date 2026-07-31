@@ -85,8 +85,12 @@ def assign_category(title, venue, orcid_type):
     v_lower = (venue or "").lower().strip()
     o_type = (orcid_type or "").lower().strip()
 
-    # Priority 1: Scholarship Synthesis
-    synthesis_keywords = ['systematic review', 'meta-analysis', 'meta analysis', 'scoping review', 'systematic literature review', 'systematic synthesis']
+    # Priority 1: Scholarship Synthesis (文献综述/合成类，包含 systematic review, meta-analysis, scoping review 等)
+    synthesis_keywords = [
+        'systematic review', 'meta-analysis', 'meta analysis', 
+        'scoping review', 'scoping literature review', 'scoping study', 'scoping synthesis',
+        'systematic literature review', 'systematic synthesis'
+    ]
     if any(kw in t_lower or kw in v_lower for kw in synthesis_keywords):
         return "Scholarship Synthesis"
 
