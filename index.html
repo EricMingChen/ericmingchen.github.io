@@ -182,18 +182,33 @@
       border-color: var(--accent);
     }
 
+    .pub-header {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+
+    .paper-number {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 15px;
+      line-height: 1.45;
+      flex-shrink: 0;
+    }
+
     .pub-title {
       font-weight: 650;
       font-size: 15.5px;
       color: var(--text);
       line-height: 1.45;
-      margin-bottom: 6px;
     }
 
     .pub-authors {
       font-size: 14px;
       color: var(--muted);
       margin-bottom: 4px;
+      padding-left: 0;
     }
 
     .pub-venue {
@@ -348,7 +363,7 @@
       </div>
 
       <p class="scholar-sync-note">
-        Automatically synced daily from <a href="https://scholar.google.com/citations?user=bhmuN8YAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar Profile (ID: bhmuN8YAAAAJ)</a>.
+        synced from <a href="https://scholar.google.com/citations?user=bhmuN8YAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar Profile (ID: bhmuN8YAAAAJ)</a>.
       </p>
     </section>
 
@@ -398,7 +413,6 @@
           return;
         }
 
-        // Group publications by category
         const grouped = {};
         CATEGORY_ORDER.forEach(cat => grouped[cat] = []);
         
@@ -408,19 +422,22 @@
           grouped[cat].push(p);
         });
 
-        // Build HTML by category
         let html = '';
         CATEGORY_ORDER.forEach(cat => {
           const catPubs = grouped[cat];
           if (catPubs && catPubs.length > 0) {
             html += `<h3 class="category-title">${CATEGORY_LABELS[cat] || cat}</h3>`;
             html += `<div class="pub-list">`;
-            catPubs.forEach(p => {
+            catPubs.forEach((p, index) => {
+              const reverseNumber = catPubs.length - index;
               const doiLink = p.doi ? `https://doi.org/${p.doi}` : '';
               html += `
                 <div class="pub-card">
-                  <div class="pub-title">
-                    ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">${p.title}</a>` : p.title}
+                  <div class="pub-header">
+                    <span class="paper-number">[${reverseNumber}]</span>
+                    <div class="pub-title">
+                      ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">${p.title}</a>` : p.title}
+                    </div>
                   </div>
                   <div class="pub-authors">${p.authors}</div>
                   <div class="pub-venue">${p.venue} ${p.year ? `(${p.year})` : ''}</div>

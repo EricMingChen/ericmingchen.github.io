@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 Automated zero-hardcode Google Scholar publications fetcher with:
-1. Automated priority-based publication categorization
-2. Crossref REST API DOI resolution with string similarity matching
-3. Direct JSON output for website rendering
+1. Updated priority-based publication categorization (assign_category)
+2. Crossref REST API DOI resolution using query.bibliographic & author matching
+3. Detailed debug logs
 """
 
 import json
@@ -18,7 +18,7 @@ from html.parser import HTMLParser
 SCHOLAR_ID = "bhmuN8YAAAAJ"
 SCHOLAR_URL = f"https://scholar.google.com/citations?user={SCHOLAR_ID}&hl=en&pagesize=100"
 PUBLICATIONS_FILE = os.path.join(os.path.dirname(__file__), "..", "publications.json")
-CONTACT_EMAIL = "Ming.Chen@bristol.ac.uk"
+DEVELOPER_EMAIL = "Ming.Chen@bristol.ac.uk"
 
 class ScholarHTMLParser(HTMLParser):
     def __init__(self):
@@ -81,74 +81,70 @@ class ScholarHTMLParser(HTMLParser):
         elif self.current_field == 'year':
             self.cur['year'] = t
 
-def categorize_pub(title, venue):
-    """
-    Categorizes publication based on title and venue using strict priority:
-    1. Scholarship Synthesis (systematic review, meta-analysis, scoping review)
-    2. Book Review (Review of..., Book Review)
-    3. Book Chapter (ed., eds., Handbook of, In: [Editor], Press + pp.)
-    4. Journal Paper (Default)
-    """
-    t_lower = title.lower()
-    v_lower = venue.lower()
+def assign_category(title, venue):
+    # 将标题和来源转换为小写，方便做不区分大小写的匹配
+    title_lower = title.lower().strip()
+    # 谷歌学术有时抓不到 venue，需要做空值保护
+    venue_lower = venue.lower().strip() if venue else ""
 
-    # Priority 1: Scholarship Synthesis
-    synthesis_keywords = ['systematic review', 'meta-analysis', 'scoping review', 'systematic literature review']
-    if any(k in t_lower or k in v_lower for k in synthesis_keywords):
-        return 'Scholarship Synthesis'
+    # 优先级 1：Scholarship Synthesis (文献综述类)
+    synthesis_keywords = ['systematic review', 'meta-analysis', 'meta analysis', 'scoping review']
+    if any(kw in title_lower or kw in venue_lower for kw in synthesis_keywords):
+        return "Scholarship Synthesis"
 
-    # Priority 2: Book Review (MUST be after Rule 1)
-    if t_lower.startswith('review of') or 'book review' in t_lower or 'book review' in v_lower:
-        return 'Book Review'
+    # 优先级 2：Book Review (书评)
+    if title_lower.startswith('review of') or 'book review' in title_lower or 'book review' in venue_lower:
+        return "Book Review"
 
-    # Priority 3: Book Chapter
-    editor_markers = ['ed.', 'eds.', 'edited by', '(ed)', '(eds)']
-    collection_markers = ['handbook of', 'encyclopedia of', 'companion to']
-    
-    has_editor = any(e in v_lower for e in editor_markers)
-    has_collection = any(c in t_lower or c in v_lower for c in collection_markers)
-    # Match "In: Editor Name" or "In Editor Name" (e.g. In A. M. Riazi (Ed.))
-    has_in_format = bool(re.search(r'\bin\s*:\s*|\bin\s+[a-z]\.\s*[a-z]', v_lower))
-    # Check Press + pp. without typical journal volume/issue (e.g. 4(2) or 155-176)
-    has_press_pp = ('press' in v_lower and ('pp.' in v_lower or 'p.' in v_lower)) and not bool(re.search(r'\d+\s*\(\d+\)', v_lower))
+    # 优先级 3：Book Chapter (书籍章节)
+    # 只要来源中包含编者、手册、出版社等典型书籍词汇
+    book_keywords = ['ed.', 'eds.', 'edited by', 'handbook', 'encyclopedia', 'chapter', 'press']
+    if any(kw in venue_lower for kw in book_keywords):
+        return "Book Chapter"
 
-    if has_editor or has_collection or has_in_format or has_press_pp:
-        return 'Book Chapter'
+    # 优先级 4：默认归类 (期刊论文)
+    return "Journal Paper"
 
-    # Priority 4: Journal Paper (Default)
-    return 'Journal Paper'
-
-def resolve_doi_from_crossref(title):
-    """
-    Queries Crossref API politely to find DOI for a given paper title.
-    Returns DOI string if match ratio >= 0.75, else empty string.
-    """
-    if not title:
+def extract_first_author_lastname(authors_str):
+    if not authors_str:
         return ""
-    
-    clean_title = re.sub(r'^[^\w]+|[^\w]+$', '', title)
-    encoded = urllib.parse.quote(clean_title)
-    url = f"https://api.crossref.org/works?query.title={encoded}&rows=1"
-    
+    first_author = authors_str.split(',')[0].strip()
+    parts = first_author.split()
+    return parts[-1] if parts else ""
+
+def fetch_doi_from_crossref(title, first_author_lastname):
+    # 必须加上 User-Agent 和邮箱，否则 Crossref 会拒绝请求
     headers = {
-        'User-Agent': f'ScholarSiteSync/1.0 (mailto:{CONTACT_EMAIL})'
+        "User-Agent": f"ScholarSyncScript/1.0 (mailto:{DEVELOPER_EMAIL})"
     }
+    
+    # 联合标题和作者姓氏进行搜索，提高准确度
+    query = f"{title} {first_author_lastname}".strip()
+    url = f"https://api.crossref.org/works?query.bibliographic={urllib.parse.quote(query)}&rows=1"
     
     try:
         req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read().decode('utf-8'))
-            items = data.get('message', {}).get('items', [])
-            if items:
-                item = items[0]
-                cr_title = item.get('title', [''])[0]
-                doi = item.get('DOI', '')
-                ratio = difflib.SequenceMatcher(None, clean_title.lower(), cr_title.lower()).ratio()
-                if ratio >= 0.75 and doi:
-                    return doi
+        with urllib.request.urlopen(req, timeout=10) as response:
+            if response.status == 200:
+                data = json.loads(response.read().decode('utf-8'))
+                items = data.get('message', {}).get('items', [])
+                
+                if items:
+                    first_item = items[0]
+                    crossref_title = first_item.get('title', [''])[0]
+                    
+                    # 计算标题相似度
+                    similarity = difflib.SequenceMatcher(None, title.lower(), crossref_title.lower()).ratio()
+                    
+                    # 如果相似度大于 0.65，我们认为是同一篇文章
+                    if similarity > 0.65:
+                        return first_item.get('DOI', '')
+        
+        # 增加轻微延时，防止请求过快被封
+        time.sleep(0.5)
     except Exception as e:
-        print(f"  Crossref lookup skipped for '{clean_title[:30]}...': {e}")
-    
+        print(f"DOI fetch error for '{title}': {e}")
+        
     return ""
 
 def fetch_and_save():
@@ -168,27 +164,30 @@ def fetch_and_save():
     parser = ScholarHTMLParser()
     parser.feed(html_content)
 
-    print(f"Successfully fetched {len(parser.pubs)} publications directly from Google Scholar.")
+    print(f"Successfully fetched {len(parser.pubs)} publications directly from Google Scholar.\n")
 
     for i, pub in enumerate(parser.pubs):
-        # Apply automatic categorization
-        pub['category'] = categorize_pub(pub['title'], pub['venue'])
+        # 1. 自动归类
+        pub['category'] = assign_category(pub['title'], pub['venue'])
         
-        # Apply Crossref DOI resolution
-        print(f"[{i+1}/{len(parser.pubs)}] Resolving DOI for: {pub['title'][:40]}...")
-        doi = resolve_doi_from_crossref(pub['title'])
+        # 加入调试日志
+        print(f"Title: [{pub['title']}] | Venue: [{pub['venue']}] | Assigned Category: [{pub['category']}]")
+        
+        # 2. DOI 自动获取
+        first_author_last = extract_first_author_lastname(pub['authors'])
+        doi = fetch_doi_from_crossref(pub['title'], first_author_last)
         pub['doi'] = doi
         if doi:
-            print(f"  -> Found DOI: {doi}")
+            print(f"  -> Crossref DOI Matched: {doi}")
         else:
-            print(f"  -> No DOI matched.")
-        time.sleep(0.4)  # Polite delay for Crossref API
+            print(f"  -> No Crossref DOI match found.")
+        print("-" * 70)
 
     out_path = os.path.abspath(PUBLICATIONS_FILE)
     with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(parser.pubs, f, indent=2, ensure_ascii=False)
     
-    print(f"Saved {len(parser.pubs)} categorized publications to {out_path}")
+    print(f"\nSaved {len(parser.pubs)} categorized publications to {out_path}")
 
 if __name__ == "__main__":
     fetch_and_save()
