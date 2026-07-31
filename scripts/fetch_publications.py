@@ -73,17 +73,25 @@ def match_journal_index(venue):
 
     return ""
 
-def assign_category(title, venue, orcid_type):
+def assign_category(title, venue, orcid_type, doi=""):
     """
-    Priority-based publication categorization combining ORCID native types and keywords:
+    Priority-based publication categorization combining ORCID native types, DOIs, and keywords:
+    0. Critical Commentary (Explicit DOI/Title matches or commentary keywords)
     1. Scholarship Synthesis (systematic review, meta-analysis, scoping review)
     2. Book Review (ORCID type 'book-review', title starts with 'review of' or contains 'book review', or venue contains 'book review')
     3. Book Chapter (ORCID type 'book-chapter')
-    4. Journal Paper (Default for 'journal-article' or unrecognized types)
+    4. Research Article (Default for 'journal-article' or unrecognized types)
     """
     t_lower = (title or "").lower().strip()
     v_lower = (venue or "").lower().strip()
     o_type = (orcid_type or "").lower().strip()
+    d_clean = (doi or "").lower().strip()
+
+    # Priority 0: Critical Commentary
+    commentary_dois = ['10.21428/8c225f6e.6cf3a869']
+    commentary_keywords = ['critical commentary', 'commentary', 'rethinking the logic of']
+    if d_clean in commentary_dois or any(kw in t_lower for kw in commentary_keywords):
+        return "Critical Commentary"
 
     # Priority 1: Scholarship Synthesis (文献综述/合成类，包含 systematic review, meta-analysis, scoping review 等)
     synthesis_keywords = [
@@ -173,7 +181,7 @@ def fetch_orcid_data():
             link = f"https://orcid.org/{ORCID_ID}"
 
         # Assign category
-        category = assign_category(title, venue, orcid_type)
+        category = assign_category(title, venue, orcid_type, doi)
 
         # Match journal index tag (e.g. SSCI)
         index_tag = match_journal_index(venue)
