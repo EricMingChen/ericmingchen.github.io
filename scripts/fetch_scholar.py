@@ -1,69 +1,104 @@
 #!/usr/bin/env python3
 """
-Automated Google Scholar publications fetcher script.
-Retrieves citation profile data for User ID: bhmuN8YAAAAJ
-Updates publications.json with updated citation metrics and details.
+Automated zero-hardcode Google Scholar publications fetcher.
+Fetches live publication profile for User ID: bhmuN8YAAAAJ
+Saves parsed profile items directly to publications.json.
 """
 
 import json
 import urllib.request
-import re
 import os
+from html.parser import HTMLParser
 
 SCHOLAR_ID = "bhmuN8YAAAAJ"
-SCHOLAR_URL = f"https://scholar.google.com/citations?user={SCHOLAR_ID}&hl=en"
+SCHOLAR_URL = f"https://scholar.google.com/citations?user={SCHOLAR_ID}&hl=en&pagesize=100"
 PUBLICATIONS_FILE = os.path.join(os.path.dirname(__file__), "..", "publications.json")
 
-def fetch_scholar_html():
+class ScholarHTMLParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.pubs = []
+        self.cur = None
+        self.current_field = None
+        self.grays = []
+
+    def handle_starttag(self, tag, attrs):
+        d = dict(attrs)
+        cls = d.get('class', '')
+        if tag == 'tr' and 'gsc_a_tr' in cls:
+            self.cur = {'title': '', 'authors': '', 'venue': '', 'year': '', 'citations': 0, 'link': ''}
+            self.grays = []
+        elif self.cur is not None:
+            if tag == 'a' and 'gsc_a_at' in cls:
+                self.current_field = 'title'
+                if 'href' in d:
+                    href = d['href']
+                    if not href.startswith('http'):
+                        href = 'https://scholar.google.com' + href
+                    self.cur['link'] = href
+            elif tag == 'div' and 'gs_gray' in cls:
+                self.current_field = 'gray'
+            elif tag == 'a' and 'gsc_a_ac' in cls:
+                self.current_field = 'citations'
+            elif tag == 'span' and 'gsc_a_h' in cls:
+                self.current_field = 'year'
+
+    def handle_endtag(self, tag):
+        if tag == 'tr' and self.cur is not None:
+            if len(self.grays) > 0:
+                self.cur['authors'] = self.grays[0]
+            if len(self.grays) > 1:
+                self.cur['venue'] = self.grays[1]
+            self.pubs.append(self.cur)
+            self.cur = None
+            self.grays = []
+        self.current_field = None
+
+    def handle_data(self, data):
+        if self.cur is None or not self.current_field:
+            return
+        t = data.strip()
+        if not t:
+            return
+        if self.current_field == 'title':
+            if self.cur['title']:
+                self.cur['title'] += ' ' + t
+            else:
+                self.cur['title'] = t
+        elif self.current_field == 'gray':
+            self.grays.append(t)
+        elif self.current_field == 'citations':
+            try:
+                self.cur['citations'] = int(t)
+            except ValueError:
+                self.cur['citations'] = 0
+        elif self.current_field == 'year':
+            self.cur['year'] = t
+
+def fetch_and_save():
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     }
     req = urllib.request.Request(SCHOLAR_URL, headers=headers)
+    
+    print(f"Fetching Google Scholar profile for ID: {SCHOLAR_ID}...")
     try:
-        with urllib.request.urlopen(req, timeout=15) as response:
-            return response.read().decode('utf-8', errors='ignore')
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            html_content = resp.read().decode('utf-8', errors='ignore')
     except Exception as e:
-        print(f"Warning: Could not fetch direct Scholar HTML: {e}")
-        return None
-
-def update_publications():
-    html = fetch_scholar_html()
-    if not html:
-        print("Using existing publications.json without network update.")
+        print(f"Error fetching Google Scholar profile: {e}")
         return
 
-    # Load existing publications
-    if os.path.exists(PUBLICATIONS_FILE):
-        with open(PUBLICATIONS_FILE, 'r', encoding='utf-8') as f:
-            pubs = json.load(f)
-    else:
-        pubs = []
+    parser = ScholarHTMLParser()
+    parser.feed(html_content)
 
-    # Simple regex parsing for citation counts in Scholar profile table
-    # Matches: <a class="gsc_a_ac..." ...>NUM</a>
-    citation_matches = re.findall(r'class="gsc_a_ac[^"]*"[^>]*>(\d+)</a>', html)
-    title_matches = re.findall(r'class="gsc_a_at"[^>]*>([^<]+)</a>', html)
+    print(f"Successfully fetched {len(parser.pubs)} publications directly from Google Scholar.")
 
-    print(f"Found {len(title_matches)} publications on Google Scholar profile.")
-
-    # Match and update citation counts
-    for i, title in enumerate(title_matches):
-        c_count = int(citation_matches[i]) if i < len(citation_matches) else 0
-        cleaned_title = title.strip().lower()
-
-        # Update in existing list
-        matched = False
-        for p in pubs:
-            if p["title"].strip().lower() in cleaned_title or cleaned_title in p["title"].strip().lower():
-                p["citations"] = c_count
-                p["link"] = f"https://scholar.google.com/citations?user={SCHOLAR_ID}&hl=en"
-                matched = True
-                break
-
-    # Save updated file
-    with open(PUBLICATIONS_FILE, 'w', encoding='utf-8') as f:
-        json.dump(pubs, f, indent=2, ensure_ascii=False)
-    print("Successfully updated publications.json!")
+    out_path = os.path.abspath(PUBLICATIONS_FILE)
+    with open(out_path, 'w', encoding='utf-8') as f:
+        json.dump(parser.pubs, f, indent=2, ensure_ascii=False)
+    
+    print(f"Saved publications data to {out_path}")
 
 if __name__ == "__main__":
-    update_publications()
+    fetch_and_save()

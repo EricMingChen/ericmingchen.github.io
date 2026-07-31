@@ -170,35 +170,11 @@
     }
 
     /* Publications styling */
-    .filter-tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--muted);
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
     .pub-list {
       display: flex;
       flex-direction: column;
       gap: 16px;
-      margin-top: 10px;
+      margin-top: 14px;
     }
 
     .pub-card {
@@ -256,7 +232,7 @@
     }
 
     .scholar-sync-note {
-      margin-top: 12px;
+      margin-top: 16px;
       font-size: 13px;
       color: var(--muted);
       font-style: italic;
@@ -360,19 +336,12 @@
     <section id="publications" aria-labelledby="pub-title">
       <h2 id="pub-title">Publications</h2>
 
-      <div class="filter-tabs">
-        <button class="tab-btn active" onclick="filterPubs('all')">All</button>
-        <button class="tab-btn" onclick="filterPubs('Journal article')">Journal Articles</button>
-        <button class="tab-btn" onclick="filterPubs('Book chapter')">Book Chapters</button>
-        <button class="tab-btn" onclick="filterPubs('Book review')">Book Reviews</button>
-      </div>
-
       <div id="pub-container" class="pub-list">
-        <!-- Dynamically populated via publications.json -->
+        <p>Loading publications from Google Scholar...</p>
       </div>
 
       <p class="scholar-sync-note">
-        Automatically synced with <a href="https://scholar.google.com/citations?user=bhmuN8YAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar Profile</a>.
+        Automatically synced daily from <a href="https://scholar.google.com/citations?user=bhmuN8YAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar Profile (ID: bhmuN8YAAAAJ)</a>.
       </p>
     </section>
 
@@ -408,54 +377,37 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    let allPubs = [];
-
     async function loadPublications() {
+      const container = document.getElementById('pub-container');
       try {
         const res = await fetch('publications.json');
-        if (!res.ok) throw new Error('Network response was not ok');
-        allPubs = await res.json();
-        renderPubs(allPubs);
+        if (!res.ok) throw new Error('Could not fetch publications.json');
+        const pubs = await res.json();
+        
+        if (!pubs || pubs.length === 0) {
+          container.innerHTML = '<p>No publications found on Google Scholar profile.</p>';
+          return;
+        }
+
+        container.innerHTML = pubs.map(p => `
+          <div class="pub-card">
+            <div class="pub-title">
+              ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">${p.title}</a>` : p.title}
+            </div>
+            <div class="pub-authors">${p.authors}</div>
+            <div class="pub-venue">${p.venue} ${p.year ? `(${p.year})` : ''}</div>
+            <div class="pub-meta">
+              ${p.citations !== undefined ? `<span class="badge citation-badge">Citations: ${p.citations}</span>` : ''}
+              ${p.year ? `<span class="badge">${p.year}</span>` : ''}
+            </div>
+          </div>
+        `).join('');
       } catch (err) {
-        console.warn('Could not load publications.json, loading fallback.', err);
+        container.innerHTML = '<p>Unable to load publications automatically. Please check back later.</p>';
+        console.error(err);
       }
     }
 
-    function renderPubs(pubs) {
-      const container = document.getElementById('pub-container');
-      if (!pubs || pubs.length === 0) {
-        container.innerHTML = '<p>No publications found.</p>';
-        return;
-      }
-
-      container.innerHTML = pubs.map(p => `
-        <div class="pub-card" data-type="${p.type || 'Journal article'}">
-          <div class="pub-title">
-            ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">${p.title}</a>` : p.title}
-          </div>
-          <div class="pub-authors">${p.authors}</div>
-          <div class="pub-venue">${p.venue} (${p.year})</div>
-          <div class="pub-meta">
-            <span class="badge">${p.type || 'Publication'}</span>
-            ${p.citations ? `<span class="badge citation-badge">Citations: ${p.citations}</span>` : ''}
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function filterPubs(type) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-
-      if (type === 'all') {
-        renderPubs(allPubs);
-      } else {
-        const filtered = allPubs.filter(p => p.type === type);
-        renderPubs(filtered);
-      }
-    }
-
-    // Initialize on load
     loadPublications();
   </script>
 </body>
