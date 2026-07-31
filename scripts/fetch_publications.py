@@ -1,25 +1,83 @@
 #!/usr/bin/env python3
 """
-Automated ORCID Public API Publications Fetcher.
-Fetches structured publication records from ORCID ID: 0000-0003-4099-1606
-Resolves native DOIs, titles, journal venues, publication years, and authors.
-Applies priority-based categorization and outputs directly to publications.json.
+Automated ORCID Public API Publications Fetcher with Local Journal Index Tagging:
+1. Loads local dataset from data/journal_index.csv (SSCI, SCIE, SCI, AHCI, ESCI, etc.)
+2. Performs fuzzy matching using difflib to automatically attach index_tag
+3. Queries ORCID Public API v3.0 for 100% structured DOIs, titles, venues, and authors
+4. Applies priority-based categorization
+5. Outputs structured data to publications.json
 """
 
 import json
 import urllib.request
 import os
 import re
+import csv
+import difflib
 
 ORCID_ID = "0000-0003-4099-1606"
 ORCID_WORKS_URL = f"https://pub.orcid.org/v3.0/{ORCID_ID}/works"
 ORCID_WORK_DETAIL_URL = f"https://pub.orcid.org/v3.0/{ORCID_ID}/work/"
-PUBLICATIONS_FILE = os.path.join(os.path.dirname(__file__), "..", "publications.json")
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PUBLICATIONS_FILE = os.path.join(SCRIPT_DIR, "..", "publications.json")
+JOURNAL_INDEX_FILE = os.path.join(SCRIPT_DIR, "..", "data", "journal_index.csv")
+
+# 1. Load local journal index dataset into memory dictionary
+def load_journal_index():
+    index_dict = {}
+    if not os.path.exists(JOURNAL_INDEX_FILE):
+        print(f"Warning: Journal index dataset not found at {JOURNAL_INDEX_FILE}")
+        return index_dict
+
+    try:
+        with open(JOURNAL_INDEX_FILE, 'r', encoding='utf-8') as f:
+            reader = csv.reader(f)
+            header = next(reader, None)
+            for row in reader:
+                if len(row) >= 2:
+                    j_name = row[0].strip().lower()
+                    j_cat = row[1].strip()
+                    if j_name:
+                        index_dict[j_name] = j_cat
+        print(f"Successfully loaded {len(index_dict)} journal index records into memory.")
+    except Exception as e:
+        print(f"Error loading journal index CSV: {e}")
+
+    return index_dict
+
+JOURNAL_INDEX = load_journal_index()
+JOURNAL_INDEX_KEYS = list(JOURNAL_INDEX.keys())
+
+def match_journal_index(venue):
+    """
+    Fuzzy matches venue string against local journal_index database.
+    Returns matched Index_Category (e.g. 'SSCI', 'ESCI') if similarity >= 0.80, else ''.
+    """
+    if not venue or not JOURNAL_INDEX:
+        return ""
+
+    # Clean venue by removing volume, issue, page numbers, e.g. "Journal Name 4 (1), 18-31" -> "Journal Name"
+    v_clean = re.sub(r'\s*\d+.*$', '', venue).strip().lower()
+    if not v_clean:
+        return ""
+
+    # Direct exact lookup
+    if v_clean in JOURNAL_INDEX:
+        return JOURNAL_INDEX[v_clean]
+
+    # Fuzzy matching using difflib
+    matches = difflib.get_close_matches(v_clean, JOURNAL_INDEX_KEYS, n=1, cutoff=0.80)
+    if matches:
+        matched_key = matches[0]
+        return JOURNAL_INDEX[matched_key]
+
+    return ""
 
 def assign_category(title, venue, orcid_type):
     """
     Priority-based publication categorization combining ORCID native types and keywords:
-    1. Scholarship Synthesis (systematic review, meta-analysis, scoping review, a systematic review of...)
+    1. Scholarship Synthesis (systematic review, meta-analysis, scoping review)
     2. Book Review (ORCID type 'book-review', title starts with 'review of' or contains 'book review', or venue contains 'book review')
     3. Book Chapter (ORCID type 'book-chapter')
     4. Journal Paper (Default for 'journal-article' or unrecognized types)
@@ -28,7 +86,7 @@ def assign_category(title, venue, orcid_type):
     v_lower = (venue or "").lower().strip()
     o_type = (orcid_type or "").lower().strip()
 
-    # Priority 1: Scholarship Synthesis (文献综述类，匹配 systematic review, meta-analysis, scoping review 等)
+    # Priority 1: Scholarship Synthesis
     synthesis_keywords = ['systematic review', 'meta-analysis', 'meta analysis', 'scoping review', 'systematic literature review', 'systematic synthesis']
     if any(kw in t_lower or kw in v_lower for kw in synthesis_keywords):
         return "Scholarship Synthesis"
@@ -111,7 +169,11 @@ def fetch_orcid_data():
         if not link:
             link = f"https://orcid.org/{ORCID_ID}"
 
+        # Assign category
         category = assign_category(title, venue, orcid_type)
+
+        # Match journal index tag (e.g. SSCI, ESCI)
+        index_tag = match_journal_index(venue)
 
         pub_obj = {
             "title": title,
@@ -119,6 +181,7 @@ def fetch_orcid_data():
             "venue": venue,
             "year": year,
             "category": category,
+            "index_tag": index_tag,
             "doi": doi,
             "link": link,
             "orcid_type": orcid_type
@@ -128,7 +191,7 @@ def fetch_orcid_data():
 
         print(f"[{idx+1}/{len(groups)}] Title: [{title}]")
         print(f"       Venue: [{venue}] | Year: [{year}] | ORCID Type: [{orcid_type}]")
-        print(f"       Category: [{category}] | DOI: [{doi}]")
+        print(f"       Category: [{category}] | Index Tag: [{index_tag or 'N/A'}] | DOI: [{doi}]")
         print("-" * 75)
 
     return parsed_pubs
