@@ -306,11 +306,24 @@
       text-decoration: underline;
     }
 
+    .pub-section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .pub-section-header h2 {
+      margin-bottom: 0;
+    }
+
     .scholar-sync-note {
-      margin-top: 28px;
       font-size: 13.5px;
       color: var(--text-secondary);
       font-style: italic;
+      font-weight: 400;
     }
 
     .contact-actions {
@@ -414,15 +427,16 @@
     </section>
 
     <section id="publications" aria-labelledby="pub-title">
-      <h2 id="pub-title">Publications</h2>
+      <div class="pub-section-header">
+        <h2 id="pub-title">Publications</h2>
+        <span class="scholar-sync-note">
+          Synced from <a href="https://orcid.org/0000-0003-4099-1606" target="_blank" rel="noopener">ORCID Profile (0000-0003-4099-1606)</a>
+        </span>
+      </div>
 
       <div id="pub-container">
         <p>Loading publications from ORCID...</p>
       </div>
-
-      <p class="scholar-sync-note">
-        Synced from <a href="https://orcid.org/0000-0003-4099-1606" target="_blank" rel="noopener">ORCID Profile (0000-0003-4099-1606)</a>.
-      </p>
     </section>
 
     <section id="contact" aria-labelledby="contact-title">
