@@ -12,16 +12,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
   <style>
+  <style>
     :root {
-      --primary-title: #222222;   /* Soft Dark Title */
-      --brand-accent: #002a5c;    /* Deep Blue Accent for Badges & Highlights */
-      --text-main: #333333;       /* Soft Dark Charcoal (No Pure Black) */
-      --text-secondary: #555555;  /* Medium Soft Gray */
-      --bg-main: #ffffff;         /* Pure White */
-      --bg-card: #F8F9FA;         /* Ultra-light Warm Gray */
-      --link-accent: #0052a3;     /* Navy Blue Interactive Accent */
-      --border-line: #f0f2f5;     /* Ultra Light Line */
-      --max: 1050px;              /* Expanded comfortable width */
+      --color-text-main: #334155;    /* Primary Body Text: Slate Gray Blue */
+      --color-text-heading: #0f172a; /* Headings & Titles: Deep Slate Black */
+      --color-text-muted: #64748b;   /* Secondary Meta Text: Authors, Venue, Badges */
+      --color-link: #2563eb;         /* Interactive Link Accent: Royal Blue */
+      --color-border: #e2e8f0;       /* Divider Lines: Soft Slate Border */
+      --bg-main: #ffffff;            /* Pure White Background */
+      --bg-card: #f8fafc;            /* Ultra-light Slate Card/Badge Background */
+      --max: 1050px;                 /* Container Max Width */
     }
 
     *, *::before, *::after {
@@ -38,17 +38,18 @@
     body {
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      color: var(--text-main);
+      color: var(--color-text-main);
       background: var(--bg-main);
       line-height: 1.75;
-      font-size: 15.5px;
+      font-size: 16px; /* 1rem Base */
+      font-weight: 400;
       letter-spacing: 0.02em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
     a {
-      color: var(--link-accent);
+      color: var(--color-link);
       text-decoration: none;
       transition: color 0.15s ease;
     }
@@ -59,15 +60,15 @@
 
     h1, h2, h3, h4 {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      color: var(--primary-title);
+      color: var(--color-text-heading);
       margin: 0;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
 
     /* Top Navigation Header (Aligned exactly with main content) */
     header {
       width: 100%;
-      border-bottom: 1px solid var(--border-line);
+      border-bottom: 1px solid var(--color-border);
     }
 
     .nav {
@@ -81,30 +82,30 @@
     }
 
     .brand {
-      font-size: 17.5px;
+      font-size: 18px;
       font-weight: 500;
-      color: var(--brand-accent);
-      letter-spacing: 0.01em;
+      color: var(--color-text-heading);
+      letter-spacing: -0.01em;
       text-align: left;
     }
 
     .nav-links {
       display: flex;
-      gap: 18px;
-      font-size: 14.5px;
+      gap: 20px;
+      font-size: 15px;
       font-weight: 400;
     }
 
     .nav-links a {
-      color: var(--text-secondary);
+      color: var(--color-text-muted);
     }
 
     .nav-links a:hover {
-      color: var(--brand-accent);
+      color: var(--color-link);
       text-decoration: none;
     }
 
-    /* Main Container (Spacious Single Column Academic Layout) */
+    /* Main Container */
     main {
       max-width: var(--max);
       margin: 0 auto;
@@ -124,22 +125,22 @@
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      border: 1px solid var(--border-line);
-      box-shadow: 0 3px 12px rgba(0, 42, 92, 0.05);
+      border: 1px solid var(--color-border);
+      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
     }
 
     h1#name {
-      font-size: clamp(26px, 4vw, 34px);
+      font-size: 32px; /* 2rem Task 2 */
       line-height: 1.25;
-      font-weight: 500;
-      color: var(--primary-title);
+      font-weight: 600; /* Weight 600 */
+      color: var(--color-text-heading);
       text-align: center;
     }
 
     .subtitle {
       margin: 10px auto 0;
-      color: var(--text-secondary);
-      font-size: 15px;
+      color: var(--color-text-muted);
+      font-size: 16px;
       max-width: 630px;
       line-height: 1.5;
       font-weight: 400;
@@ -154,29 +155,29 @@
 
     /* Contact Links Pills */
     .socials {
-      margin-top: 16px;
+      margin-top: 18px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 8px;
-      font-size: 13.5px;
+      font-size: 14px;
     }
 
     .socials a {
       padding: 5px 14px;
       border-radius: 999px;
-      color: var(--brand-accent);
+      color: var(--color-text-heading);
       background: var(--bg-card);
-      border: 1px solid #e0e6ed;
+      border: 1px solid var(--color-border);
       font-weight: 500;
       transition: all 0.15s ease;
     }
 
     .socials a:hover {
       text-decoration: none;
-      background: var(--brand-accent);
+      background: var(--color-text-heading);
       color: #ffffff;
-      border-color: var(--brand-accent);
+      border-color: var(--color-text-heading);
     }
 
     /* Main Sections */
@@ -185,25 +186,25 @@
     }
 
     h2 {
-      font-size: 21px;
-      font-weight: 600;
+      font-size: 24px; /* 1.5rem Task 2 */
+      font-weight: 600; /* Weight 600 */
       margin-bottom: 16px;
-      color: var(--primary-title);
+      color: var(--color-text-heading);
     }
 
     h3.category-title {
-      margin: 28px 0 14px;
-      font-size: 16.5px;
-      font-weight: 600;
-      color: var(--brand-accent);
-      border-bottom: 1.5px solid var(--bg-card);
-      padding-bottom: 4px;
+      margin: 32px 0 16px;
+      font-size: 20px; /* 1.25rem Task 2 */
+      font-weight: 500; /* Weight 500 */
+      color: var(--color-text-heading);
+      border-bottom: 1.5px solid var(--color-border);
+      padding-bottom: 6px;
     }
 
     p {
       margin: 0 0 1.5em;
-      color: var(--text-main);
-      font-size: 15.5px;
+      color: var(--color-text-main);
+      font-size: 16px; /* 1rem Task 2 */
       line-height: 1.75;
       letter-spacing: 0.02em;
       text-align: justify;
@@ -222,8 +223,8 @@
       display: flex;
       align-items: baseline;
       gap: 12px;
-      font-size: 15px;
-      color: var(--text-main);
+      font-size: 16px;
+      color: var(--color-text-main);
       line-height: 1.75;
       letter-spacing: 0.02em;
       margin-bottom: 1.5em;
@@ -235,8 +236,8 @@
 
     .news-date {
       font-weight: 600;
-      color: var(--brand-accent);
-      font-size: 14px;
+      color: var(--color-text-heading);
+      font-size: 15px;
       flex-shrink: 0;
     }
 
@@ -257,7 +258,7 @@
       align-items: flex-start;
       padding-bottom: 18px;
       margin-bottom: 1.5em;
-      border-bottom: 1px solid var(--border-line);
+      border-bottom: 1px solid var(--color-border);
       background: transparent;
       box-shadow: none;
     }
@@ -267,14 +268,16 @@
       margin-bottom: 0;
     }
 
+    /* Task 4: Paper Number Right Alignment Optimization */
     .paper-number {
-      width: 30px;
+      width: 32px;
       flex-shrink: 0;
       font-weight: 600;
-      color: var(--brand-accent);
-      font-size: 14.5px;
+      color: var(--color-text-heading);
+      font-size: 18px;
       line-height: 1.4;
       text-align: right;
+      margin-right: 6px;
       padding-top: 1px;
     }
 
@@ -284,32 +287,32 @@
     }
 
     .pub-title-row {
-      margin-bottom: 3px;
+      margin-bottom: 4px;
     }
 
     .pub-title {
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--text-main);
-      line-height: 1.5;
-      letter-spacing: 0.02em;
+      font-size: 20px; /* 1.25rem Task 2 */
+      font-weight: 500; /* Weight 500 */
+      color: var(--color-text-heading);
+      line-height: 1.45;
+      letter-spacing: 0.01em;
       text-align: justify;
     }
 
     .pub-title a {
-      color: var(--primary-title);
+      color: var(--color-text-heading);
     }
 
     .pub-title a:hover {
-      color: var(--link-accent);
+      color: var(--color-link);
     }
 
     .pub-authors {
-      font-size: 14px;
-      color: var(--text-secondary);
-      margin-bottom: 3px;
+      font-size: 15px;
+      color: var(--color-text-muted);
+      margin-bottom: 4px;
       line-height: 1.5;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       text-align: left;
     }
 
@@ -317,13 +320,12 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--text-secondary);
+      gap: 8px;
+      font-size: 14.5px;
+      color: var(--color-text-muted);
       font-style: italic;
       line-height: 1.5;
-      letter-spacing: 0.02em;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
       text-align: left;
     }
 
@@ -331,26 +333,75 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
       margin-top: 8px;
-      font-size: 12.5px;
     }
 
-    /* Badge Styles */
+    /* Micro-text Badge Styles (14px Task 2) */
     .badge {
       display: inline-flex;
       align-items: center;
-      padding: 2px 7.5px;
+      padding: 2.5px 8.5px;
       border-radius: 4px;
-      font-weight: 600;
-      font-size: 11.5px;
+      font-weight: 500;
+      font-size: 14px; /* 0.875rem Micro-text Task 2 */
       line-height: 1.2;
     }
 
     .index-badge {
-      background: var(--brand-accent);
+      background: var(--color-text-heading);
       color: #ffffff;
       letter-spacing: 0.02em;
+    }
+
+    .year-badge {
+      background: var(--bg-card);
+      color: var(--color-text-main);
+      border: 1px solid var(--color-border);
+    }
+
+    .doi-badge {
+      background: #ffffff;
+      color: var(--color-link);
+      border: 1px solid var(--color-border);
+      text-decoration: none;
+    }
+
+    .doi-badge:hover {
+      background: var(--bg-card);
+      text-decoration: underline;
+    }
+
+    .contact-actions {
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 22px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: var(--color-text-heading);
+      font-size: 15px;
+      font-weight: 500;
+      transition: background 0.15s ease;
+    }
+
+    .button:hover {
+      background: var(--color-link);
+      text-decoration: none;
+    }
+
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px clamp(16px, 4vw, 24px) 44px;
+      color: var(--color-text-muted);
+      font-size: 14px;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
     }
 
     .year-badge {
@@ -555,7 +606,7 @@
               const doiLink = p.doi ? `https://doi.org/${p.doi}` : '';
               html += `
                 <div class="pub-item">
-                  <div class="paper-number">[${reverseNumber}]</div>
+                  <div class="paper-number">${reverseNumber}.</div>
                   <div class="pub-details">
                     <div class="pub-title-row">
                       <span class="pub-title">
