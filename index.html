@@ -62,7 +62,7 @@
     .nav {
       max-width: 980px;
       margin: 0 auto;
-      padding: 22px 24px;
+      padding: 16px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -70,16 +70,16 @@
     }
 
     .brand {
-      font-size: 18px;
-      font-weight: 400; /* Task 1: Un-bolded */
+      font-size: 17.5px;
+      font-weight: 400;
       color: var(--primary-title);
       letter-spacing: -0.01em;
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
-      font-size: 15px;
+      gap: 18px;
+      font-size: 14.5px;
       font-weight: 400;
     }
 
@@ -92,44 +92,44 @@
       text-decoration: none;
     }
 
-    /* Main Container (Single Column Spacious Layout) */
+    /* Main Container (Compact Single Column Academic Layout) */
     main {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 40px 24px 56px;
+      padding: 24px 24px 44px;
     }
 
     /* Profile Header Section */
     .profile {
       text-align: center;
-      padding: 20px 0 44px;
+      padding: 10px 0 28px;
       border-bottom: 1px solid var(--border-line);
     }
 
     .avatar {
-      width: 136px;
-      height: 136px;
-      margin: 0 auto 24px;
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 16px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
       border: 1px solid var(--border-line);
-      box-shadow: 0 4px 16px rgba(0, 42, 92, 0.06);
+      box-shadow: 0 3px 12px rgba(0, 42, 92, 0.05);
     }
 
     h1#name {
-      font-size: clamp(32px, 5vw, 42px);
+      font-size: clamp(28px, 4.5vw, 36px);
       line-height: 1.2;
-      font-weight: 400; /* Task 1: Un-bolded name */
+      font-weight: 400;
       color: var(--primary-title);
     }
 
     .subtitle {
-      margin: 16px auto 0;
+      margin: 10px auto 0;
       color: var(--text-secondary);
-      font-size: 16px;
+      font-size: 15px;
       max-width: 630px;
-      line-height: 1.5;
+      line-height: 1.45;
       font-weight: 400;
     }
 
@@ -139,16 +139,16 @@
 
     /* Contact Links Pills */
     .socials {
-      margin-top: 24px;
+      margin-top: 16px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
-      font-size: 14px;
+      gap: 8px;
+      font-size: 13.5px;
     }
 
     .socials a {
-      padding: 6px 16px;
+      padding: 5px 14px;
       border-radius: 999px;
       color: var(--primary-title);
       background: var(--bg-card);
@@ -166,32 +166,32 @@
 
     /* Main Sections */
     section {
-      padding: 40px 0 0;
+      padding: 28px 0 0;
     }
 
     h2 {
-      font-size: 24px;
+      font-size: 21px;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
     h3.category-title {
-      margin: 36px 0 20px;
-      font-size: 18px;
+      margin: 22px 0 12px;
+      font-size: 16.5px;
       font-weight: 600;
       color: var(--primary-title);
       border-bottom: 1.5px solid var(--bg-card);
-      padding-bottom: 6px;
+      padding-bottom: 4px;
     }
 
     p {
-      margin: 0 0 16px;
+      margin: 0 0 12px;
       color: var(--text-main);
-      font-size: 16px;
-      line-height: 1.75;
+      font-size: 15.5px;
+      line-height: 1.6;
     }
 
-    /* Publications List (Task 2 & 3: Seamless Pure White Background & Perfect Hanging Indent) */
+    /* Publications List (Compact Industry Standard Layout) */
     .pub-list {
       display: flex;
       flex-direction: column;
@@ -199,12 +199,12 @@
 
     .pub-item {
       display: flex;
-      gap: 14px;
+      gap: 12px;
       align-items: flex-start;
-      padding-bottom: 24px;
-      margin-bottom: 24px;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
       border-bottom: 1px solid var(--border-line);
-      background: transparent; /* Task 2: No card border/background */
+      background: transparent;
       box-shadow: none;
     }
 
@@ -213,14 +213,13 @@
       margin-bottom: 0;
     }
 
-    /* Task 3: Fixed width paper number column for clean hanging indent */
     .paper-number {
-      width: 32px;
+      width: 30px;
       flex-shrink: 0;
       font-weight: 600;
       color: var(--primary-title);
-      font-size: 15px;
-      line-height: 1.5;
+      font-size: 14.5px;
+      line-height: 1.4;
       text-align: right;
       padding-top: 1px;
     }
@@ -231,14 +230,14 @@
     }
 
     .pub-title-row {
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .pub-title {
       font-weight: 600;
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-main);
-      line-height: 1.5;
+      line-height: 1.38;
     }
 
     .pub-title a {
@@ -250,41 +249,41 @@
     }
 
     .pub-authors {
-      font-size: 14.5px;
+      font-size: 14px;
       color: var(--text-secondary);
-      margin-bottom: 4px;
-      line-height: 1.5;
+      margin-bottom: 2px;
+      line-height: 1.38;
     }
 
     .pub-venue {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
-      font-size: 13.5px;
+      gap: 6px;
+      font-size: 13px;
       color: var(--text-secondary);
       font-style: italic;
-      line-height: 1.5;
-      margin-bottom: 4px;
+      line-height: 1.38;
+      margin-bottom: 2px;
     }
 
     .pub-meta {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-      font-size: 13px;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 12.5px;
     }
 
     /* Badge Styles */
     .badge {
       display: inline-flex;
       align-items: center;
-      padding: 2.5px 9px;
+      padding: 2px 7.5px;
       border-radius: 4px;
       font-weight: 600;
-      font-size: 12px;
+      font-size: 11.5px;
       line-height: 1.2;
     }
 
