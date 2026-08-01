@@ -12,18 +12,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
   <style>
-  <style>
     :root {
-      --color-text-main: #333333;      /* Classic Deep Charcoal */
+      --color-text-main: #334155;      /* Primary Slate Charcoal Body Text */
       --color-text-heading: #0f172a;   /* Deep Slate Navy/Black Headings */
-      --color-text-muted: #556677;     /* Soft Muted Gray-Blue */
-      --color-link: #0052a3;           /* Interactive Accent Blue */
+      --color-text-muted: #64748b;     /* Secondary Meta Text */
+      --color-link: #2563eb;           /* Interactive Royal Blue Accent */
       --oxford-blue: #002147;          /* Official Oxford University Deep Blue */
       --oxford-blue-hover: #003366;    /* Oxford Hover Blue */
       --color-border: #e2e8f0;         /* Soft Divider Line */
       --bg-main: #ffffff;              /* Pure White Background */
-      --bg-card: #f4f7fa;              /* Soft Warm Tint Background */
-      --max: 860px;                    /* Standard Academic Harmonious Container Width (860px) */
+      --bg-card: #f8fafc;              /* Soft Warm Tint Background */
+      --max: 860px;                    /* Standard Academic Container Width (860px) */
     }
 
     *, *::before, *::after {
@@ -45,7 +44,7 @@
       line-height: 1.75;
       font-size: 16px;
       font-weight: 400;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.015em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -111,7 +110,7 @@
     main {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 24px clamp(16px, 4vw, 24px) 44px;
+      padding: 28px clamp(16px, 4vw, 24px) 48px;
     }
 
     /* Profile Header Section */
@@ -170,7 +169,7 @@
       border-radius: 999px;
       color: var(--oxford-blue);
       background: #f0f4f8;
-      border: 1px solid #d0dadf;
+      border: 1px solid #cbd5e1;
       font-weight: 500;
       font-size: 14px;
       transition: all 0.2s ease;
@@ -213,7 +212,7 @@
       color: var(--color-text-main);
       font-size: 16px;
       line-height: 1.75;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.015em;
       text-align: justify;
     }
 
@@ -233,7 +232,7 @@
       font-size: 16px;
       color: var(--color-text-main);
       line-height: 1.75;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.015em;
       margin-bottom: 1.5em;
     }
 
@@ -350,8 +349,8 @@
       align-items: center;
       padding: 2.5px 8.5px;
       border-radius: 4px;
-      font-weight: 600;
-      font-size: 13.5px;
+      font-weight: 500;
+      font-size: 14px;
       line-height: 1.2;
     }
 
@@ -363,7 +362,7 @@
 
     .year-badge {
       background: #f1f5f9;
-      color: #334155;
+      color: var(--color-text-main);
       border: 1px solid #cbd5e1;
     }
 
@@ -422,55 +421,6 @@
       border-top: 1px solid var(--color-border);
     }
 
-    .year-badge {
-      background: #e2e8f0;
-      color: #334155;
-    }
-
-    .doi-badge {
-      background: #ffffff;
-      color: var(--link-accent);
-      border: 1px solid var(--border-line);
-      text-decoration: none;
-    }
-
-    .doi-badge:hover {
-      background: var(--bg-card);
-      text-decoration: underline;
-    }
-
-    .contact-actions {
-      margin-top: 18px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 20px;
-      border-radius: 999px;
-      color: #ffffff;
-      background: var(--primary-title);
-      font-size: 14.5px;
-      font-weight: 500;
-      transition: background 0.15s ease;
-    }
-
-    .button:hover {
-      background: var(--link-accent);
-      text-decoration: none;
-    }
-
-    footer {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 28px clamp(16px, 4vw, 24px) 44px;
-      color: var(--text-secondary);
-      font-size: 13.5px;
-      text-align: center;
-      border-top: 1px solid var(--border-line);
-    }
-
     @media (max-width: 560px) {
       .nav {
         flex-direction: column;
@@ -493,7 +443,7 @@
 
       .paper-number {
         width: 26px;
-        font-size: 13.5px;
+        font-size: 14px;
       }
     }
   </style>
