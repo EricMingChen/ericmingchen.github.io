@@ -320,24 +320,30 @@
       text-align: left;
     }
 
-    /* Clean Academic Citation Flow */
-    .pub-citation {
+    /* Explicit 4-Line Publication Layout */
+    .pub-venue-line {
       font-size: 16px;
-      line-height: 1.6;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+
+    .pub-meta-line {
+      font-size: 15px;
       color: var(--text-secondary);
       margin-top: 4px;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
+      flex-wrap: wrap;
       gap: 8px;
-    }
-
-    .pub-venue-text {
-      font-style: italic;
+      line-height: 1.5;
     }
 
     .pub-year-text {
-      font-style: normal;
+      color: var(--text-secondary);
+      font-size: 15px;
+      font-weight: 400;
     }
 
     /* Micro-text Badge Styles */
@@ -563,9 +569,11 @@
                       </span>
                     </div>
                     ${p.authors ? `<div class="pub-authors">${p.authors}</div>` : ''}
-                    <div class="pub-citation">
-                      <span class="pub-venue-text">${p.venue}</span>${p.year ? `, <span class="pub-year-text">${p.year}</span>` : ''}.${p.index_tag ? ` <span class="badge index-badge">${p.index_tag}</span>` : ''}
-                      ${doiLink ? `<span><a href="${doiLink}" target="_blank" rel="noopener" class="doi-link">https://doi.org/${p.doi}</a></span>` : ''}
+                    <div class="pub-venue-line">${p.venue}${p.venue.endsWith(',') ? '' : ','}</div>
+                    <div class="pub-meta-line">
+                      ${p.index_tag ? `<span class="badge index-badge">${p.index_tag}</span>` : ''}
+                      ${p.year ? `<span class="pub-year-text">${p.year}</span>` : ''}
+                      ${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="doi-link">https://doi.org/${p.doi}</a>` : ''}
                     </div>
                   </div>
                 </div>
