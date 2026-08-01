@@ -20,19 +20,21 @@
       --bg-card: #F8F9FA;         /* Ultra-light Warm Gray */
       --link-accent: #0052a3;     /* Navy Blue Interactive Accent */
       --border-line: #f0f2f5;     /* Ultra Light Line */
-      --max: 780px;
+      --max: 1050px;              /* Expanded comfortable width */
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html, body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
       font-family: 'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: var(--text-main);
@@ -58,11 +60,16 @@
       margin: 0;
     }
 
-    /* Top Navigation */
+    /* Top Navigation Header (Aligned exactly with main content) */
+    header {
+      width: 100%;
+      border-bottom: 1px solid var(--border-line);
+    }
+
     .nav {
-      max-width: 980px;
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 16px clamp(16px, 4vw, 24px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -74,6 +81,7 @@
       font-weight: 400;
       color: var(--primary-title);
       letter-spacing: -0.01em;
+      text-align: left;
     }
 
     .nav-links {
@@ -92,17 +100,17 @@
       text-decoration: none;
     }
 
-    /* Main Container (Compact Single Column Academic Layout) */
+    /* Main Container (Spacious Single Column Academic Layout) */
     main {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 24px 24px 44px;
+      padding: 24px clamp(16px, 4vw, 24px) 44px;
     }
 
     /* Profile Header Section */
     .profile {
       text-align: center;
-      padding: 10px 0 20px;
+      padding: 12px 0 24px;
     }
 
     .avatar {
@@ -121,6 +129,7 @@
       line-height: 1.2;
       font-weight: 400;
       color: var(--primary-title);
+      text-align: center;
     }
 
     .subtitle {
@@ -130,10 +139,13 @@
       max-width: 630px;
       line-height: 1.45;
       font-weight: 400;
+      text-align: center;
     }
 
     .subtitle span {
       display: block;
+      text-align: center;
+      word-spacing: normal;
     }
 
     /* Contact Links Pills */
@@ -165,7 +177,7 @@
 
     /* Main Sections */
     section {
-      padding: 28px 0 0;
+      padding: 24px 0 0;
     }
 
     h2 {
@@ -191,7 +203,7 @@
       text-align: justify;
     }
 
-    /* Publications List (Compact Industry Standard Layout) */
+    /* Publications List (Compact & Spacious Layout) */
     .pub-list {
       display: flex;
       flex-direction: column;
@@ -254,7 +266,7 @@
       color: var(--text-secondary);
       margin-bottom: 2px;
       line-height: 1.38;
-      text-align: justify;
+      text-align: left;
     }
 
     .pub-venue {
@@ -267,6 +279,7 @@
       font-style: italic;
       line-height: 1.38;
       margin-bottom: 2px;
+      text-align: left;
     }
 
     .pub-meta {
@@ -312,39 +325,19 @@
       text-decoration: underline;
     }
 
-    .pub-section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .pub-section-header h2 {
-      margin-bottom: 0;
-    }
-
-    .scholar-sync-note {
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      font-style: italic;
-      font-weight: 400;
-    }
-
     .contact-actions {
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 9px 22px;
+      padding: 8px 20px;
       border-radius: 999px;
       color: #ffffff;
       background: var(--primary-title);
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 500;
       transition: background 0.15s ease;
     }
@@ -357,9 +350,9 @@
     footer {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 36px 24px 48px;
+      padding: 28px clamp(16px, 4vw, 24px) 44px;
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 13.5px;
       text-align: center;
       border-top: 1px solid var(--border-line);
     }
@@ -368,7 +361,7 @@
       .nav {
         flex-direction: column;
         align-items: flex-start;
-        padding: 18px 20px;
+        padding: 14px 16px;
       }
 
       .nav-links {
@@ -376,17 +369,17 @@
       }
 
       main {
-        padding-top: 32px;
+        padding-top: 20px;
       }
 
       .avatar {
-        width: 118px;
-        height: 118px;
+        width: 100px;
+        height: 100px;
       }
 
       .paper-number {
-        width: 28px;
-        font-size: 14px;
+        width: 26px;
+        font-size: 13.5px;
       }
     }
   </style>
@@ -490,7 +483,7 @@
         CATEGORY_ORDER.forEach(cat => grouped[cat] = []);
         
         pubs.forEach(p => {
-          const cat = p.category || 'Journal Paper';
+          const cat = p.category || 'Research Article';
           if (!grouped[cat]) grouped[cat] = [];
           grouped[cat].push(p);
         });
