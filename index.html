@@ -14,14 +14,15 @@
   <style>
   <style>
     :root {
-      --color-text-main: #334155;    /* Primary Body Text: Slate Gray Blue */
-      --color-text-heading: #0f172a; /* Headings & Titles: Deep Slate Black */
-      --color-text-muted: #64748b;   /* Secondary Meta Text: Authors, Venue, Badges */
-      --color-link: #2563eb;         /* Interactive Link Accent: Royal Blue */
-      --color-border: #e2e8f0;       /* Divider Lines: Soft Slate Border */
+      --color-text-main: #333333;    /* Classic Deep Charcoal */
+      --color-text-heading: #111111; /* Classic Dark Black-Gray Title */
+      --color-text-muted: #666666;   /* Classic Medium Gray */
+      --color-link: #0056b3;         /* Classic Academic Solid Blue */
+      --color-border: #e0e6ed;       /* Light Divider Line */
       --bg-main: #ffffff;            /* Pure White Background */
-      --bg-card: #f8fafc;            /* Ultra-light Slate Card/Badge Background */
-      --max: 1050px;                 /* Container Max Width */
+      --bg-card: #f8fafc;            /* Ultra-light Card Background */
+      --brand-blue: #002a5c;         /* Oxford Deep Blue Accent */
+      --max: 820px;                  /* Classic Compact Width (820px) */
     }
 
     *, *::before, *::after {
@@ -41,7 +42,7 @@
       color: var(--color-text-main);
       background: var(--bg-main);
       line-height: 1.75;
-      font-size: 16px; /* 1rem Base */
+      font-size: 16px;
       font-weight: 400;
       letter-spacing: 0.02em;
       -webkit-font-smoothing: antialiased;
@@ -65,7 +66,7 @@
       letter-spacing: 0.01em;
     }
 
-    /* Top Navigation Header (Aligned exactly with main content) */
+    /* Top Navigation Header (Compact & Aligned) */
     header {
       width: 100%;
       border-bottom: 1px solid var(--color-border);
@@ -105,11 +106,11 @@
       text-decoration: none;
     }
 
-    /* Main Container */
+    /* Main Container (Classic Compact Center-Aligned Layout) */
     main {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 28px clamp(16px, 4vw, 24px) 48px;
+      padding: 24px clamp(16px, 4vw, 24px) 44px;
     }
 
     /* Profile Header Section */
@@ -126,13 +127,13 @@
       object-fit: cover;
       display: block;
       border: 1px solid var(--color-border);
-      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
     }
 
     h1#name {
-      font-size: 32px; /* 2rem Task 2 */
+      font-size: 32px;
       line-height: 1.25;
-      font-weight: 600; /* Weight 600 */
+      font-weight: 600;
       color: var(--color-text-heading);
       text-align: center;
     }
@@ -153,7 +154,7 @@
       word-spacing: normal;
     }
 
-    /* Contact Links Pills */
+    /* Contact Links Pills (Task 2: Protected Button/Pill Styling) */
     .socials {
       margin-top: 18px;
       display: flex;
@@ -164,20 +165,24 @@
     }
 
     .socials a {
-      padding: 5px 14px;
+      padding: 6px 16px;
       border-radius: 999px;
-      color: var(--color-text-heading);
-      background: var(--bg-card);
-      border: 1px solid var(--color-border);
+      color: var(--color-link);
+      background: #f0f4f8;
+      border: 1px solid #d0d7de;
       font-weight: 500;
-      transition: all 0.15s ease;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
     }
 
     .socials a:hover {
       text-decoration: none;
-      background: var(--color-text-heading);
+      background: var(--brand-blue);
       color: #ffffff;
-      border-color: var(--color-text-heading);
+      border-color: var(--brand-blue);
+      box-shadow: 0 2px 8px rgba(0, 42, 92, 0.15);
     }
 
     /* Main Sections */
@@ -186,16 +191,16 @@
     }
 
     h2 {
-      font-size: 24px; /* 1.5rem Task 2 */
-      font-weight: 600; /* Weight 600 */
+      font-size: 24px;
+      font-weight: 600;
       margin-bottom: 16px;
       color: var(--color-text-heading);
     }
 
     h3.category-title {
       margin: 32px 0 16px;
-      font-size: 20px; /* 1.25rem Task 2 */
-      font-weight: 500; /* Weight 500 */
+      font-size: 20px;
+      font-weight: 500;
       color: var(--color-text-heading);
       border-bottom: 1.5px solid var(--color-border);
       padding-bottom: 6px;
@@ -204,7 +209,7 @@
     p {
       margin: 0 0 1.5em;
       color: var(--color-text-main);
-      font-size: 16px; /* 1rem Task 2 */
+      font-size: 16px;
       line-height: 1.75;
       letter-spacing: 0.02em;
       text-align: justify;
@@ -268,7 +273,7 @@
       margin-bottom: 0;
     }
 
-    /* Task 4: Paper Number Right Alignment Optimization */
+    /* Paper Number Right Alignment Optimization */
     .paper-number {
       width: 32px;
       flex-shrink: 0;
@@ -291,8 +296,8 @@
     }
 
     .pub-title {
-      font-size: 20px; /* 1.25rem Task 2 */
-      font-weight: 500; /* Weight 500 */
+      font-size: 20px;
+      font-weight: 500;
       color: var(--color-text-heading);
       line-height: 1.45;
       letter-spacing: 0.01em;
@@ -337,38 +342,41 @@
       margin-top: 8px;
     }
 
-    /* Micro-text Badge Styles (14px Task 2) */
+    /* Micro-text Badge Styles */
     .badge {
       display: inline-flex;
       align-items: center;
       padding: 2.5px 8.5px;
       border-radius: 4px;
-      font-weight: 500;
-      font-size: 14px; /* 0.875rem Micro-text Task 2 */
+      font-weight: 600;
+      font-size: 13.5px;
       line-height: 1.2;
     }
 
     .index-badge {
-      background: var(--color-text-heading);
+      background: var(--brand-blue);
       color: #ffffff;
       letter-spacing: 0.02em;
     }
 
     .year-badge {
-      background: var(--bg-card);
-      color: var(--color-text-main);
-      border: 1px solid var(--color-border);
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
     }
 
     .doi-badge {
       background: #ffffff;
       color: var(--color-link);
-      border: 1px solid var(--color-border);
+      border: 1px solid #cbd5e1;
       text-decoration: none;
+      transition: all 0.15s ease;
     }
 
     .doi-badge:hover {
-      background: var(--bg-card);
+      background: #f0f4f8;
+      color: #003d80;
+      border-color: var(--color-link);
       text-decoration: underline;
     }
 
@@ -376,22 +384,29 @@
       margin-top: 18px;
     }
 
-    .button {
+    /* Task 2: Explicit Button & Button Hover Styling */
+    button, .button, .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 22px;
+      padding: 9px 24px;
       border-radius: 999px;
-      color: #ffffff;
-      background: var(--color-text-heading);
+      color: #ffffff !important;
+      background: var(--brand-blue);
+      border: 1px solid var(--brand-blue);
       font-size: 15px;
       font-weight: 500;
-      transition: background 0.15s ease;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 42, 92, 0.12);
     }
 
-    .button:hover {
-      background: var(--color-link);
+    button:hover, .button:hover, .btn:hover {
+      background: #004085;
+      border-color: #004085;
+      color: #ffffff !important;
       text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 42, 92, 0.2);
     }
 
     footer {
