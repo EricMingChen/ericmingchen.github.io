@@ -14,15 +14,16 @@
   <style>
   <style>
     :root {
-      --color-text-main: #333333;    /* Classic Deep Charcoal */
-      --color-text-heading: #111111; /* Classic Dark Black-Gray Title */
-      --color-text-muted: #666666;   /* Classic Medium Gray */
-      --color-link: #0056b3;         /* Classic Academic Solid Blue */
-      --color-border: #e0e6ed;       /* Light Divider Line */
-      --bg-main: #ffffff;            /* Pure White Background */
-      --bg-card: #f8fafc;            /* Ultra-light Card Background */
-      --brand-blue: #002a5c;         /* Oxford Deep Blue Accent */
-      --max: 820px;                  /* Classic Compact Width (820px) */
+      --color-text-main: #333333;      /* Classic Deep Charcoal */
+      --color-text-heading: #0f172a;   /* Deep Slate Navy/Black Headings */
+      --color-text-muted: #556677;     /* Soft Muted Gray-Blue */
+      --color-link: #0052a3;           /* Interactive Accent Blue */
+      --oxford-blue: #002147;          /* Official Oxford University Deep Blue */
+      --oxford-blue-hover: #003366;    /* Oxford Hover Blue */
+      --color-border: #e2e8f0;         /* Soft Divider Line */
+      --bg-main: #ffffff;              /* Pure White Background */
+      --bg-card: #f4f7fa;              /* Soft Warm Tint Background */
+      --max: 860px;                    /* Standard Academic Harmonious Container Width (860px) */
     }
 
     *, *::before, *::after {
@@ -66,7 +67,7 @@
       letter-spacing: 0.01em;
     }
 
-    /* Top Navigation Header (Compact & Aligned) */
+    /* Top Navigation Header (Aligned & Compact) */
     header {
       width: 100%;
       border-bottom: 1px solid var(--color-border);
@@ -85,7 +86,7 @@
     .brand {
       font-size: 18px;
       font-weight: 500;
-      color: var(--color-text-heading);
+      color: var(--oxford-blue);
       letter-spacing: -0.01em;
       text-align: left;
     }
@@ -102,11 +103,11 @@
     }
 
     .nav-links a:hover {
-      color: var(--color-link);
+      color: var(--oxford-blue);
       text-decoration: none;
     }
 
-    /* Main Container (Classic Compact Center-Aligned Layout) */
+    /* Main Container (Harmonious 860px Center-Aligned Layout) */
     main {
       max-width: var(--max);
       margin: 0 auto;
@@ -127,7 +128,7 @@
       object-fit: cover;
       display: block;
       border: 1px solid var(--color-border);
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 3px 12px rgba(0, 33, 71, 0.08);
     }
 
     h1#name {
@@ -154,7 +155,7 @@
       word-spacing: normal;
     }
 
-    /* Contact Links Pills (Task 2: Protected Button/Pill Styling) */
+    /* Contact Links Pills (Oxford Academic Blue Styling) */
     .socials {
       margin-top: 18px;
       display: flex;
@@ -167,9 +168,9 @@
     .socials a {
       padding: 6px 16px;
       border-radius: 999px;
-      color: var(--color-link);
+      color: var(--oxford-blue);
       background: #f0f4f8;
-      border: 1px solid #d0d7de;
+      border: 1px solid #d0dadf;
       font-weight: 500;
       font-size: 14px;
       transition: all 0.2s ease;
@@ -179,10 +180,11 @@
 
     .socials a:hover {
       text-decoration: none;
-      background: var(--brand-blue);
+      background: var(--oxford-blue);
       color: #ffffff;
-      border-color: var(--brand-blue);
-      box-shadow: 0 2px 8px rgba(0, 42, 92, 0.15);
+      border-color: var(--oxford-blue);
+      box-shadow: 0 3px 10px rgba(0, 33, 71, 0.2);
+      transform: translateY(-1px);
     }
 
     /* Main Sections */
@@ -201,7 +203,7 @@
       margin: 32px 0 16px;
       font-size: 20px;
       font-weight: 500;
-      color: var(--color-text-heading);
+      color: var(--oxford-blue);
       border-bottom: 1.5px solid var(--color-border);
       padding-bottom: 6px;
     }
@@ -241,7 +243,7 @@
 
     .news-date {
       font-weight: 600;
-      color: var(--color-text-heading);
+      color: var(--oxford-blue);
       font-size: 15px;
       flex-shrink: 0;
     }
@@ -278,7 +280,7 @@
       width: 32px;
       flex-shrink: 0;
       font-weight: 600;
-      color: var(--color-text-heading);
+      color: var(--oxford-blue);
       font-size: 18px;
       line-height: 1.4;
       text-align: right;
@@ -354,7 +356,7 @@
     }
 
     .index-badge {
-      background: var(--brand-blue);
+      background: var(--oxford-blue);
       color: #ffffff;
       letter-spacing: 0.02em;
     }
@@ -375,8 +377,8 @@
 
     .doi-badge:hover {
       background: #f0f4f8;
-      color: #003d80;
-      border-color: var(--color-link);
+      color: var(--oxford-blue);
+      border-color: var(--oxford-blue);
       text-decoration: underline;
     }
 
@@ -384,7 +386,7 @@
       margin-top: 18px;
     }
 
-    /* Task 2: Explicit Button & Button Hover Styling */
+    /* Explicit Oxford Blue Button & Hover Styling */
     button, .button, .btn {
       display: inline-flex;
       align-items: center;
@@ -392,21 +394,22 @@
       padding: 9px 24px;
       border-radius: 999px;
       color: #ffffff !important;
-      background: var(--brand-blue);
-      border: 1px solid var(--brand-blue);
+      background: var(--oxford-blue);
+      border: 1px solid var(--oxford-blue);
       font-size: 15px;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 2px 6px rgba(0, 42, 92, 0.12);
+      box-shadow: 0 2px 6px rgba(0, 33, 71, 0.15);
     }
 
     button:hover, .button:hover, .btn:hover {
-      background: #004085;
-      border-color: #004085;
+      background: var(--oxford-blue-hover);
+      border-color: var(--oxford-blue-hover);
       color: #ffffff !important;
       text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0, 42, 92, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 33, 71, 0.25);
+      transform: translateY(-1px);
     }
 
     footer {
