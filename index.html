@@ -364,18 +364,16 @@
       border: 1px solid #cbd5e1;
     }
 
-    .doi-badge {
-      background: #ffffff;
+    .doi-link {
       color: var(--link-accent);
-      border: 1px solid #cbd5e1;
+      font-size: 14px;
+      font-weight: 400;
       text-decoration: none;
-      transition: all 0.15s ease;
+      transition: color 0.15s ease;
     }
 
-    .doi-badge:hover {
-      background: var(--bg-card);
+    .doi-link:hover {
       color: var(--primary-title);
-      border-color: var(--primary-title);
       text-decoration: underline;
     }
 
@@ -576,7 +574,7 @@
                     </div>
                     <div class="pub-meta">
                       ${p.year ? `<span class="badge year-badge">${p.year}</span>` : ''}
-                      ${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="badge doi-badge">https://doi.org/${p.doi}</a>` : ''}
+                      ${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="doi-link">https://doi.org/${p.doi}</a>` : ''}
                     </div>
                   </div>
                 </div>
