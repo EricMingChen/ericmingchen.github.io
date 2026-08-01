@@ -320,36 +320,24 @@
       text-align: left;
     }
 
-    /* Aligned Publication Grid Rows */
-    .pub-venue-row, .pub-meta-row {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      margin-top: 4px;
-    }
-
-    .pub-left-tag {
-      width: 52px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-    }
-
-    .pub-venue-name {
-      flex: 1;
-      min-width: 0;
+    /* Clean Academic Citation Flow */
+    .pub-citation {
       font-size: 16px;
+      line-height: 1.6;
       color: var(--text-secondary);
-      font-style: italic;
-      line-height: 1.5;
-      text-align: left;
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
     }
 
-    .pub-doi-link {
-      flex: 1;
-      min-width: 0;
-      line-height: 1.5;
-      text-align: left;
+    .pub-venue-text {
+      font-style: italic;
+    }
+
+    .pub-year-text {
+      font-style: normal;
     }
 
     /* Micro-text Badge Styles */
@@ -374,18 +362,12 @@
       letter-spacing: 0.02em;
     }
 
-    .year-text {
-      color: var(--text-secondary);
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
     .doi-link {
       color: var(--link-accent);
       font-size: 14px;
       font-weight: 400;
       text-decoration: none;
+      word-break: break-all;
       transition: color 0.15s ease;
     }
 
@@ -581,13 +563,9 @@
                       </span>
                     </div>
                     ${p.authors ? `<div class="pub-authors">${p.authors}</div>` : ''}
-                    <div class="pub-venue-row">
-                      <div class="pub-left-tag">${p.index_tag ? `<span class="badge index-badge">${p.index_tag}</span>` : ''}</div>
-                      <div class="pub-venue-name">${p.venue}</div>
-                    </div>
-                    <div class="pub-meta-row">
-                      <div class="pub-left-tag">${p.year ? `<span class="year-text">${p.year}</span>` : ''}</div>
-                      <div class="pub-doi-link">${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="doi-link">https://doi.org/${p.doi}</a>` : ''}</div>
+                    <div class="pub-citation">
+                      <span class="pub-venue-text">${p.venue}</span>${p.year ? `, <span class="pub-year-text">${p.year}</span>` : ''}.${p.index_tag ? ` <span class="badge index-badge">${p.index_tag}</span>` : ''}
+                      ${doiLink ? `<span><a href="${doiLink}" target="_blank" rel="noopener" class="doi-link">https://doi.org/${p.doi}</a></span>` : ''}
                     </div>
                   </div>
                 </div>
