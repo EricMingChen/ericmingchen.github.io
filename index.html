@@ -13,16 +13,14 @@
 
   <style>
     :root {
-      --color-text-main: #334155;      /* Primary Slate Charcoal Body Text */
-      --color-text-heading: #0f172a;   /* Deep Slate Navy/Black Headings */
-      --color-text-muted: #64748b;     /* Secondary Meta Text */
-      --color-link: #2563eb;           /* Interactive Royal Blue Accent */
-      --oxford-blue: #002147;          /* Official Oxford University Deep Blue */
-      --oxford-blue-hover: #003366;    /* Oxford Hover Blue */
-      --color-border: #e2e8f0;         /* Soft Divider Line */
-      --bg-main: #ffffff;              /* Pure White Background */
-      --bg-card: #f8fafc;              /* Soft Warm Tint Background */
-      --max: 860px;                    /* Standard Academic Container Width (860px) */
+      --primary-title: #002a5c;   /* Academic Deep Blue (Oxford Navy) */
+      --text-main: #333333;       /* Dark Charcoal Body Text */
+      --text-secondary: #666666;  /* Medium Gray Meta Text */
+      --bg-main: #ffffff;         /* Pure White */
+      --bg-card: #F8F9FA;         /* Ultra-light Warm Gray */
+      --link-accent: #0052a3;     /* Navy Blue Interactive Accent */
+      --border-line: #e8eaed;     /* Fine Light Divider Line */
+      --max: 860px;              /* Harmonious Academic Width */
     }
 
     *, *::before, *::after {
@@ -39,7 +37,7 @@
     body {
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      color: var(--color-text-main);
+      color: var(--text-main);
       background: var(--bg-main);
       line-height: 1.75;
       font-size: 16px;
@@ -50,7 +48,7 @@
     }
 
     a {
-      color: var(--color-link);
+      color: var(--link-accent);
       text-decoration: none;
       transition: color 0.15s ease;
     }
@@ -61,7 +59,7 @@
 
     h1, h2, h3, h4 {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      color: var(--color-text-heading);
+      color: var(--primary-title);
       margin: 0;
       letter-spacing: 0.01em;
     }
@@ -85,7 +83,7 @@
     .brand {
       font-size: 18px;
       font-weight: 500;
-      color: var(--oxford-blue);
+      color: var(--primary-title);
       letter-spacing: -0.01em;
       text-align: left;
     }
@@ -98,11 +96,11 @@
     }
 
     .nav-links a {
-      color: var(--color-text-muted);
+      color: var(--text-secondary);
     }
 
     .nav-links a:hover {
-      color: var(--oxford-blue);
+      color: var(--primary-title);
       text-decoration: none;
     }
 
@@ -126,21 +124,21 @@
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      border: 1px solid var(--color-border);
-      box-shadow: 0 3px 12px rgba(0, 33, 71, 0.08);
+      border: 1px solid var(--border-line);
+      box-shadow: 0 3px 12px rgba(0, 42, 92, 0.06);
     }
 
     h1#name {
       font-size: 32px;
       line-height: 1.25;
       font-weight: 600;
-      color: var(--color-text-heading);
+      color: var(--primary-title);
       text-align: center;
     }
 
     .subtitle {
       margin: 10px auto 0;
-      color: var(--color-text-muted);
+      color: var(--text-secondary);
       font-size: 16px;
       max-width: 630px;
       line-height: 1.5;
@@ -154,7 +152,7 @@
       word-spacing: normal;
     }
 
-    /* Contact Links Pills (Oxford Academic Blue Styling) */
+    /* Contact Links Pills (index_backup_v1 Palette) */
     .socials {
       margin-top: 18px;
       display: flex;
@@ -167,9 +165,9 @@
     .socials a {
       padding: 6px 16px;
       border-radius: 999px;
-      color: var(--oxford-blue);
-      background: #f0f4f8;
-      border: 1px solid #cbd5e1;
+      color: var(--primary-title);
+      background: var(--bg-card);
+      border: 1px solid #e0e6ed;
       font-weight: 500;
       font-size: 14px;
       transition: all 0.2s ease;
@@ -179,10 +177,10 @@
 
     .socials a:hover {
       text-decoration: none;
-      background: var(--oxford-blue);
+      background: var(--primary-title);
       color: #ffffff;
-      border-color: var(--oxford-blue);
-      box-shadow: 0 3px 10px rgba(0, 33, 71, 0.2);
+      border-color: var(--primary-title);
+      box-shadow: 0 3px 10px rgba(0, 42, 92, 0.15);
       transform: translateY(-1px);
     }
 
@@ -195,21 +193,21 @@
       font-size: 24px;
       font-weight: 600;
       margin-bottom: 16px;
-      color: var(--color-text-heading);
+      color: var(--primary-title);
     }
 
     h3.category-title {
       margin: 32px 0 16px;
       font-size: 20px;
       font-weight: 500;
-      color: var(--oxford-blue);
-      border-bottom: 1.5px solid var(--color-border);
+      color: var(--primary-title);
+      border-bottom: 1.5px solid var(--bg-card);
       padding-bottom: 6px;
     }
 
     p {
       margin: 0 0 1.5em;
-      color: var(--color-text-main);
+      color: var(--text-main);
       font-size: 16px;
       line-height: 1.75;
       letter-spacing: 0.015em;
@@ -230,7 +228,7 @@
       align-items: baseline;
       gap: 12px;
       font-size: 16px;
-      color: var(--color-text-main);
+      color: var(--text-main);
       line-height: 1.75;
       letter-spacing: 0.015em;
       margin-bottom: 1.5em;
@@ -242,7 +240,7 @@
 
     .news-date {
       font-weight: 600;
-      color: var(--oxford-blue);
+      color: var(--primary-title);
       font-size: 15px;
       flex-shrink: 0;
     }
@@ -264,7 +262,7 @@
       align-items: flex-start;
       padding-bottom: 18px;
       margin-bottom: 1.5em;
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--border-line);
       background: transparent;
       box-shadow: none;
     }
@@ -279,7 +277,7 @@
       width: 32px;
       flex-shrink: 0;
       font-weight: 600;
-      color: var(--oxford-blue);
+      color: var(--primary-title);
       font-size: 18px;
       line-height: 1.4;
       text-align: right;
@@ -299,23 +297,23 @@
     .pub-title {
       font-size: 20px;
       font-weight: 500;
-      color: var(--color-text-heading);
+      color: var(--primary-title);
       line-height: 1.45;
       letter-spacing: 0.01em;
       text-align: justify;
     }
 
     .pub-title a {
-      color: var(--color-text-heading);
+      color: var(--primary-title);
     }
 
     .pub-title a:hover {
-      color: var(--color-link);
+      color: var(--link-accent);
     }
 
     .pub-authors {
       font-size: 15px;
-      color: var(--color-text-muted);
+      color: var(--text-secondary);
       margin-bottom: 4px;
       line-height: 1.5;
       letter-spacing: 0.01em;
@@ -328,7 +326,7 @@
       flex-wrap: wrap;
       gap: 8px;
       font-size: 14.5px;
-      color: var(--color-text-muted);
+      color: var(--text-secondary);
       font-style: italic;
       line-height: 1.5;
       margin-bottom: 4px;
@@ -349,35 +347,35 @@
       align-items: center;
       padding: 2.5px 8.5px;
       border-radius: 4px;
-      font-weight: 500;
-      font-size: 14px;
+      font-weight: 600;
+      font-size: 13.5px;
       line-height: 1.2;
     }
 
     .index-badge {
-      background: var(--oxford-blue);
+      background: var(--primary-title);
       color: #ffffff;
       letter-spacing: 0.02em;
     }
 
     .year-badge {
-      background: #f1f5f9;
-      color: var(--color-text-main);
+      background: #e2e8f0;
+      color: #334155;
       border: 1px solid #cbd5e1;
     }
 
     .doi-badge {
       background: #ffffff;
-      color: var(--color-link);
+      color: var(--link-accent);
       border: 1px solid #cbd5e1;
       text-decoration: none;
       transition: all 0.15s ease;
     }
 
     .doi-badge:hover {
-      background: #f0f4f8;
-      color: var(--oxford-blue);
-      border-color: var(--oxford-blue);
+      background: var(--bg-card);
+      color: var(--primary-title);
+      border-color: var(--primary-title);
       text-decoration: underline;
     }
 
@@ -385,7 +383,7 @@
       margin-top: 18px;
     }
 
-    /* Explicit Oxford Blue Button & Hover Styling */
+    /* Explicit Button & Hover Styling */
     button, .button, .btn {
       display: inline-flex;
       align-items: center;
@@ -393,21 +391,21 @@
       padding: 9px 24px;
       border-radius: 999px;
       color: #ffffff !important;
-      background: var(--oxford-blue);
-      border: 1px solid var(--oxford-blue);
+      background: var(--primary-title);
+      border: 1px solid var(--primary-title);
       font-size: 15px;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 2px 6px rgba(0, 33, 71, 0.15);
+      box-shadow: 0 2px 6px rgba(0, 42, 92, 0.12);
     }
 
     button:hover, .button:hover, .btn:hover {
-      background: var(--oxford-blue-hover);
-      border-color: var(--oxford-blue-hover);
+      background: var(--link-accent);
+      border-color: var(--link-accent);
       color: #ffffff !important;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0, 33, 71, 0.25);
+      box-shadow: 0 4px 12px rgba(0, 42, 92, 0.22);
       transform: translateY(-1px);
     }
 
@@ -415,10 +413,10 @@
       max-width: var(--max);
       margin: 0 auto;
       padding: 28px clamp(16px, 4vw, 24px) 44px;
-      color: var(--color-text-muted);
+      color: var(--text-secondary);
       font-size: 14px;
       text-align: center;
-      border-top: 1px solid var(--color-border);
+      border-top: 1px solid var(--border-line);
     }
 
     @media (max-width: 560px) {
