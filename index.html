@@ -13,9 +13,10 @@
 
   <style>
     :root {
-      --primary-title: #002a5c;   /* Academic Deep Blue (Oxford Blue) */
-      --text-main: #333333;       /* Dark Charcoal */
-      --text-secondary: #666666;  /* Medium Gray */
+      --primary-title: #222222;   /* Soft Dark Title */
+      --brand-accent: #002a5c;    /* Deep Blue Accent for Badges & Highlights */
+      --text-main: #333333;       /* Soft Dark Charcoal (No Pure Black) */
+      --text-secondary: #555555;  /* Medium Soft Gray */
       --bg-main: #ffffff;         /* Pure White */
       --bg-card: #F8F9FA;         /* Ultra-light Warm Gray */
       --link-accent: #0052a3;     /* Navy Blue Interactive Accent */
@@ -36,12 +37,14 @@
 
     body {
       min-height: 100vh;
-      font-family: 'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       color: var(--text-main);
       background: var(--bg-main);
-      line-height: 1.7;
-      font-size: 16px;
+      line-height: 1.75;
+      font-size: 15.5px;
+      letter-spacing: 0.02em;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     a {
@@ -55,9 +58,10 @@
     }
 
     h1, h2, h3, h4 {
-      font-family: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       color: var(--primary-title);
       margin: 0;
+      letter-spacing: 0.02em;
     }
 
     /* Top Navigation Header (Aligned exactly with main content) */
@@ -78,9 +82,9 @@
 
     .brand {
       font-size: 17.5px;
-      font-weight: 400;
-      color: var(--primary-title);
-      letter-spacing: -0.01em;
+      font-weight: 500;
+      color: var(--brand-accent);
+      letter-spacing: 0.01em;
       text-align: left;
     }
 
@@ -96,7 +100,7 @@
     }
 
     .nav-links a:hover {
-      color: var(--primary-title);
+      color: var(--brand-accent);
       text-decoration: none;
     }
 
@@ -104,7 +108,7 @@
     main {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 24px clamp(16px, 4vw, 24px) 44px;
+      padding: 28px clamp(16px, 4vw, 24px) 48px;
     }
 
     /* Profile Header Section */
@@ -125,9 +129,9 @@
     }
 
     h1#name {
-      font-size: clamp(28px, 4.5vw, 36px);
-      line-height: 1.2;
-      font-weight: 400;
+      font-size: clamp(26px, 4vw, 34px);
+      line-height: 1.25;
+      font-weight: 500;
       color: var(--primary-title);
       text-align: center;
     }
@@ -137,7 +141,7 @@
       color: var(--text-secondary);
       font-size: 15px;
       max-width: 630px;
-      line-height: 1.45;
+      line-height: 1.5;
       font-weight: 400;
       text-align: center;
     }
@@ -161,7 +165,7 @@
     .socials a {
       padding: 5px 14px;
       border-radius: 999px;
-      color: var(--primary-title);
+      color: var(--brand-accent);
       background: var(--bg-card);
       border: 1px solid #e0e6ed;
       font-weight: 500;
@@ -170,36 +174,38 @@
 
     .socials a:hover {
       text-decoration: none;
-      background: var(--primary-title);
+      background: var(--brand-accent);
       color: #ffffff;
-      border-color: var(--primary-title);
+      border-color: var(--brand-accent);
     }
 
     /* Main Sections */
     section {
-      padding: 24px 0 0;
+      padding: 28px 0 0;
     }
 
     h2 {
       font-size: 21px;
       font-weight: 600;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      color: var(--primary-title);
     }
 
     h3.category-title {
-      margin: 22px 0 12px;
+      margin: 28px 0 14px;
       font-size: 16.5px;
       font-weight: 600;
-      color: var(--primary-title);
+      color: var(--brand-accent);
       border-bottom: 1.5px solid var(--bg-card);
       padding-bottom: 4px;
     }
 
     p {
-      margin: 0 0 12px;
+      margin: 0 0 1.5em;
       color: var(--text-main);
       font-size: 15.5px;
-      line-height: 1.6;
+      line-height: 1.75;
+      letter-spacing: 0.02em;
       text-align: justify;
     }
 
@@ -210,21 +216,26 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 10px;
     }
 
     .news-item {
       display: flex;
       align-items: baseline;
-      gap: 10px;
+      gap: 12px;
       font-size: 15px;
       color: var(--text-main);
-      line-height: 1.5;
+      line-height: 1.75;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.5em;
+    }
+
+    .news-item:last-child {
+      margin-bottom: 0;
     }
 
     .news-date {
       font-weight: 600;
-      color: var(--primary-title);
+      color: var(--brand-accent);
       font-size: 14px;
       flex-shrink: 0;
     }
@@ -234,7 +245,7 @@
       min-width: 0;
     }
 
-    /* Publications List (Compact & Spacious Layout) */
+    /* Publications List */
     .pub-list {
       display: flex;
       flex-direction: column;
@@ -244,8 +255,8 @@
       display: flex;
       gap: 12px;
       align-items: flex-start;
-      padding-bottom: 14px;
-      margin-bottom: 14px;
+      padding-bottom: 18px;
+      margin-bottom: 1.5em;
       border-bottom: 1px solid var(--border-line);
       background: transparent;
       box-shadow: none;
@@ -260,7 +271,7 @@
       width: 30px;
       flex-shrink: 0;
       font-weight: 600;
-      color: var(--primary-title);
+      color: var(--brand-accent);
       font-size: 14.5px;
       line-height: 1.4;
       text-align: right;
@@ -273,14 +284,15 @@
     }
 
     .pub-title-row {
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
     .pub-title {
       font-weight: 600;
       font-size: 15px;
       color: var(--text-main);
-      line-height: 1.38;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
       text-align: justify;
     }
 
@@ -295,8 +307,9 @@
     .pub-authors {
       font-size: 14px;
       color: var(--text-secondary);
-      margin-bottom: 2px;
-      line-height: 1.38;
+      margin-bottom: 3px;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
       text-align: left;
     }
 
@@ -308,8 +321,9 @@
       font-size: 13px;
       color: var(--text-secondary);
       font-style: italic;
-      line-height: 1.38;
-      margin-bottom: 2px;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      margin-bottom: 3px;
       text-align: left;
     }
 
@@ -318,7 +332,7 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 6px;
+      margin-top: 8px;
       font-size: 12.5px;
     }
 
@@ -334,7 +348,7 @@
     }
 
     .index-badge {
-      background: var(--primary-title);
+      background: var(--brand-accent);
       color: #ffffff;
       letter-spacing: 0.02em;
     }
