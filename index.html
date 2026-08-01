@@ -409,14 +409,46 @@
       transform: translateY(-1px);
     }
 
-    footer {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 28px clamp(16px, 4vw, 24px) 44px;
-      color: var(--text-secondary);
-      font-size: 14px;
-      text-align: center;
-      border-top: 1px solid var(--border-line);
+    /* Language Toggle Pill */
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid #e0e6ed;
+      color: var(--primary-title);
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: none;
+    }
+
+    .lang-btn:hover {
+      background: var(--primary-title);
+      color: #ffffff !important;
+      border-color: var(--primary-title);
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Google Translate Widget Hide & Clean Overrides */
+    .goog-te-banner-frame, .goog-te-balloon-frame {
+      display: none !important;
+    }
+    body {
+      top: 0px !important;
+    }
+    .goog-tooltip, .goog-tooltip:hover {
+      display: none !important;
+    }
+    .goog-text-highlight {
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
+    #google_translate_element {
+      display: none !important;
     }
 
     @media (max-width: 560px) {
@@ -457,6 +489,7 @@
         <a href="#news">News</a>
         <a href="#publications">Publications</a>
         <a href="#contact">Contact</a>
+        <button id="lang-btn" class="lang-btn" title="Translate Page / 切换语言">🌐 中文版</button>
       </div>
     </nav>
   </header>
@@ -604,6 +637,64 @@
     }
 
     loadPublications();
+  </script>
+
+  <!-- Google Translate Integration -->
+  <div id="google_translate_element" style="display:none;"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,zh-CN',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <script>
+    const langBtn = document.getElementById('lang-btn');
+    if (langBtn) {
+      function getCookie(name) {
+        const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return v ? v[2] : null;
+      }
+
+      function isChinese() {
+        const c = getCookie('googtrans');
+        return c && c.includes('zh-CN');
+      }
+
+      function updateLangBtnText() {
+        if (isChinese()) {
+          langBtn.textContent = '🌐 English';
+        } else {
+          langBtn.textContent = '🌐 中文版';
+        }
+      }
+
+      updateLangBtnText();
+
+      langBtn.addEventListener('click', function() {
+        if (isChinese()) {
+          document.cookie = "googtrans=/en/en; path=/;";
+          document.cookie = "googtrans=/en/en; domain=." + location.hostname + "; path=/;";
+          location.reload();
+        } else {
+          document.cookie = "googtrans=/en/zh-CN; path=/;";
+          document.cookie = "googtrans=/en/zh-CN; domain=" + location.hostname + "; path=/;";
+          
+          const select = document.querySelector('.goog-te-combo');
+          if (select) {
+            select.value = 'zh-CN';
+            select.dispatchEvent(new Event('change'));
+            updateLangBtnText();
+          } else {
+            location.reload();
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>
