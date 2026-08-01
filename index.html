@@ -320,25 +320,36 @@
       text-align: left;
     }
 
-    .pub-venue {
+    /* Aligned Publication Grid Rows */
+    .pub-venue-row, .pub-meta-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .pub-left-tag {
+      width: 52px;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
+    }
+
+    .pub-venue-name {
+      flex: 1;
+      min-width: 0;
       font-size: 16px;
       color: var(--text-secondary);
       font-style: italic;
       line-height: 1.5;
-      margin-bottom: 4px;
       text-align: left;
     }
 
-    .pub-meta {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
+    .pub-doi-link {
+      flex: 1;
+      min-width: 0;
+      line-height: 1.5;
+      text-align: left;
     }
 
     /* Micro-text Badge Styles */
@@ -356,20 +367,18 @@
       background: #f0f4f8;
       color: var(--primary-title);
       border: 1px solid #e0e6ed;
-      padding: 2.5px 8.5px;
+      padding: 2px 7px;
       border-radius: 4px;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.02em;
     }
 
-    .year-badge {
-      background: transparent;
-      border: none;
-      padding: 0;
+    .year-text {
       color: var(--text-secondary);
       font-weight: 400;
       font-size: 14px;
+      line-height: 1.5;
     }
 
     .doi-link {
@@ -572,13 +581,13 @@
                       </span>
                     </div>
                     ${p.authors ? `<div class="pub-authors">${p.authors}</div>` : ''}
-                    <div class="pub-venue">
-                      ${p.index_tag ? `<span class="badge index-badge">${p.index_tag}</span>` : ''}
-                      <span>${p.venue}</span>
+                    <div class="pub-venue-row">
+                      <div class="pub-left-tag">${p.index_tag ? `<span class="badge index-badge">${p.index_tag}</span>` : ''}</div>
+                      <div class="pub-venue-name">${p.venue}</div>
                     </div>
-                    <div class="pub-meta">
-                      ${p.year ? `<span class="badge year-badge">${p.year}</span>` : ''}
-                      ${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="doi-link">https://doi.org/${p.doi}</a>` : ''}
+                    <div class="pub-meta-row">
+                      <div class="pub-left-tag">${p.year ? `<span class="year-text">${p.year}</span>` : ''}</div>
+                      <div class="pub-doi-link">${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="doi-link">https://doi.org/${p.doi}</a>` : ''}</div>
                     </div>
                   </div>
                 </div>
