@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Ming (Eric) CHEN - Academic Website & Research Portfolio" />
+  <title>Ming (Eric) CHEN | Academic Website</title>
+
+  <!-- Google Fonts: Open Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-title: #002a5c;   /* Academic Deep Blue (Oxford Navy) */
+      --text-main: #333333;       /* Dark Charcoal Body Text */
+      --text-secondary: #666666;  /* Medium Gray Meta Text */
+      --bg-main: #ffffff;         /* Pure White */
+      --bg-card: #F8F9FA;         /* Ultra-light Warm Gray */
+      --link-accent: #0052a3;     /* Navy Blue Interactive Accent */
+      --border-line: #e8eaed;     /* Fine Light Divider Line */
+      --max: 820px;              /* Standardized Academic Reading Width (820px) */
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text-main);
+      background: var(--bg-main);
+      line-height: 1.75;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.015em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: var(--link-accent);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--primary-title);
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+
+    /* Top Navigation Header (Aligned & Compact) */
+    header {
+      width: 100%;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px clamp(16px, 4vw, 24px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary-title);
+      letter-spacing: -0.01em;
+      text-align: left;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-title);
+      text-decoration: none;
+    }
+
+    /* Main Container (Standard 820px Academic Layout) */
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 32px clamp(16px, 4vw, 24px) 56px;
+    }
+
+    /* Profile Header Section */
+    .profile {
+      text-align: center;
+      padding: 12px 0 28px;
+    }
+
+    .avatar {
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border-line);
+      box-shadow: 0 3px 12px rgba(0, 42, 92, 0.06);
+    }
+
+    h1#name {
+      font-size: 34px;
+      line-height: 1.25;
+      font-weight: 700;
+      color: var(--primary-title);
+      text-align: center;
+    }
+
+    .subtitle {
+      margin: 12px auto 0;
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 650px;
+      line-height: 1.6;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .subtitle span {
+      display: block;
+      text-align: center;
+      word-spacing: normal;
+    }
+
+    /* Contact Links Pills */
+    .socials {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 14.5px;
+    }
+
+    .socials a {
+      padding: 6px 16px;
+      border-radius: 999px;
+      color: var(--primary-title);
+      background: var(--bg-card);
+      border: 1px solid #e0e6ed;
+      font-weight: 500;
+      font-size: 14.5px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .socials a:hover {
+      text-decoration: none;
+      background: var(--primary-title);
+      color: #ffffff;
+      border-color: var(--primary-title);
+      box-shadow: 0 3px 10px rgba(0, 42, 92, 0.15);
+      transform: translateY(-1px);
+    }
+
+    /* Main Sections */
+    section {
+      padding: 32px 0 0;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: var(--primary-title);
+    }
+
+    h3.category-title {
+      margin: 32px 0 16px;
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--primary-title);
+      border-bottom: 1.5px solid var(--bg-card);
+      padding-bottom: 6px;
+    }
+
+    p {
+      margin: 0 0 1.5em;
+      color: var(--text-main);
+      font-size: 16px;
+      line-height: 1.75;
+      letter-spacing: 0.015em;
+      text-align: justify;
+    }
+
+    /* News Section */
+    .news-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-item {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 16px;
+      color: var(--text-main);
+      line-height: 1.75;
+      letter-spacing: 0.015em;
+      margin-bottom: 1.5em;
+    }
+
+    .news-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .news-date {
+      font-weight: 600;
+      color: var(--primary-title);
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .news-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Publications List */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pub-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding-bottom: 20px;
+      margin-bottom: 1.5em;
+      border-bottom: 1px solid var(--border-line);
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .pub-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    /* Paper Number Right Alignment Optimization */
+    .paper-number {
+      width: 30px;
+      flex-shrink: 0;
+      font-weight: 600;
+      color: var(--primary-title);
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: right;
+      margin-right: 6px;
+      padding-top: 1px;
+    }
+
+    .pub-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pub-title-row {
+      margin-bottom: 4px;
+    }
+
+    .pub-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--primary-title);
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+      text-align: justify;
+    }
+
+    .pub-title a {
+      color: var(--primary-title);
+    }
+
+    .pub-title a:hover {
+      color: var(--link-accent);
+    }
+
+    .pub-authors {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-top: 3px;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+      text-align: left;
+    }
+
+    /* Standardized 4-Line Publication Entry Layout */
+    .pub-venue-line {
+      font-size: 16px;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+
+    .pub-meta-line {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .pub-year-text {
+      color: var(--text-secondary);
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    /* Micro-text Badge Styles */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .index-badge {
+      background: #f0f4f8;
+      color: var(--primary-title);
+      border: 1px solid #e0e6ed;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .doi-link {
+      color: var(--link-accent);
+      font-size: 16px;
+      font-weight: 400;
+      text-decoration: none;
+      word-break: break-all;
+      transition: color 0.15s ease;
+    }
+
+    .doi-link:hover {
+      color: var(--primary-title);
+      text-decoration: underline;
+    }
+
+    .contact-actions {
+      margin-top: 18px;
+    }
+
+    /* Explicit Button & Hover Styling */
+    button, .button, .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 24px;
+      border-radius: 999px;
+      color: #ffffff !important;
+      background: var(--primary-title);
+      border: 1px solid var(--primary-title);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 42, 92, 0.12);
+    }
+
+    button:hover, .button:hover, .btn:hover {
+      background: var(--link-accent);
+      border-color: var(--link-accent);
+      color: #ffffff !important;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 42, 92, 0.22);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      max-width: var(--max);
+      margin: 40px auto 0;
+      padding: 28px clamp(16px, 4vw, 24px) 44px;
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      text-align: center;
+      border-top: 1px solid var(--border-line);
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 16px;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      main {
+        padding-top: 20px;
+      }
+
+      .avatar {
+        width: 100px;
+        height: 100px;
+      }
+
+      .paper-number {
+        width: 26px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top">Ming (Eric) CHEN</a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="profile" aria-labelledby="name">
+      <img class="avatar" src="images/profile.jpg" alt="Ming (Eric) CHEN">
+
+      <h1 id="name">Ming (Eric) CHEN</h1>
+
+      <p class="subtitle">
+        <span>PhD Candidate in Education</span>
+        <span>School of Education, University of Bristol</span>
+      </p>
+
+      <div class="socials" aria-label="Contact links">
+        <a href="mailto:Ming.Chen@bristol.ac.uk">Email</a>
+        <a href="https://research-information.bris.ac.uk/en/persons/ming-chen/" target="_blank" rel="noopener">University Profile</a>
+        <a href="https://scholar.google.com/citations?user=bhmuN8YAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://orcid.org/0000-0003-4099-1606" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://www.linkedin.com/in/ming-chen-35b051407/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+
+    <section id="about" aria-label="About section">
+      <p>
+        I am a PhD candidate in Education at the University of Bristol, supported by the CSC–University of Bristol Joint PhD Scholarship. My research interests include learning sciences, applied linguistics and educational technology. My current work focuses on virtual reality (VR), artificial intelligence (AI), and computer-supported collaborative learning (CSCL) and language learning and teaching.
+      </p>
+    </section>
+
+    <section id="news" aria-labelledby="news-title">
+      <h2 id="news-title">News</h2>
+      <ul class="news-list">
+        <li class="news-item">
+          <span class="news-date">[2026]</span>
+          <span class="news-text">Ming Chen is awarded the best poster presentation at BAAL Vocabulary SIG Annual Conference 2026.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="publications" aria-labelledby="pub-title">
+      <h2 id="pub-title">Publications</h2>
+
+      <div id="pub-container">
+        <p>Loading publications from ORCID...</p>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+
+      <p>
+        If you share similar research interests or are interested in collaboration, please feel free to reach out <a href="mailto:Ming.Chen@bristol.ac.uk">via email</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Ming (Eric) CHEN. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const CATEGORY_ORDER = [
+      'Scholarship Synthesis',
+      'Research Article',
+      'Book Chapter',
+      'Book Review',
+      'Critical Commentary'
+    ];
+
+    const CATEGORY_LABELS = {
+      'Scholarship Synthesis': 'Scholarship Synthesis',
+      'Research Article': 'Research Articles',
+      'Book Chapter': 'Book Chapters',
+      'Book Review': 'Book Reviews',
+      'Critical Commentary': 'Critical Commentary'
+    };
+
+    async function loadPublications() {
+      const container = document.getElementById('pub-container');
+      try {
+        const res = await fetch('publications.json');
+        if (!res.ok) throw new Error('Could not fetch publications.json');
+        const pubs = await res.json();
+        
+        if (!pubs || pubs.length === 0) {
+          container.innerHTML = '<p>No publications found on ORCID profile.</p>';
+          return;
+        }
+
+        const grouped = {};
+        CATEGORY_ORDER.forEach(cat => grouped[cat] = []);
+        
+        pubs.forEach(p => {
+          const cat = p.category || 'Research Article';
+          if (!grouped[cat]) grouped[cat] = [];
+          grouped[cat].push(p);
+        });
+
+        let html = '';
+        CATEGORY_ORDER.forEach(cat => {
+          const catPubs = grouped[cat];
+          if (catPubs && catPubs.length > 0) {
+            html += `<h3 class="category-title">${CATEGORY_LABELS[cat] || cat}</h3>`;
+            html += `<div class="pub-list">`;
+            catPubs.forEach((p, index) => {
+              const reverseNumber = catPubs.length - index;
+              const doiLink = p.doi ? `https://doi.org/${p.doi}` : '';
+              html += `
+                <div class="pub-item">
+                  <div class="paper-number">${reverseNumber}.</div>
+                  <div class="pub-details">
+                    <div class="pub-title-row">
+                      <span class="pub-title">
+                        ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener">${p.title}</a>` : p.title}
+                      </span>
+                    </div>
+                    ${p.authors ? `<div class="pub-authors">${p.authors}</div>` : ''}
+                    <div class="pub-venue-line">${p.venue}${p.venue.endsWith(',') ? '' : ','}</div>
+                    <div class="pub-meta-line">
+                      ${p.index_tag ? `<span class="badge index-badge">${p.index_tag}</span>` : ''}
+                      ${p.year ? `<span class="pub-year-text">${p.year}</span>` : ''}
+                      ${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="doi-link">https://doi.org/${p.doi}</a>` : ''}
+                    </div>
+                  </div>
+                </div>
+              `;
+            });
+            html += `</div>`;
+          }
+        });
+
+        container.innerHTML = html || '<p>No categorized publications found.</p>';
+      } catch (err) {
+        container.innerHTML = '<p>Unable to load publications automatically. Please check back later.</p>';
+        console.error(err);
+      }
+    }
+
+    loadPublications();
+  </script>
+</body>
+</html>
