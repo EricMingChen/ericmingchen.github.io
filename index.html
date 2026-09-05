@@ -569,7 +569,8 @@
             html += `<div class="pub-list">`;
             catPubs.forEach((p, index) => {
               const reverseNumber = catPubs.length - index;
-              const doiLink = p.doi ? `https://doi.org/${p.doi}` : '';
+              const doiLink = (p.doi && !p.doi.startsWith('10.21428/')) ? `https://doi.org/${p.doi}` : (p.link || `https://doi.org/${p.doi}`);
+              const doiLabel = p.doi ? `https://doi.org/${p.doi}` : '';
               html += `
                 <div class="pub-item">
                   <div class="paper-number">${reverseNumber}.</div>
@@ -584,7 +585,7 @@
                     <div class="pub-meta-line">
                       ${p.index_tag ? `<span class="badge index-badge">${p.index_tag}</span>` : ''}
                       ${p.year ? `<span class="pub-year-text">${p.year}</span>` : ''}
-                      ${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="doi-link">https://doi.org/${p.doi}</a>` : ''}
+                      ${doiLink ? `<a href="${doiLink}" target="_blank" rel="noopener" class="doi-link">${doiLabel || 'Link'}</a>` : ''}
                     </div>
                   </div>
                 </div>

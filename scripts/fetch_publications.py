@@ -19,6 +19,12 @@ ORCID_ID = "0000-0003-4099-1606"
 ORCID_WORKS_URL = f"https://pub.orcid.org/v3.0/{ORCID_ID}/works"
 ORCID_WORK_DETAIL_URL = f"https://pub.orcid.org/v3.0/{ORCID_ID}/work/"
 
+# Direct fallback URLs for DOIs that have not yet been activated/resolved on doi.org (e.g. PubPub pre-registration DOIs)
+LINK_OVERRIDES = {
+    "10.21428/8c225f6e.6cf3a869": "https://www.researchgate.net/publication/396655848_From_effectiveness_to_access_Rethinking_the_logic_of_technology-enhanced_language_learning",
+    "10.21428/8c225f6e.f4a4ff76": "https://www.researchgate.net/publication/386088267_Evaluating_Reading_Bear_An_analysis_of_a_multimedia_phonics_programme_using_Mayer's_principles_of_multimedia_learning"
+}
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PUBLICATIONS_FILE = os.path.join(SCRIPT_DIR, "..", "publications.json")
 JOURNAL_INDEX_FILE = os.path.join(SCRIPT_DIR, "..", "data", "journal_index.csv")
@@ -176,9 +182,12 @@ def fetch_orcid_data():
             except Exception as ex:
                 print(f"  Note: Could not fetch detail contributors for work {put_code}: {ex}")
 
-        link = f"https://doi.org/{doi}" if doi else (s.get('url', {}).get('value', '') if s.get('url') else '')
-        if not link:
-            link = f"https://orcid.org/{ORCID_ID}"
+        if doi in LINK_OVERRIDES:
+            link = LINK_OVERRIDES[doi]
+        else:
+            link = f"https://doi.org/{doi}" if doi else (s.get('url', {}).get('value', '') if s.get('url') else '')
+            if not link:
+                link = f"https://orcid.org/{ORCID_ID}"
 
         # Assign category
         category = assign_category(title, venue, orcid_type, doi)
