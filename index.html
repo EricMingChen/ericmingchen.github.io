@@ -13,23 +13,28 @@
 
   <style>
     /* --------------------------------------------------------------------------
-       Borderless Minimalist Design System
+       Atmospheric & Dynamic Minimalist Design System
        -------------------------------------------------------------------------- */
     :root {
-      --text-black: #0f172a;     /* Deep Ink Black for Maximum Contrast & Legibility */
+      --text-black: #0f172a;     /* Deep Ink Black for Strong Academic Presence */
       --text-muted: #64748b;     /* Slate Gray for Subtitles & Meta Info */
       --bg-main: #ffffff;        /* Pure Crisp White Background */
-      --bg-pill: #f1f5f9;        /* Soft Tint Gray for Pill Buttons (No Border) */
+      --bg-pill: #f1f5f9;        /* Soft Tint Gray for Pill Buttons */
+      --bg-hover: #f8fafc;       /* Subtle Hover Highlight */
       --link-blue: #2563eb;      /* Refined Soft Sapphire Blue for Interactive Links */
       --link-hover: #1d4ed8;     /* Darker Blue Hover State */
-      --max-width: 780px;        /* Standardized Optimal Reading Width */
+      --max-width: 840px;        /* Expanded Canvas for Grand Atmosphere */
       --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     *, *::before, *::after {
       box-sizing: border-box;
       font-family: var(--font-family) !important;
-      border: none !important; /* Zero separator lines or borders across entire site */
+      border: none !important; /* Zero line dividers or borders */
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     html, body {
@@ -54,11 +59,11 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* Links: Soft Sapphire Blue */
+    /* Links: Soft Sapphire Blue with Fluid Smooth Hover */
     a {
       color: var(--link-blue);
       text-decoration: none;
-      transition: color 0.15s ease;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       font-weight: 500;
     }
 
@@ -72,7 +77,7 @@
       font-family: var(--font-family) !important;
       color: var(--text-black);
       margin: 0;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.03em;
     }
 
     /* --------------------------------------------------------------------------
@@ -80,17 +85,19 @@
        -------------------------------------------------------------------------- */
     header {
       width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
       z-index: 100;
+      transition: background 0.3s ease;
     }
 
     .nav {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 20px clamp(16px, 4vw, 24px);
+      padding: 22px clamp(16px, 4vw, 24px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -98,26 +105,28 @@
     }
 
     .brand {
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 800;
       color: var(--text-black);
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
       text-align: left;
     }
 
     .nav-links {
       display: flex;
-      gap: 26px;
+      gap: 28px;
       font-size: 15px;
       font-weight: 600;
     }
 
     .nav-links a {
       color: var(--text-muted);
+      position: relative;
+      padding: 2px 0;
     }
 
     .nav-links a:hover {
-      color: var(--link-blue);
+      color: var(--text-black);
       text-decoration: none;
     }
 
@@ -127,41 +136,47 @@
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 32px clamp(16px, 4vw, 24px) 64px;
+      padding: 36px clamp(16px, 4vw, 24px) 72px;
     }
 
     /* --------------------------------------------------------------------------
-       Centered Profile Header Section (Classic Symmetrical Layout)
+       Atmospheric Profile Hero Section (Grand & Fluid)
        -------------------------------------------------------------------------- */
     .profile {
       text-align: center;
-      padding: 16px 0 48px;
+      padding: 24px 0 54px;
     }
 
     .avatar {
-      width: 124px;
-      height: 124px;
-      margin: 0 auto 20px;
+      width: 136px;
+      height: 136px;
+      margin: 0 auto 24px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      box-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 10px 32px rgba(15, 23, 42, 0.09);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.03);
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.14);
     }
 
     h1#name {
-      font-size: 36px;
-      line-height: 1.25;
+      font-size: 42px;
+      line-height: 1.18;
       font-weight: 800;
       color: var(--text-black);
       text-align: center;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
     }
 
     .subtitle {
-      margin: 14px auto 0;
+      margin: 16px auto 0;
       color: var(--text-muted);
-      font-size: 16.5px;
-      max-width: 650px;
+      font-size: 17.5px;
+      max-width: 680px;
       line-height: 1.6;
       font-weight: 500;
       text-align: center;
@@ -172,24 +187,24 @@
       text-align: center;
     }
 
-    /* Contact Links Pills (Borderless Soft Background) */
+    /* Contact Links Pills (Dynamic Micro-Interactions) */
     .socials {
-      margin-top: 24px;
+      margin-top: 28px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       font-size: 14.5px;
     }
 
     .socials a {
-      padding: 7px 18px;
+      padding: 8px 20px;
       border-radius: 999px;
       color: var(--text-black);
       background: var(--bg-pill);
       font-weight: 600;
       font-size: 14.5px;
-      transition: all 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       display: inline-flex;
       align-items: center;
     }
@@ -198,37 +213,37 @@
       text-decoration: none;
       background: var(--text-black);
       color: #ffffff;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
-      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.16);
+      transform: translateY(-2px);
     }
 
     /* --------------------------------------------------------------------------
-       Main Content Sections (Separated Purely by Generous Whitespace)
+       Main Content Sections (Generous Whitespace & Fluid Rhythm)
        -------------------------------------------------------------------------- */
     section {
-      padding: 48px 0 0;
+      padding: 56px 0 0;
     }
 
     h2 {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       color: var(--text-black);
-      letter-spacing: -0.025em;
+      letter-spacing: -0.03em;
     }
 
     h3.category-title {
-      margin: 32px 0 16px;
-      font-size: 18px;
+      margin: 36px 0 18px;
+      font-size: 18.5px;
       font-weight: 700;
       color: var(--text-black);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
     }
 
     p {
       margin: 0 0 1.5em;
       color: var(--text-black);
-      font-size: 16.5px;
+      font-size: 17px;
       line-height: 1.75;
       font-weight: 500;
       text-align: justify;
@@ -236,7 +251,7 @@
     }
 
     /* --------------------------------------------------------------------------
-       News Section
+       News Section with Refined Badges
        -------------------------------------------------------------------------- */
     .news-list {
       list-style: none;
@@ -250,7 +265,7 @@
       display: flex;
       align-items: baseline;
       gap: 14px;
-      font-size: 16.5px;
+      font-size: 17px;
       color: var(--text-black);
       line-height: 1.75;
       font-weight: 500;
@@ -262,10 +277,14 @@
     }
 
     .news-date {
-      font-weight: 800;
+      font-weight: 700;
       color: var(--text-black);
-      font-size: 15.5px;
+      font-size: 14px;
+      background: var(--bg-pill);
+      padding: 3px 10px;
+      border-radius: 6px;
       flex-shrink: 0;
+      letter-spacing: 0.02em;
     }
 
     .news-text {
@@ -275,7 +294,7 @@
     }
 
     /* --------------------------------------------------------------------------
-       Publications Section (APA 7th Clean Bibliography Format)
+       Publications Section (APA 7th Clean Bibliography Format with Fluid Hover)
        -------------------------------------------------------------------------- */
     .apa-list {
       list-style: none;
@@ -287,15 +306,23 @@
 
     .apa-item {
       position: relative;
-      padding-left: 28px;
-      text-indent: -28px;
-      margin-bottom: 20px;
-      font-size: 16px;
+      padding: 8px 12px 8px 36px;
+      margin-left: -12px;
+      margin-right: -12px;
+      text-indent: -24px;
+      margin-bottom: 16px;
+      font-size: 16.5px;
       line-height: 1.7;
       font-weight: 500;
       color: var(--text-black);
       word-break: break-word;
       overflow-wrap: anywhere;
+      border-radius: 10px;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .apa-item:hover {
+      background: var(--bg-hover);
     }
 
     .apa-item:last-child {
@@ -340,8 +367,8 @@
        -------------------------------------------------------------------------- */
     footer {
       max-width: var(--max-width);
-      margin: 64px auto 0;
-      padding: 32px clamp(16px, 4vw, 24px) 48px;
+      margin: 68px auto 0;
+      padding: 36px clamp(16px, 4vw, 24px) 52px;
       color: var(--text-muted);
       font-size: 14.5px;
       text-align: center;
@@ -349,16 +376,16 @@
     }
 
     /* Responsive Adjustments */
-    @media (max-width: 560px) {
+    @media (max-width: 600px) {
       .nav {
         flex-direction: column;
         align-items: flex-start;
-        padding: 14px 16px;
+        padding: 16px;
         gap: 12px;
       }
 
       .nav-links {
-        gap: 18px;
+        gap: 20px;
         font-size: 14.5px;
       }
 
@@ -367,17 +394,23 @@
       }
 
       h1#name {
-        font-size: 30px;
+        font-size: 32px;
+      }
+
+      .subtitle {
+        font-size: 16px;
       }
 
       .avatar {
-        width: 108px;
-        height: 108px;
+        width: 116px;
+        height: 116px;
       }
 
       .apa-item {
-        padding-left: 22px;
-        text-indent: -22px;
+        padding-left: 24px;
+        margin-left: 0;
+        margin-right: 0;
+        text-indent: -24px;
         font-size: 15.5px;
       }
     }
