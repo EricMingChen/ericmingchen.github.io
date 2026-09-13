@@ -13,24 +13,24 @@
 
   <style>
     /* --------------------------------------------------------------------------
-       Atmospheric & Dynamic Minimalist Design System
+       Refined Academic Design System with Divider Lines & Precise Spacing
        -------------------------------------------------------------------------- */
     :root {
-      --text-black: #0f172a;     /* Deep Ink Black for Strong Academic Presence */
-      --text-muted: #64748b;     /* Slate Gray for Subtitles & Meta Info */
+      --text-black: #0f172a;     /* Deep Ink Slate for High Contrast & Legibility */
+      --text-muted: #475569;     /* Slate Gray for Subtitles & Meta Info */
       --bg-main: #ffffff;        /* Pure Crisp White Background */
-      --bg-pill: #f1f5f9;        /* Soft Tint Gray for Pill Buttons */
-      --bg-hover: #f8fafc;       /* Subtle Hover Highlight */
-      --link-blue: #2563eb;      /* Refined Soft Sapphire Blue for Interactive Links */
+      --bg-pill: #f8fafc;        /* Soft Gray for Pill Buttons */
+      --bg-hover: #f1f5f9;       /* Subtle Hover Highlight */
+      --link-blue: #2563eb;      /* Soft Sapphire Blue for Interactive Links */
       --link-hover: #1d4ed8;     /* Darker Blue Hover State */
-      --max-width: 840px;        /* Expanded Canvas for Grand Atmosphere */
+      --border-line: #e2e8f0;    /* Fine Crisp Divider Line */
+      --max-width: 820px;        /* Standardized Academic Reading Width */
       --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     *, *::before, *::after {
       box-sizing: border-box;
       font-family: var(--font-family) !important;
-      border: none !important; /* Zero line dividers or borders */
     }
 
     html {
@@ -50,20 +50,20 @@
       font-family: var(--font-family) !important;
       color: var(--text-black);
       background: var(--bg-main);
-      line-height: 1.75;
-      font-size: 16.5px;
-      font-weight: 500; /* Bold, crisp legibility */
-      letter-spacing: -0.015em;
+      line-height: 1.7;
+      font-size: 16px;
+      font-weight: 500; /* Crisp, legible weight */
+      letter-spacing: -0.012em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
     }
 
-    /* Links: Soft Sapphire Blue with Fluid Smooth Hover */
+    /* Links: Soft Sapphire Blue */
     a {
       color: var(--link-blue);
       text-decoration: none;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.15s ease;
       font-weight: 500;
     }
 
@@ -72,32 +72,32 @@
       text-decoration: underline;
     }
 
-    /* Headings: Deep Ink Black */
+    /* Headings: Deep Ink Slate */
     h1, h2, h3, h4 {
       font-family: var(--font-family) !important;
       color: var(--text-black);
       margin: 0;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.025em;
     }
 
     /* --------------------------------------------------------------------------
-       Top Navigation Header (Clean, Line-Free Sticky Header)
+       Top Navigation Header (Sticky with Fine Divider Line)
        -------------------------------------------------------------------------- */
     header {
       width: 100%;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-line);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 100;
-      transition: background 0.3s ease;
     }
 
     .nav {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 22px clamp(16px, 4vw, 24px);
+      padding: 16px clamp(16px, 4vw, 24px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -105,28 +105,26 @@
     }
 
     .brand {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 800;
       color: var(--text-black);
-      letter-spacing: -0.035em;
+      letter-spacing: -0.03em;
       text-align: left;
     }
 
     .nav-links {
       display: flex;
-      gap: 28px;
+      gap: 24px;
       font-size: 15px;
       font-weight: 600;
     }
 
     .nav-links a {
       color: var(--text-muted);
-      position: relative;
-      padding: 2px 0;
     }
 
     .nav-links a:hover {
-      color: var(--text-black);
+      color: var(--link-blue);
       text-decoration: none;
     }
 
@@ -136,48 +134,49 @@
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 36px clamp(16px, 4vw, 24px) 72px;
+      padding: 32px clamp(16px, 4vw, 24px) 60px;
     }
 
     /* --------------------------------------------------------------------------
-       Atmospheric Profile Hero Section (Grand & Fluid)
+       Centered Profile Header Section (Divided Bottom)
        -------------------------------------------------------------------------- */
     .profile {
       text-align: center;
-      padding: 24px 0 54px;
+      padding: 16px 0 36px;
+      border-bottom: 1px solid var(--border-line);
     }
 
     .avatar {
-      width: 136px;
-      height: 136px;
-      margin: 0 auto 24px;
+      width: 128px;
+      height: 128px;
+      margin: 0 auto 20px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      box-shadow: 0 10px 32px rgba(15, 23, 42, 0.09);
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+      border: 1px solid var(--border-line);
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+      transition: transform 0.25s ease;
     }
 
     .avatar:hover {
       transform: scale(1.03);
-      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.14);
     }
 
     h1#name {
-      font-size: 42px;
-      line-height: 1.18;
+      font-size: 38px;
+      line-height: 1.2;
       font-weight: 800;
       color: var(--text-black);
       text-align: center;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.03em;
     }
 
     .subtitle {
-      margin: 16px auto 0;
+      margin: 12px auto 0;
       color: var(--text-muted);
-      font-size: 17.5px;
-      max-width: 680px;
-      line-height: 1.6;
+      font-size: 16px;
+      max-width: 650px;
+      line-height: 1.55;
       font-weight: 500;
       text-align: center;
     }
@@ -187,24 +186,25 @@
       text-align: center;
     }
 
-    /* Contact Links Pills (Dynamic Micro-Interactions) */
+    /* Contact Links Pills (Subtle Border) */
     .socials {
-      margin-top: 28px;
+      margin-top: 22px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       font-size: 14.5px;
     }
 
     .socials a {
-      padding: 8px 20px;
+      padding: 6px 18px;
       border-radius: 999px;
       color: var(--text-black);
       background: var(--bg-pill);
+      border: 1px solid var(--border-line);
       font-weight: 600;
       font-size: 14.5px;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
     }
@@ -213,45 +213,48 @@
       text-decoration: none;
       background: var(--text-black);
       color: #ffffff;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.16);
-      transform: translateY(-2px);
+      border-color: var(--text-black);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.14);
+      transform: translateY(-1px);
     }
 
     /* --------------------------------------------------------------------------
-       Main Content Sections (Generous Whitespace & Fluid Rhythm)
+       Main Content Sections (Fine Divider Lines & Balanced Spacing)
        -------------------------------------------------------------------------- */
     section {
-      padding: 56px 0 0;
+      padding: 36px 0 0;
     }
 
     h2 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
       color: var(--text-black);
-      letter-spacing: -0.03em;
-    }
-
-    h3.category-title {
-      margin: 36px 0 18px;
-      font-size: 18.5px;
-      font-weight: 700;
-      color: var(--text-black);
+      border-bottom: 1.5px solid var(--border-line);
+      padding-bottom: 8px;
       letter-spacing: -0.025em;
     }
 
-    p {
-      margin: 0 0 1.5em;
+    h3.category-title {
+      margin: 28px 0 14px;
+      font-size: 17.5px;
+      font-weight: 700;
       color: var(--text-black);
-      font-size: 17px;
-      line-height: 1.75;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0 0 1.2em;
+      color: var(--text-black);
+      font-size: 16px;
+      line-height: 1.7;
       font-weight: 500;
       text-align: justify;
       overflow-wrap: anywhere;
     }
 
     /* --------------------------------------------------------------------------
-       News Section with Refined Badges
+       News Section
        -------------------------------------------------------------------------- */
     .news-list {
       list-style: none;
@@ -264,12 +267,12 @@
     .news-item {
       display: flex;
       align-items: baseline;
-      gap: 14px;
-      font-size: 17px;
+      gap: 12px;
+      font-size: 16px;
       color: var(--text-black);
-      line-height: 1.75;
+      line-height: 1.7;
       font-weight: 500;
-      margin-bottom: 1.2em;
+      margin-bottom: 1em;
     }
 
     .news-item:last-child {
@@ -281,10 +284,10 @@
       color: var(--text-black);
       font-size: 14px;
       background: var(--bg-pill);
-      padding: 3px 10px;
+      border: 1px solid var(--border-line);
+      padding: 2px 8px;
       border-radius: 6px;
       flex-shrink: 0;
-      letter-spacing: 0.02em;
     }
 
     .news-text {
@@ -294,9 +297,9 @@
     }
 
     /* --------------------------------------------------------------------------
-       Publications Section (APA 7th Clean Bibliography Format with Fluid Hover)
+       Numbered APA 7th Publications List
        -------------------------------------------------------------------------- */
-    .apa-list {
+    .apa-numbered-list {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -306,27 +309,26 @@
 
     .apa-item {
       position: relative;
-      padding: 8px 12px 8px 36px;
-      margin-left: -12px;
-      margin-right: -12px;
-      text-indent: -24px;
-      margin-bottom: 16px;
-      font-size: 16.5px;
-      line-height: 1.7;
+      padding-left: 32px;
+      text-indent: -32px;
+      margin-bottom: 14px;
+      font-size: 16px;
+      line-height: 1.68;
       font-weight: 500;
       color: var(--text-black);
       word-break: break-word;
       overflow-wrap: anywhere;
-      border-radius: 10px;
-      transition: background 0.2s ease, transform 0.15s ease;
-    }
-
-    .apa-item:hover {
-      background: var(--bg-hover);
     }
 
     .apa-item:last-child {
       margin-bottom: 0;
+    }
+
+    .apa-num {
+      font-weight: 700;
+      color: var(--text-black);
+      margin-right: 4px;
+      display: inline-block;
     }
 
     .apa-item strong {
@@ -363,29 +365,30 @@
     }
 
     /* --------------------------------------------------------------------------
-       Footer (Clean Line-Free Finish)
+       Footer (Divider Line Top)
        -------------------------------------------------------------------------- */
     footer {
       max-width: var(--max-width);
-      margin: 68px auto 0;
-      padding: 36px clamp(16px, 4vw, 24px) 52px;
+      margin: 48px auto 0;
+      padding: 28px clamp(16px, 4vw, 24px) 44px;
       color: var(--text-muted);
       font-size: 14.5px;
       text-align: center;
+      border-top: 1px solid var(--border-line);
       font-weight: 500;
     }
 
     /* Responsive Adjustments */
-    @media (max-width: 600px) {
+    @media (max-width: 560px) {
       .nav {
         flex-direction: column;
         align-items: flex-start;
-        padding: 16px;
-        gap: 12px;
+        padding: 14px 16px;
+        gap: 10px;
       }
 
       .nav-links {
-        gap: 20px;
+        gap: 18px;
         font-size: 14.5px;
       }
 
@@ -394,23 +397,17 @@
       }
 
       h1#name {
-        font-size: 32px;
-      }
-
-      .subtitle {
-        font-size: 16px;
+        font-size: 30px;
       }
 
       .avatar {
-        width: 116px;
-        height: 116px;
+        width: 104px;
+        height: 104px;
       }
 
       .apa-item {
-        padding-left: 24px;
-        margin-left: 0;
-        margin-right: 0;
-        text-indent: -24px;
+        padding-left: 26px;
+        text-indent: -26px;
         font-size: 15.5px;
       }
     }
@@ -562,8 +559,9 @@
           const catPubs = grouped[cat];
           if (catPubs && catPubs.length > 0) {
             html += `<h3 class="category-title">${CATEGORY_LABELS[cat] || cat}</h3>`;
-            html += `<ul class="apa-list">`;
-            catPubs.forEach(p => {
+            html += `<ul class="apa-numbered-list">`;
+            catPubs.forEach((p, index) => {
+              const numStr = `${catPubs.length - index}.`;
               const authorsHtml = formatAuthorsAPA(p.authors);
               const yearStr = p.year ? `(${p.year}).` : '';
               const titleText = p.title ? (p.title.endsWith('.') ? p.title : p.title + '.') : '';
@@ -574,7 +572,7 @@
 
               html += `
                 <li class="apa-item">
-                  ${authorsHtml} ${yearStr} ${titleHtml} ${venueStr} ${doiHtml}
+                  <span class="apa-num">${numStr}</span> ${authorsHtml} ${yearStr} ${titleHtml} ${venueStr} ${doiHtml}
                 </li>
               `;
             });
