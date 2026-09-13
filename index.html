@@ -6,24 +6,22 @@
   <meta name="description" content="Ming (Eric) CHEN - Academic Website & Research Portfolio" />
   <title>Ming (Eric) CHEN | Academic Website</title>
 
-  <!-- Google Fonts: Plus Jakarta Sans (Unified Font Family across all elements) -->
+  <!-- Google Fonts: Plus Jakarta Sans for single, unified, modern typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <style>
-    /* Exact Oxford Education Color Palette & Design Tokens */
+    /* Ultimate Minimalist Design System */
     :root {
-      --oxford-teal: #024859;     /* Oxford Education Primary Teal */
-      --oxford-dark: #0A3740;     /* Oxford Deep Dark Teal */
-      --text-main: #1a242b;       /* Dark Charcoal Slate for High Legibility */
-      --text-secondary: #4a5c66;  /* Medium Teal-Slate Meta Text */
-      --bg-main: #ffffff;         /* Pure White Background */
-      --bg-card: #F0F5F6;         /* Oxford Light Teal Tint Card/Pill Background */
-      --link-accent: #024859;     /* Oxford Teal Link Accent */
-      --link-hover: #0A3740;      /* Dark Teal Link Hover */
-      --border-line: #D5E1E3;     /* Oxford Light Divider Border */
-      --max: 820px;              /* Standardized Academic Reading Width */
+      --text-black: #000000;     /* Pure Black for Text & Headings */
+      --text-secondary: #444444; /* Dark Neutral Meta Text */
+      --bg-main: #ffffff;        /* Pure White Background */
+      --bg-card: #f5f5f7;        /* Subtle Warm Gray Card Background */
+      --link-blue: #2563eb;      /* Soft Light Blue for Links */
+      --link-hover: #1d4ed8;     /* Slightly Darker Blue Hover State */
+      --border-line: #e5e5e7;    /* Fine Minimalist Divider */
+      --max: 800px;             /* Optimal Reading Width */
       --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
@@ -43,19 +41,20 @@
     body {
       min-height: 100vh;
       font-family: var(--font-family) !important;
-      color: var(--text-main);
+      color: var(--text-black);
       background: var(--bg-main);
       line-height: 1.75;
       font-size: 16.5px;
-      font-weight: 500; /* Bold, crisp legibility across all browsers */
+      font-weight: 500; /* Bold, crisp legibility */
       letter-spacing: -0.015em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
     }
 
+    /* Links: Soft Light Blue */
     a {
-      color: var(--link-accent);
+      color: var(--link-blue);
       text-decoration: none;
       transition: color 0.15s ease;
       font-weight: 500;
@@ -66,9 +65,10 @@
       text-decoration: underline;
     }
 
+    /* Headings: Pure Black */
     h1, h2, h3, h4 {
       font-family: var(--font-family) !important;
-      color: var(--oxford-teal);
+      color: var(--text-black);
       margin: 0;
       letter-spacing: -0.025em;
     }
@@ -77,8 +77,8 @@
     header {
       width: 100%;
       border-bottom: 1px solid var(--border-line);
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -87,7 +87,7 @@
     .nav {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 18px clamp(16px, 4vw, 24px);
+      padding: 16px clamp(16px, 4vw, 24px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -97,14 +97,14 @@
     .brand {
       font-size: 19px;
       font-weight: 800;
-      color: var(--oxford-teal);
+      color: var(--text-black);
       letter-spacing: -0.03em;
       text-align: left;
     }
 
     .nav-links {
       display: flex;
-      gap: 26px;
+      gap: 24px;
       font-size: 15px;
       font-weight: 600;
     }
@@ -114,7 +114,7 @@
     }
 
     .nav-links a:hover {
-      color: var(--oxford-teal);
+      color: var(--link-blue);
       text-decoration: none;
     }
 
@@ -133,22 +133,21 @@
     }
 
     .avatar {
-      width: 128px;
-      height: 128px;
+      width: 120px;
+      height: 120px;
       margin: 0 auto 20px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      border: 3px solid var(--bg-main);
-      outline: 2px solid var(--border-line);
-      box-shadow: 0 8px 24px rgba(2, 72, 89, 0.12);
+      border: 1px solid var(--border-line);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
     }
 
     h1#name {
       font-size: 36px;
       line-height: 1.25;
       font-weight: 800;
-      color: var(--oxford-teal);
+      color: var(--text-black);
       text-align: center;
       letter-spacing: -0.03em;
     }
@@ -181,7 +180,7 @@
     .socials a {
       padding: 7px 18px;
       border-radius: 999px;
-      color: var(--oxford-teal);
+      color: var(--text-black);
       background: var(--bg-card);
       border: 1px solid var(--border-line);
       font-weight: 600;
@@ -193,10 +192,10 @@
 
     .socials a:hover {
       text-decoration: none;
-      background: var(--oxford-teal);
+      background: var(--text-black);
       color: #ffffff;
-      border-color: var(--oxford-teal);
-      box-shadow: 0 4px 14px rgba(2, 72, 89, 0.2);
+      border-color: var(--text-black);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       transform: translateY(-1px);
     }
 
@@ -206,11 +205,11 @@
     }
 
     h2 {
-      font-size: 23px;
+      font-size: 22px;
       font-weight: 800;
       margin-bottom: 22px;
-      color: var(--oxford-teal);
-      border-bottom: 2px solid var(--border-line);
+      color: var(--text-black);
+      border-bottom: 1px solid var(--border-line);
       padding-bottom: 8px;
       letter-spacing: -0.025em;
     }
@@ -219,13 +218,13 @@
       margin: 32px 0 16px;
       font-size: 18px;
       font-weight: 700;
-      color: var(--oxford-teal);
+      color: var(--text-black);
       letter-spacing: -0.02em;
     }
 
     p {
       margin: 0 0 1.5em;
-      color: var(--text-main);
+      color: var(--text-black);
       font-size: 16.5px;
       line-height: 1.75;
       font-weight: 500;
@@ -246,7 +245,7 @@
       align-items: baseline;
       gap: 14px;
       font-size: 16.5px;
-      color: var(--text-main);
+      color: var(--text-black);
       line-height: 1.75;
       font-weight: 500;
       margin-bottom: 1.2em;
@@ -258,7 +257,7 @@
 
     .news-date {
       font-weight: 800;
-      color: var(--oxford-teal);
+      color: var(--text-black);
       font-size: 15.5px;
       flex-shrink: 0;
     }
@@ -268,7 +267,7 @@
       min-width: 0;
     }
 
-    /* Clean APA-Style Publications List (Unified Font, Pure APA Format) */
+    /* Clean APA-Style Publications List (Pure Black Text, Soft Blue Links) */
     .apa-list {
       list-style: none;
       padding: 0;
@@ -285,7 +284,7 @@
       font-size: 16px;
       line-height: 1.7;
       font-weight: 500;
-      color: var(--text-main);
+      color: var(--text-black);
       word-break: break-word;
     }
 
@@ -295,26 +294,26 @@
 
     .apa-item strong {
       font-weight: 700;
-      color: var(--oxford-teal);
+      color: var(--text-black);
     }
 
     .apa-title {
-      color: var(--text-main);
+      color: var(--text-black);
       font-weight: 500;
     }
 
     .apa-title:hover {
-      color: var(--link-accent);
+      color: var(--link-blue);
       text-decoration: underline;
     }
 
     .apa-journal {
       font-style: italic;
-      color: var(--text-main);
+      color: var(--text-black);
     }
 
     .apa-doi {
-      color: var(--link-accent);
+      color: var(--link-blue);
       font-size: 15px;
       font-weight: 500;
       text-indent: 0;
@@ -352,8 +351,8 @@
       }
 
       .avatar {
-        width: 108px;
-        height: 108px;
+        width: 104px;
+        height: 104px;
       }
 
       .apa-item {
