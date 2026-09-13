@@ -6,26 +6,30 @@
   <meta name="description" content="Ming (Eric) CHEN - Academic Website & Research Portfolio" />
   <title>Ming (Eric) CHEN | Academic Website</title>
 
-  <!-- Google Fonts: Lora (Editorial Academic Serif) & Inter (Crisp High-Legibility Sans) -->
+  <!-- Google Fonts: Plus Jakarta Sans (Unified Font Family across all elements) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <style>
+    /* Exact Oxford Education Color Palette & Design Tokens */
     :root {
-      --oxford-navy: #002147;     /* Classic Oxford Deep Blue */
-      --text-main: #0f172a;       /* Dark Navy Slate for Ultra-Crisp Legibility */
-      --text-secondary: #475569;  /* Muted Slate Gray Meta Text */
-      --bg-main: #ffffff;         /* Pure White */
-      --bg-card: #f8fafc;         /* Ultra-light Warm Slate */
-      --link-accent: #0284c7;     /* High-End Academic Blue Accent */
-      --link-hover: #0369a1;      /* Darker Blue Hover State */
-      --border-line: #e2e8f0;     /* Fine Divider Line */
+      --oxford-teal: #024859;     /* Oxford Education Primary Teal */
+      --oxford-dark: #0A3740;     /* Oxford Deep Dark Teal */
+      --text-main: #1a242b;       /* Dark Charcoal Slate for High Legibility */
+      --text-secondary: #4a5c66;  /* Medium Teal-Slate Meta Text */
+      --bg-main: #ffffff;         /* Pure White Background */
+      --bg-card: #F0F5F6;         /* Oxford Light Teal Tint Card/Pill Background */
+      --link-accent: #024859;     /* Oxford Teal Link Accent */
+      --link-hover: #0A3740;      /* Dark Teal Link Hover */
+      --border-line: #D5E1E3;     /* Oxford Light Divider Border */
       --max: 820px;              /* Standardized Academic Reading Width */
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     *, *::before, *::after {
       box-sizing: border-box;
+      font-family: var(--font-family) !important;
     }
 
     html, body {
@@ -33,17 +37,18 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      font-family: var(--font-family) !important;
     }
 
     body {
       min-height: 100vh;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: var(--font-family) !important;
       color: var(--text-main);
       background: var(--bg-main);
       line-height: 1.75;
       font-size: 16.5px;
-      font-weight: 450; /* Heavier weight for bold, ultra-clear legibility */
-      letter-spacing: -0.011em;
+      font-weight: 500; /* Bold, crisp legibility across all browsers */
+      letter-spacing: -0.015em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
@@ -53,6 +58,7 @@
       color: var(--link-accent);
       text-decoration: none;
       transition: color 0.15s ease;
+      font-weight: 500;
     }
 
     a:hover {
@@ -61,18 +67,18 @@
     }
 
     h1, h2, h3, h4 {
-      font-family: 'Lora', Georgia, serif;
-      color: var(--oxford-navy);
+      font-family: var(--font-family) !important;
+      color: var(--oxford-teal);
       margin: 0;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.025em;
     }
 
     /* Top Navigation Header */
     header {
       width: 100%;
       border-bottom: 1px solid var(--border-line);
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -89,11 +95,10 @@
     }
 
     .brand {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--oxford-navy);
-      letter-spacing: -0.02em;
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--oxford-teal);
+      letter-spacing: -0.03em;
       text-align: left;
     }
 
@@ -101,7 +106,7 @@
       display: flex;
       gap: 26px;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .nav-links a {
@@ -109,7 +114,7 @@
     }
 
     .nav-links a:hover {
-      color: var(--oxford-navy);
+      color: var(--oxford-teal);
       text-decoration: none;
     }
 
@@ -135,17 +140,17 @@
       object-fit: cover;
       display: block;
       border: 3px solid var(--bg-main);
-      outline: 1.5px solid var(--border-line);
-      box-shadow: 0 8px 24px rgba(0, 33, 71, 0.08);
+      outline: 2px solid var(--border-line);
+      box-shadow: 0 8px 24px rgba(2, 72, 89, 0.12);
     }
 
     h1#name {
       font-size: 36px;
       line-height: 1.25;
-      font-weight: 700;
-      color: var(--oxford-navy);
+      font-weight: 800;
+      color: var(--oxford-teal);
       text-align: center;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.03em;
     }
 
     .subtitle {
@@ -154,7 +159,7 @@
       font-size: 16.5px;
       max-width: 650px;
       line-height: 1.6;
-      font-weight: 450;
+      font-weight: 500;
       text-align: center;
     }
 
@@ -176,10 +181,10 @@
     .socials a {
       padding: 7px 18px;
       border-radius: 999px;
-      color: var(--oxford-navy);
+      color: var(--oxford-teal);
       background: var(--bg-card);
-      border: 1px solid #cbd5e1;
-      font-weight: 500;
+      border: 1px solid var(--border-line);
+      font-weight: 600;
       font-size: 14.5px;
       transition: all 0.2s ease;
       display: inline-flex;
@@ -188,10 +193,10 @@
 
     .socials a:hover {
       text-decoration: none;
-      background: var(--oxford-navy);
+      background: var(--oxford-teal);
       color: #ffffff;
-      border-color: var(--oxford-navy);
-      box-shadow: 0 4px 12px rgba(0, 33, 71, 0.16);
+      border-color: var(--oxford-teal);
+      box-shadow: 0 4px 14px rgba(2, 72, 89, 0.2);
       transform: translateY(-1px);
     }
 
@@ -201,20 +206,21 @@
     }
 
     h2 {
-      font-size: 24px;
-      font-weight: 700;
+      font-size: 23px;
+      font-weight: 800;
       margin-bottom: 22px;
-      color: var(--oxford-navy);
+      color: var(--oxford-teal);
       border-bottom: 2px solid var(--border-line);
       padding-bottom: 8px;
+      letter-spacing: -0.025em;
     }
 
     h3.category-title {
       margin: 32px 0 16px;
       font-size: 18px;
       font-weight: 700;
-      color: var(--oxford-navy);
-      font-family: 'Lora', Georgia, serif;
+      color: var(--oxford-teal);
+      letter-spacing: -0.02em;
     }
 
     p {
@@ -222,7 +228,7 @@
       color: var(--text-main);
       font-size: 16.5px;
       line-height: 1.75;
-      font-weight: 450;
+      font-weight: 500;
       text-align: justify;
     }
 
@@ -242,7 +248,7 @@
       font-size: 16.5px;
       color: var(--text-main);
       line-height: 1.75;
-      font-weight: 450;
+      font-weight: 500;
       margin-bottom: 1.2em;
     }
 
@@ -251,11 +257,10 @@
     }
 
     .news-date {
-      font-weight: 700;
-      color: var(--oxford-navy);
+      font-weight: 800;
+      color: var(--oxford-teal);
       font-size: 15.5px;
       flex-shrink: 0;
-      font-family: 'Lora', Georgia, serif;
     }
 
     .news-text {
@@ -263,7 +268,7 @@
       min-width: 0;
     }
 
-    /* Clean APA-Style Publications List (No ESCI/SSCI Badges) */
+    /* Clean APA-Style Publications List (Unified Font, Pure APA Format) */
     .apa-list {
       list-style: none;
       padding: 0;
@@ -279,7 +284,7 @@
       margin-bottom: 18px;
       font-size: 16px;
       line-height: 1.7;
-      font-weight: 450;
+      font-weight: 500;
       color: var(--text-main);
       word-break: break-word;
     }
@@ -289,13 +294,13 @@
     }
 
     .apa-item strong {
-      font-weight: 600;
-      color: var(--oxford-navy);
+      font-weight: 700;
+      color: var(--oxford-teal);
     }
 
     .apa-title {
       color: var(--text-main);
-      font-weight: 450;
+      font-weight: 500;
     }
 
     .apa-title:hover {
@@ -311,7 +316,7 @@
     .apa-doi {
       color: var(--link-accent);
       font-size: 15px;
-      font-weight: 450;
+      font-weight: 500;
       text-indent: 0;
       word-break: break-all;
     }
@@ -328,6 +333,7 @@
       font-size: 14.5px;
       text-align: center;
       border-top: 1px solid var(--border-line);
+      font-weight: 500;
     }
 
     @media (max-width: 560px) {
@@ -395,7 +401,7 @@
 
     <section id="about" aria-label="About section">
       <p>
-        I am a PhD candidate in Education at the University of Bristol, supported by the CSC–University of Bristol Joint PhD Scholarship. My research interests include learning sciences, applied linguistics and educational technology. My current work focuses on virtual reality (VR), artificial intelligence (AI), and computer-supported collaborative learning (CSCL) and language learning and teaching.
+        I am a fully funded PhD student in Education at the University of Bristol. My research interests include computer assisted language learning.
       </p>
     </section>
 
