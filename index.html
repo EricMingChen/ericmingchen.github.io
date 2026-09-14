@@ -6,26 +6,28 @@
   <meta name="description" content="Ming (Eric) CHEN - Academic Website & Research Portfolio" />
   <title>Ming (Eric) CHEN | Academic Website</title>
 
-  <!-- Google Fonts: Plus Jakarta Sans for crisp, unified modern typography -->
+  <!-- Google Fonts: Inter for ultra-lightweight, crisp, high-legibility modern typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* --------------------------------------------------------------------------
-       Refined Academic Design System with Divider Lines & Precise Spacing
+       Ultra-Lightweight Modern Academic Design System
        -------------------------------------------------------------------------- */
     :root {
-      --text-black: #0f172a;     /* Deep Ink Slate for High Contrast & Legibility */
-      --text-muted: #475569;     /* Slate Gray for Subtitles & Meta Info */
-      --bg-main: #ffffff;        /* Pure Crisp White Background */
-      --bg-pill: #f8fafc;        /* Soft Gray for Pill Buttons */
-      --bg-hover: #f1f5f9;       /* Subtle Hover Highlight */
-      --link-blue: #2563eb;      /* Soft Sapphire Blue for Interactive Links */
-      --link-hover: #1d4ed8;     /* Darker Blue Hover State */
-      --border-line: #e2e8f0;    /* Fine Crisp Divider Line */
-      --max-width: 820px;        /* Standardized Academic Reading Width */
-      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --text-main: #1e293b;       /* Soft Slate Charcoal (Replaces harsh heavy black) */
+      --text-heading: #0f172a;    /* Refined Deep Slate for Headings */
+      --text-muted: #64748b;      /* Light Slate Gray for Subtitles & Meta Info */
+      --bg-main: #ffffff;         /* Pure Crisp White Background */
+      --bg-pill: #f8fafc;         /* Ultra-light Airy Pill Background */
+      --bg-pill-hover: #f1f5f9;   /* Soft Pill Hover Tint */
+      --link-blue: #2563eb;       /* Soft Muted Sapphire Blue for Links */
+      --link-hover: #1d4ed8;      /* Deep Sapphire Blue Hover State */
+      --border-line: #f1f5f9;     /* Ultra-Delicate Subtlest Divider Line */
+      --border-line-dark: #e2e8f0;/* Soft Divider Line for Section Headings */
+      --max-width: 760px;         /* Compact Elegant Reading Width */
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     *, *::before, *::after {
@@ -48,23 +50,23 @@
     body {
       min-height: 100vh;
       font-family: var(--font-family) !important;
-      color: var(--text-black);
+      color: var(--text-main);
       background: var(--bg-main);
-      line-height: 1.7;
+      line-height: 1.78;
       font-size: 16px;
-      font-weight: 500; /* Crisp, legible weight */
-      letter-spacing: -0.012em;
+      font-weight: 400; /* Regular lightweight typography */
+      letter-spacing: -0.011em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
     }
 
-    /* Links: Soft Sapphire Blue */
+    /* Links: Soft Muted Sapphire Blue */
     a {
       color: var(--link-blue);
       text-decoration: none;
       transition: all 0.15s ease;
-      font-weight: 500;
+      font-weight: 400;
     }
 
     a:hover {
@@ -72,21 +74,21 @@
       text-decoration: underline;
     }
 
-    /* Headings: Deep Ink Slate */
+    /* Headings: Elegant Refined Slate */
     h1, h2, h3, h4 {
       font-family: var(--font-family) !important;
-      color: var(--text-black);
+      color: var(--text-heading);
       margin: 0;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.02em;
     }
 
     /* --------------------------------------------------------------------------
-       Top Navigation Header (Sticky with Fine Divider Line)
+       Top Navigation Header (Sticky Lightweight Blur Header)
        -------------------------------------------------------------------------- */
     header {
       width: 100%;
       border-bottom: 1px solid var(--border-line);
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       position: sticky;
@@ -105,18 +107,18 @@
     }
 
     .brand {
-      font-size: 19px;
-      font-weight: 800;
-      color: var(--text-black);
-      letter-spacing: -0.03em;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
       text-align: left;
     }
 
     .nav-links {
       display: flex;
       gap: 24px;
-      font-size: 15px;
-      font-weight: 600;
+      font-size: 14.5px;
+      font-weight: 500;
     }
 
     .nav-links a {
@@ -134,50 +136,50 @@
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 32px clamp(16px, 4vw, 24px) 60px;
+      padding: 36px clamp(16px, 4vw, 24px) 64px;
     }
 
     /* --------------------------------------------------------------------------
-       Centered Profile Header Section (Divided Bottom)
+       Centered Profile Header Section (Airy & Symmetrical)
        -------------------------------------------------------------------------- */
     .profile {
       text-align: center;
-      padding: 16px 0 36px;
+      padding: 16px 0 40px;
       border-bottom: 1px solid var(--border-line);
     }
 
     .avatar {
-      width: 128px;
-      height: 128px;
+      width: 112px;
+      height: 112px;
       margin: 0 auto 20px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      border: 1px solid var(--border-line);
-      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+      border: 1px solid var(--border-line-dark);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
       transition: transform 0.25s ease;
     }
 
     .avatar:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
     }
 
     h1#name {
-      font-size: 38px;
-      line-height: 1.2;
-      font-weight: 800;
-      color: var(--text-black);
+      font-size: 32px;
+      line-height: 1.25;
+      font-weight: 700;
+      color: var(--text-heading);
       text-align: center;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.025em;
     }
 
     .subtitle {
       margin: 12px auto 0;
       color: var(--text-muted);
-      font-size: 16px;
+      font-size: 15.5px;
       max-width: 650px;
-      line-height: 1.55;
-      font-weight: 500;
+      line-height: 1.6;
+      font-weight: 400;
       text-align: center;
     }
 
@@ -186,24 +188,24 @@
       text-align: center;
     }
 
-    /* Contact Links Pills (Subtle Border) */
+    /* Contact Links Pills (Airy Lightweight Style) */
     .socials {
       margin-top: 22px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 10px;
-      font-size: 14.5px;
+      font-size: 14px;
     }
 
     .socials a {
-      padding: 6px 18px;
+      padding: 6px 16px;
       border-radius: 999px;
-      color: var(--text-black);
+      color: var(--text-main);
       background: var(--bg-pill);
-      border: 1px solid var(--border-line);
-      font-weight: 600;
-      font-size: 14.5px;
+      border: 1px solid var(--border-line-dark);
+      font-weight: 500;
+      font-size: 14px;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
@@ -211,44 +213,44 @@
 
     .socials a:hover {
       text-decoration: none;
-      background: var(--text-black);
+      background: var(--text-heading);
       color: #ffffff;
-      border-color: var(--text-black);
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.14);
+      border-color: var(--text-heading);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
       transform: translateY(-1px);
     }
 
     /* --------------------------------------------------------------------------
-       Main Content Sections (Fine Divider Lines & Balanced Spacing)
+       Main Content Sections
        -------------------------------------------------------------------------- */
     section {
       padding: 36px 0 0;
     }
 
     h2 {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 18px;
-      color: var(--text-black);
-      border-bottom: 1.5px solid var(--border-line);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-heading);
+      border-bottom: 1px solid var(--border-line-dark);
       padding-bottom: 8px;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.02em;
     }
 
     h3.category-title {
       margin: 28px 0 14px;
-      font-size: 17.5px;
-      font-weight: 700;
-      color: var(--text-black);
-      letter-spacing: -0.02em;
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--text-heading);
+      letter-spacing: -0.015em;
     }
 
     p {
-      margin: 0 0 1.2em;
-      color: var(--text-black);
+      margin: 0 0 1.3em;
+      color: var(--text-main);
       font-size: 16px;
-      line-height: 1.7;
-      font-weight: 500;
+      line-height: 1.78;
+      font-weight: 400;
       text-align: left;
       overflow-wrap: anywhere;
     }
@@ -269,9 +271,9 @@
       align-items: baseline;
       gap: 12px;
       font-size: 16px;
-      color: var(--text-black);
-      line-height: 1.7;
-      font-weight: 500;
+      color: var(--text-main);
+      line-height: 1.75;
+      font-weight: 400;
       margin-bottom: 1em;
     }
 
@@ -280,11 +282,11 @@
     }
 
     .news-date {
-      font-weight: 700;
-      color: var(--text-black);
-      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 13.5px;
       background: var(--bg-pill);
-      border: 1px solid var(--border-line);
+      border: 1px solid var(--border-line-dark);
       padding: 2px 8px;
       border-radius: 6px;
       flex-shrink: 0;
@@ -297,7 +299,7 @@
     }
 
     /* --------------------------------------------------------------------------
-       Numbered APA 7th Publications List (Flexbox Layout: Even Left Alignment)
+       Numbered APA 7th Publications List (Airy Lightweight Bibliography)
        -------------------------------------------------------------------------- */
     .apa-numbered-list {
       list-style: none;
@@ -312,20 +314,20 @@
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      font-size: 16px;
-      line-height: 1.68;
-      font-weight: 500;
-      color: var(--text-black);
+      font-size: 15.5px;
+      line-height: 1.72;
+      font-weight: 400;
+      color: var(--text-main);
     }
 
     .apa-num {
-      font-weight: 700;
-      color: var(--text-black);
+      font-weight: 600;
+      color: var(--text-muted);
       flex-shrink: 0;
       width: 24px;
       text-align: right;
-      font-size: 15.5px;
-      line-height: 1.68;
+      font-size: 14.5px;
+      line-height: 1.72;
     }
 
     .apa-content {
@@ -336,14 +338,14 @@
       overflow-wrap: anywhere;
     }
 
-    .apa-item strong {
-      font-weight: 700;
-      color: var(--text-black);
+    .apa-content strong {
+      font-weight: 600;
+      color: var(--text-heading);
     }
 
     .apa-title {
-      color: var(--text-black);
-      font-weight: 500;
+      color: var(--text-main);
+      font-weight: 400;
     }
 
     .apa-title:hover {
@@ -353,13 +355,13 @@
 
     .apa-journal {
       font-style: italic;
-      color: var(--text-black);
+      color: var(--text-main);
     }
 
     .apa-doi {
       color: var(--link-blue);
-      font-size: 15px;
-      font-weight: 500;
+      font-size: 14.5px;
+      font-weight: 400;
       text-indent: 0;
       word-break: break-all;
       overflow-wrap: anywhere;
@@ -377,10 +379,10 @@
       margin: 48px auto 0;
       padding: 28px clamp(16px, 4vw, 24px) 44px;
       color: var(--text-muted);
-      font-size: 14.5px;
+      font-size: 14px;
       text-align: center;
       border-top: 1px solid var(--border-line);
-      font-weight: 500;
+      font-weight: 400;
     }
 
     /* Responsive Adjustments */
@@ -394,7 +396,7 @@
 
       .nav-links {
         gap: 18px;
-        font-size: 14.5px;
+        font-size: 14px;
       }
 
       main {
@@ -402,18 +404,16 @@
       }
 
       h1#name {
-        font-size: 30px;
+        font-size: 27px;
       }
 
       .avatar {
-        width: 104px;
-        height: 104px;
+        width: 100px;
+        height: 100px;
       }
 
       .apa-item {
-        padding-left: 26px;
-        text-indent: -26px;
-        font-size: 15.5px;
+        font-size: 15px;
       }
     }
   </style>
