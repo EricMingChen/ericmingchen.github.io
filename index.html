@@ -20,12 +20,13 @@
       --text-main: #0f172a;       /* Slate-900: Deep, solid, non-hazy reading text */
       --text-muted: #475569;      /* Slate-600: High-contrast clear secondary text */
       --bg-main: #ffffff;         /* Pure white background */
-      --bg-pill: #f8fafc;         /* Light slate pill background */
-      --bg-pill-hover: #f1f5f9;   /* Pill hover */
+      --bg-card-header: #f8fafc;  /* Subtle tinted card header background */
+      --bg-card-hover: #f1f5f9;   /* Header hover background */
+      --bg-pill: #f8fafc;         /* Pill tag background */
       --link-blue: #1d4ed8;       /* Deep sapphire blue for links */
       --link-hover: #1e40af;      /* Dark sapphire hover state */
-      --border-line: #f1f5f9;     /* Ultra-subtle divider */
-      --border-line-dark: #e2e8f0;/* Slate-200: Crisp divider lines */
+      --border-card: #e2e8f0;     /* Slate-200: Crisp card border */
+      --border-hover: #cbd5e1;    /* Slate-300: Hover border */
       --max-width: 780px;         /* Optimal academic reading column */
       --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
@@ -85,7 +86,7 @@
        -------------------------------------------------------------------------- */
     header {
       width: 100%;
-      border-bottom: 1px solid var(--border-line-dark);
+      border-bottom: 1px solid var(--border-card);
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -141,8 +142,7 @@
        Left-Aligned Profile Header
        -------------------------------------------------------------------------- */
     .profile {
-      padding: 20px 0 32px;
-      border-bottom: 1px solid var(--border-line-dark);
+      padding: 16px 0 28px;
     }
 
     .profile-layout {
@@ -157,7 +157,7 @@
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
-      border: 1px solid var(--border-line-dark);
+      border: 1px solid var(--border-card);
       box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
       transition: transform 0.2s ease;
     }
@@ -190,7 +190,7 @@
     .affiliation {
       font-size: 14.5px;
       color: var(--text-muted);
-      margin: 0 0 16px;
+      margin: 0 0 14px;
       line-height: 1.5;
     }
 
@@ -206,7 +206,7 @@
       border-radius: 999px;
       color: var(--text-main);
       background: var(--bg-pill);
-      border: 1px solid var(--border-line-dark);
+      border: 1px solid var(--border-card);
       font-weight: 500;
       font-size: 13px;
       transition: all 0.2s ease;
@@ -223,74 +223,108 @@
     }
 
     /* --------------------------------------------------------------------------
-       Collapsible Section Cards
+       Global Controls (Expand / Collapse All)
        -------------------------------------------------------------------------- */
-    .section-card {
-      border-bottom: 1px solid var(--border-line-dark);
-      padding: 24px 0 28px;
+    .controls-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin: 10px 0 16px;
     }
 
-    .section-details summary {
+    .btn-toggle-all {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-toggle-all:hover {
+      color: var(--link-blue);
+      background: var(--bg-pill);
+    }
+
+    /* --------------------------------------------------------------------------
+       Collapsible Section Cards with Tinted Headers (No Harsh Divider Lines)
+       -------------------------------------------------------------------------- */
+    .section-card {
+      margin-bottom: 20px;
+    }
+
+    .section-details {
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ffffff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .section-details:hover {
+      border-color: var(--border-hover);
+    }
+
+    .section-header {
       list-style: none;
       cursor: pointer;
       user-select: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 0;
+      padding: 13px 18px;
       margin: 0;
+      background: var(--bg-card-header);
+      transition: background-color 0.2s ease;
     }
 
-    .section-details summary::-webkit-details-marker {
+    .section-header::-webkit-details-marker {
       display: none;
     }
 
-    .section-details summary h2 {
-      font-size: 19px;
+    .section-header:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .section-header h2 {
+      font-size: 17.5px;
       font-weight: 700;
       color: var(--text-heading);
       margin: 0;
-      letter-spacing: -0.02em;
-    }
-
-    .toggle-badge {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-muted);
-      background: var(--bg-pill);
-      border: 1px solid var(--border-line-dark);
-      padding: 3px 10px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .section-details summary:hover .toggle-badge {
-      color: var(--text-heading);
-      border-color: #94a3b8;
-      background: #ffffff;
+      letter-spacing: -0.015em;
     }
 
     .chevron-icon {
-      width: 13px;
-      height: 13px;
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
       transition: transform 0.25s ease;
-      stroke-width: 2.2;
+      stroke-width: 2.3;
+      flex-shrink: 0;
     }
 
-    details[open] .chevron-icon {
+    details[open] > .section-header .chevron-icon {
       transform: rotate(180deg);
     }
 
     .section-body {
-      padding-top: 16px;
+      padding: 18px 20px 22px;
+      background: #ffffff;
+    }
+
+    h3.sub-title {
+      margin: 18px 0 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-heading);
+      letter-spacing: -0.01em;
     }
 
     h3.category-title {
       margin: 22px 0 12px;
-      font-size: 15.5px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--text-heading);
       letter-spacing: -0.015em;
@@ -310,51 +344,50 @@
     }
 
     /* --------------------------------------------------------------------------
-       Structured Even Left-Aligned Rows (News, Presentations, Awards)
+       Academic Content Lists (Presentations, Awards, Leadership)
        -------------------------------------------------------------------------- */
-    .item-list {
-      list-style: none;
-      padding: 0;
+    .academic-list {
+      list-style: decimal;
+      padding-left: 22px;
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .item-row {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      font-size: 15.5px;
+    .academic-item {
+      font-size: 15px;
       line-height: 1.72;
       color: var(--text-main);
     }
 
-    .item-date {
-      width: 72px;
-      text-align: center;
-      font-size: 13px;
+    .academic-item strong {
       font-weight: 600;
-      color: var(--text-muted);
-      background: var(--bg-pill);
-      border: 1px solid var(--border-line-dark);
-      padding: 2px 0;
-      border-radius: 6px;
-      flex-shrink: 0;
+      color: var(--text-heading);
     }
 
-    .item-desc {
-      flex: 1;
-      min-width: 0;
+    .bullet-list {
+      list-style: disc;
+      padding-left: 20px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .item-desc strong {
+    .bullet-item {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .bullet-item strong {
       font-weight: 600;
       color: var(--text-heading);
     }
 
     /* --------------------------------------------------------------------------
-       Numbered APA 7th Publications List (High Contrast, Left Aligned)
+       Numbered APA 7th Publications List
        -------------------------------------------------------------------------- */
     .apa-numbered-list {
       list-style: none;
@@ -421,58 +454,35 @@
     }
 
     /* --------------------------------------------------------------------------
-       Academic Service & Peer Review Lists
+       Clickable Journal Tags
        -------------------------------------------------------------------------- */
-    .service-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .service-item {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--text-main);
-      padding-left: 18px;
-      position: relative;
-    }
-
-    .service-item::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--text-muted);
-      font-weight: 700;
-    }
-
-    .service-role {
-      font-weight: 600;
-      color: var(--text-heading);
-    }
-
-    .service-year {
-      color: var(--text-muted);
-      font-size: 13.5px;
-    }
-
     .reviewer-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
-    .tag {
-      font-size: 13px;
+    .journal-link-tag {
+      font-size: 13.5px;
       background: var(--bg-pill);
-      border: 1px solid var(--border-line-dark);
+      border: 1px solid var(--border-card);
       color: var(--text-main);
-      padding: 2px 10px;
+      padding: 4px 12px;
       border-radius: 6px;
       font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .journal-link-tag:hover {
+      background: #ffffff;
+      border-color: var(--link-blue);
+      color: var(--link-blue);
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.08);
+      transform: translateY(-1px);
     }
 
     /* --------------------------------------------------------------------------
@@ -480,12 +490,12 @@
        -------------------------------------------------------------------------- */
     footer {
       max-width: var(--max-width);
-      margin: 40px auto 0;
-      padding: 28px clamp(16px, 4vw, 24px);
+      margin: 36px auto 0;
+      padding: 24px clamp(16px, 4vw, 24px);
       color: var(--text-muted);
       font-size: 13.5px;
       text-align: center;
-      border-top: 1px solid var(--border-line-dark);
+      border-top: 1px solid var(--border-card);
       font-weight: 450;
     }
 
@@ -512,15 +522,8 @@
       h1#name {
         font-size: 24px;
       }
-      .item-row {
-        flex-direction: column;
-        gap: 6px;
-      }
-      .item-date {
-        text-align: left;
-        padding: 1px 8px;
-        width: auto;
-        display: inline-block;
+      .section-body {
+        padding: 14px 14px 18px;
       }
     }
   </style>
@@ -533,7 +536,6 @@
 
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#news">News</a>
         <a href="#publications">Publications</a>
         <a href="#presentations">Presentations</a>
         <a href="#awards">Awards</a>
@@ -563,51 +565,32 @@
       </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Global Expand / Collapse Control -->
+    <div class="controls-bar">
+      <button type="button" class="btn-toggle-all" id="toggleAllBtn" onclick="toggleAllSections()">Expand All</button>
+    </div>
+
+    <!-- About Section (Open by Default for Instant Researcher Identification) -->
     <section id="about" class="section-card">
       <details open class="section-details">
-        <summary>
+        <summary class="section-header">
           <h2>About</h2>
-          <span class="toggle-badge">
-            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </span>
+          <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </summary>
         <div class="section-body">
           <p>
-            I am a fully funded PhD student in Education at the University of Bristol. My research interests include computer assisted language learning, virtual reality &amp; immersive learning, and innovative pedagogical designs.
+            I am a fully funded PhD student in Education at the University of Bristol. My research interests include computer assisted language learning, VR &amp; AI, and innovative pedagogical designs.
           </p>
         </div>
       </details>
     </section>
 
-    <!-- News Section -->
-    <section id="news" class="section-card">
-      <details open class="section-details">
-        <summary>
-          <h2>News</h2>
-          <span class="toggle-badge">
-            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </span>
-        </summary>
-        <div class="section-body">
-          <ul class="item-list">
-            <li class="item-row">
-              <span class="item-date">2026</span>
-              <div class="item-desc">Ming Chen is awarded the <strong>Best Poster Presentation</strong> at BAAL Vocabulary Studies SIG Annual Conference 2026.</div>
-            </li>
-          </ul>
-        </div>
-      </details>
-    </section>
-
-    <!-- Publications Section (Collapsible & Synced with ORCID) -->
+    <!-- Publications Section (Collapsed by Default, Synced with ORCID) -->
     <section id="publications" class="section-card">
-      <details open class="section-details">
-        <summary>
+      <details class="section-details">
+        <summary class="section-header">
           <h2>Publications</h2>
-          <span class="toggle-badge">
-            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </span>
+          <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </summary>
         <div class="section-body">
           <div id="pub-container">
@@ -617,197 +600,158 @@
       </details>
     </section>
 
-    <!-- Peer-reviewed Conference Presentations (Collapsible, Separate Years) -->
+    <!-- Peer-reviewed Conference Presentations (Collapsed by Default, Uniform Academic Citations) -->
     <section id="presentations" class="section-card">
-      <details open class="section-details">
-        <summary>
-          <h2>Conference Presentations</h2>
-          <span class="toggle-badge">
-            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </span>
+      <details class="section-details">
+        <summary class="section-header">
+          <h2>Peer-reviewed Conference Presentations</h2>
+          <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </summary>
         <div class="section-body">
-          <h3 class="category-title">Oral Presentations</h3>
-          <ul class="item-list">
-            <li class="item-row">
-              <span class="item-date">2026</span>
-              <div class="item-desc">
-                <strong>Chen, M.</strong> (2026). <em>Virtual reality digital content creation for student engagement and vocabulary consolidation in secondary EFL Classrooms</em> [Oral Presentation]. British Association for Applied Linguistics (BAAL) Annual Conference.
-              </div>
+          <ol class="academic-list">
+            <li class="academic-item">
+              <strong>Chen, M.</strong> (2026). <em>Virtual reality digital content creation for student engagement and vocabulary consolidation in secondary EFL classrooms</em>. British Association for Applied Linguistics (BAAL) Annual Conference, UK.
             </li>
-            <li class="item-row">
-              <span class="item-date">2025</span>
-              <div class="item-desc">
-                <strong>Chen, M.</strong> (2025). <em>Conference Presentations</em>. Cambridge China Education Forum (CCEF), University of Cambridge, UK.
-              </div>
+            <li class="academic-item">
+              <strong>Chen, M.</strong> (2026). <em>Virtual reality digital content creation: Vocabulary development and learner engagement in secondary EFL classrooms</em>. British Educational Research Association (BERA) Annual Conference &amp; Teacher Network Conference, UK.
             </li>
-            <li class="item-row">
-              <span class="item-date">2024</span>
-              <div class="item-desc">
-                <strong>Chen, M.</strong> (2024). <em>Conference Presentations</em>. Cambridge China Education Forum (CCEF), University of Cambridge, UK.
-              </div>
+            <li class="academic-item">
+              <strong>Chen, M.</strong> (2026). <em>Vocabulary development through virtual reality</em>. British Association for Applied Linguistics (BAAL) Vocabulary Studies SIG Annual Conference, Bangor, UK.
             </li>
-            <li class="item-row">
-              <span class="item-date">2024</span>
-              <div class="item-desc">
-                <strong>Chen, M.</strong> (2024). <em>Embarking on a New Learning Frontier: VR Digital Content Creation Enhancing EFL Learning</em> [Conference Presentation]. Association for Learning Technology (ALT) Annual Conference, UK.
-              </div>
+            <li class="academic-item">
+              <strong>Chen, M.</strong> (2025). <em>Conference Presentation</em>. Cambridge China Education Forum (CCEF), University of Cambridge, UK.
             </li>
-          </ul>
-
-          <h3 class="category-title" style="margin-top: 24px;">Poster Presentations</h3>
-          <ul class="item-list">
-            <li class="item-row">
-              <span class="item-date">2026</span>
-              <div class="item-desc">
-                <strong>Chen, M.</strong> (2026). <em>Vocabulary development through virtual reality</em> [Poster Presentation]. British Association for Applied Linguistics (BAAL) Vocabulary Studies SIG Annual Conference, Bangor, UK.
-              </div>
+            <li class="academic-item">
+              <strong>Chen, M.</strong> (2024). <em>Conference Presentation</em>. Cambridge China Education Forum (CCEF), University of Cambridge, UK.
             </li>
-            <li class="item-row">
-              <span class="item-date">2026</span>
-              <div class="item-desc">
-                <strong>Chen, M.</strong> (2026). <em>Virtual Reality Digital Content Creation: Vocabulary development and learner engagement in secondary EFL classrooms</em> [Poster Presentation]. British Educational Research Association (BERA) Annual Conference &amp; Teacher Network Conference, UK.
-              </div>
+            <li class="academic-item">
+              <strong>Chen, M.</strong> (2024). <em>Embarking on a New Learning Frontier: VR Digital Content Creation Enhancing EFL Learning</em>. Association for Learning Technology (ALT) Annual Conference, UK.
             </li>
-          </ul>
+          </ol>
         </div>
       </details>
     </section>
 
-    <!-- Honors & Awards Section -->
+    <!-- Honors & Awards Section (Collapsed by Default) -->
     <section id="awards" class="section-card">
-      <details open class="section-details">
-        <summary>
+      <details class="section-details">
+        <summary class="section-header">
           <h2>Honors &amp; Awards</h2>
-          <span class="toggle-badge">
-            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </span>
+          <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </summary>
         <div class="section-body">
-          <ul class="item-list">
-            <li class="item-row">
-              <span class="item-date">2026</span>
-              <div class="item-desc">
-                <strong>Best Poster Presentation</strong>, BAAL Vocabulary Studies SIG Annual Conference, Bangor.
-              </div>
+          <ul class="bullet-list">
+            <li class="bullet-item">
+              <strong>Best Poster Presentation</strong>, BAAL Vocabulary Studies SIG Annual Conference, Bangor (2026).
             </li>
-            <li class="item-row">
-              <span class="item-date">2026</span>
-              <div class="item-desc">
-                <strong>Best Volunteer</strong>, Global Education Innovation Forum, Manchester.
-              </div>
+            <li class="bullet-item">
+              <strong>Best Volunteer</strong>, Global Education Innovation Forum, Manchester, UK (2026).
             </li>
           </ul>
         </div>
       </details>
     </section>
 
-    <!-- Academic Service & Peer Review Section -->
+    <!-- Academic Service & Peer Review Section (Collapsed by Default) -->
     <section id="service" class="section-card">
-      <details open class="section-details">
-        <summary>
+      <details class="section-details">
+        <summary class="section-header">
           <h2>Academic Service &amp; Peer Review</h2>
-          <span class="toggle-badge">
-            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </span>
+          <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </summary>
         <div class="section-body">
-          <h3 class="category-title">Conference Organization &amp; Leadership</h3>
-          <ul class="service-list">
-            <li class="service-item">
-              <span class="service-role">Program Committee Member</span>, Subconference on ALT, 34th International Conference on Computers in Education (ICCE) <span class="service-year">(2026)</span>
+          <h3 class="sub-title">Conference Organization &amp; Leadership</h3>
+          <ol class="academic-list">
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, Program Committee Member (2026). Subconference on ALT, 34th International Conference on Computers in Education (ICCE).
             </li>
-            <li class="service-item">
-              <span class="service-role">Social Media Communicator</span>, AERA Constructivist Theory, Research and Practice SIG <span class="service-year">(2026)</span>
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, Social Media Communicator (2026). AERA Constructivist Theory, Research and Practice SIG.
             </li>
-            <li class="service-item">
-              <span class="service-role">Panel Organiser</span>, Global Education Innovation Forum, Manchester <span class="service-year">(2026)</span>
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, Panel Organiser (2026). Global Education Innovation Forum, Manchester, UK.
             </li>
-            <li class="service-item">
-              <span class="service-role">Academic Development Director</span>, Global PhD in Education Network <span class="service-year">(2026 – Present)</span>
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, Academic Development Director (2026 – Present). Global PhD in Education Network.
             </li>
-            <li class="service-item">
-              <span class="service-role">Operations Division Coordinator</span>, Cambridge China Education Forum, University of Cambridge <span class="service-year">(2026)</span>
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, Operations Division Coordinator (2026). Cambridge China Education Forum (CCEF), University of Cambridge, UK.
             </li>
-            <li class="service-item">
-              <span class="service-role">Director of Organisation Development Division</span>, Cambridge China Education Forum, University of Cambridge <span class="service-year">(2025)</span>
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, Director of Organisation Development Division (2025). Cambridge China Education Forum (CCEF), University of Cambridge, UK.
             </li>
-            <li class="service-item">
-              <span class="service-role">Lead, Early Career Researcher Forum</span>, Cambridge China Education Forum, University of Cambridge <span class="service-year">(2025)</span>
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, Lead, Early Career Researcher Forum (2025). Cambridge China Education Forum (CCEF), University of Cambridge, UK.
             </li>
-            <li class="service-item">
-              <span class="service-role">Language and Literature Panel Coordinator</span>, Cambridge China Education Forum, University of Cambridge <span class="service-year">(2025)</span>
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, Language and Literature Panel Coordinator (2025). Cambridge China Education Forum (CCEF), University of Cambridge, UK.
             </li>
-            <li class="service-item">
-              <span class="service-role">Educational Technology Panel Coordinator</span>, Cambridge China Education Forum, University of Cambridge <span class="service-year">(2024)</span>
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, Educational Technology Panel Coordinator (2024). Cambridge China Education Forum (CCEF), University of Cambridge, UK.
             </li>
-            <li class="service-item">
-              <span class="service-role">Co-Chair</span>, Faculty of Social Sciences and Law PGR Annual Conference, University of Bristol <span class="service-year">(2024)</span>
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, Co-Chair (2024). Faculty of Social Sciences and Law PGR Annual Conference, University of Bristol, UK.
             </li>
-            <li class="service-item">
-              <span class="service-role">PhD Student Representative</span>, School of Education &amp; Research Culture Committee, University of Bristol <span class="service-year">(2023 – Present)</span>
+            <li class="academic-item">
+              <strong>Chen, M.</strong>, PhD Student Representative (2023 – Present). School of Education &amp; Research Culture Committee, University of Bristol, UK.
             </li>
-          </ul>
+          </ol>
 
-          <h3 class="category-title" style="margin-top: 24px;">Journal Editorial &amp; Peer Review</h3>
-          <ul class="service-list">
-            <li class="service-item">
-              <span class="service-role">Copy Editor</span>: <em>Language Learning &amp; Technology</em> <span class="service-year">(2024 – Present)</span>
-            </li>
-            <li class="service-item">
-              <span class="service-role">Ad-hoc Journal Reviewer</span>:
-              <div class="reviewer-tags">
-                <span class="tag">The Asia-Pacific Education Researcher</span>
-                <span class="tag">International Journal of Smart Technology and Learning</span>
-                <span class="tag">Journal of Multilingual and Multicultural Development</span>
-                <span class="tag">Journal of Computers in Education</span>
-                <span class="tag">Humanities and Social Sciences Communications</span>
-                <span class="tag">Cogent Education</span>
-                <span class="tag">Discover Education</span>
-                <span class="tag">International Journal of Electronic Business</span>
-              </div>
-            </li>
-          </ul>
+          <h3 class="sub-title" style="margin-top: 24px;">Journal Editorial &amp; Peer Review</h3>
+          <p style="margin-bottom: 8px;">
+            <strong>Copy Editor</strong>: <a href="https://www.lltjournal.org/" target="_blank" rel="noopener"><em>Language Learning &amp; Technology</em></a> (2024 – Present)
+          </p>
+          <p style="margin-bottom: 6px; font-weight: 600; color: var(--text-heading);">
+            Ad-hoc Journal Reviewer:
+          </p>
+          <div class="reviewer-tags">
+            <a href="https://link.springer.com/journal/40299" target="_blank" rel="noopener" class="journal-link-tag">The Asia-Pacific Education Researcher</a>
+            <a href="https://www.inderscience.com/jhome.php?jcode=ijsmarttl" target="_blank" rel="noopener" class="journal-link-tag">International Journal of Smart Technology and Learning</a>
+            <a href="https://www.tandfonline.com/toc/rmmd20/current" target="_blank" rel="noopener" class="journal-link-tag">Journal of Multilingual and Multicultural Development</a>
+            <a href="https://link.springer.com/journal/40692" target="_blank" rel="noopener" class="journal-link-tag">Journal of Computers in Education</a>
+            <a href="https://www.nature.com/palcomms/" target="_blank" rel="noopener" class="journal-link-tag">Humanities and Social Sciences Communications</a>
+            <a href="https://www.tandfonline.com/toc/oaed20/current" target="_blank" rel="noopener" class="journal-link-tag">Cogent Education</a>
+            <a href="https://link.springer.com/journal/44217" target="_blank" rel="noopener" class="journal-link-tag">Discover Education</a>
+            <a href="https://www.inderscience.com/jhome.php?jcode=ijeb" target="_blank" rel="noopener" class="journal-link-tag">International Journal of Electronic Business</a>
+          </div>
 
-          <h3 class="category-title" style="margin-top: 24px;">Conference Peer Review (Listed by Year)</h3>
-          <ul class="service-list">
-            <li class="service-item">
-              <em>BERA 2026</em> – British Educational Research Association Annual Conference <span class="service-year">(2026)</span>
+          <h3 class="sub-title" style="margin-top: 24px;">Conference Peer Review (Listed by Year)</h3>
+          <ul class="bullet-list">
+            <li class="bullet-item">
+              2026, British Educational Research Association (BERA) Annual Conference, UK.
             </li>
-            <li class="service-item">
-              <em>CCEF 2026</em> – Cambridge China Education Forum, University of Cambridge <span class="service-year">(2026)</span>
+            <li class="bullet-item">
+              2026, Cambridge China Education Forum (CCEF), University of Cambridge, UK.
             </li>
-            <li class="service-item">
-              <em>CCEF 2025</em> – Cambridge China Education Forum, University of Cambridge <span class="service-year">(2025)</span>
+            <li class="bullet-item">
+              2025, 11th International Conference of the Immersive Learning Research Network (iLRN), Online / USA.
             </li>
-            <li class="service-item">
-              <em>iLRN 2025</em> – 11th International Conference of the Immersive Learning Research Network <span class="service-year">(2025)</span>
+            <li class="bullet-item">
+              2025, American Educational Research Association (AERA) Annual Meeting, Denver, CO, USA.
             </li>
-            <li class="service-item">
-              <em>AERA 2025</em> – American Educational Research Association Annual Meeting <span class="service-year">(2025)</span>
+            <li class="bullet-item">
+              2025, International Society of the Learning Sciences (ISLS) Annual Meeting, Montreal, Canada.
             </li>
-            <li class="service-item">
-              <em>ISLS 2025</em> – International Society of the Learning Sciences Annual Meeting <span class="service-year">(2025)</span>
+            <li class="bullet-item">
+              2025, Cambridge China Education Forum (CCEF), University of Cambridge, UK.
             </li>
-            <li class="service-item">
-              <em>CCEF 2024</em> – Cambridge China Education Forum, University of Cambridge <span class="service-year">(2024)</span>
+            <li class="bullet-item">
+              2024, 10th International Conference of the Immersive Learning Research Network (iLRN), Glasgow, Scotland, UK.
             </li>
-            <li class="service-item">
-              <em>iLRN 2024</em> – 10th International Conference of the Immersive Learning Research Network <span class="service-year">(2024)</span>
+            <li class="bullet-item">
+              2024, Cambridge China Education Forum (CCEF), University of Cambridge, UK.
             </li>
           </ul>
         </div>
       </details>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section (Collapsed by Default) -->
     <section id="contact" class="section-card">
-      <details open class="section-details">
-        <summary>
+      <details class="section-details">
+        <summary class="section-header">
           <h2>Contact</h2>
-          <span class="toggle-badge">
-            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </span>
+          <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </summary>
         <div class="section-body">
           <p>
@@ -824,6 +768,19 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Toggle All Sections Utility
+    function toggleAllSections() {
+      const allDetails = document.querySelectorAll('.section-details');
+      const btn = document.getElementById('toggleAllBtn');
+      const anyClosed = Array.from(allDetails).some(d => !d.open);
+      
+      allDetails.forEach(d => {
+        d.open = anyClosed;
+      });
+      
+      btn.textContent = anyClosed ? 'Collapse All' : 'Expand All';
+    }
 
     const CATEGORY_ORDER = [
       'Scholarship Synthesis',
