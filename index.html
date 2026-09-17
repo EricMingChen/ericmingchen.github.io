@@ -88,60 +88,12 @@
     }
 
     /* --------------------------------------------------------------------------
-       Top Navigation Bar
-       -------------------------------------------------------------------------- */
-    header {
-      width: 100%;
-      border-bottom: 1px solid var(--brand-border);
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 14px clamp(16px, 4vw, 24px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .brand {
-      font-size: 16.5px;
-      font-weight: 700;
-      color: var(--brand-green);
-      letter-spacing: -0.02em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      font-size: 14px;
-      font-weight: 500;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-    }
-
-    .nav-links a:hover {
-      color: var(--brand-green);
-      text-decoration: none;
-    }
-
-    /* --------------------------------------------------------------------------
        Main Content Container
        -------------------------------------------------------------------------- */
     main {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 24px clamp(16px, 4vw, 24px) 60px;
+      padding: 42px clamp(16px, 4vw, 24px) 60px;
     }
 
     /* --------------------------------------------------------------------------
@@ -544,14 +496,8 @@
 
     /* Responsive */
     @media (max-width: 640px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      .nav-links {
-        gap: 14px;
-        font-size: 13.5px;
+      main {
+        padding: 24px clamp(14px, 4vw, 20px) 48px;
       }
       .profile-layout {
         flex-direction: column;
@@ -573,20 +519,6 @@
 </head>
 
 <body>
-  <header>
-    <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="#top">Ming CHEN</a>
-
-      <div class="nav-links">
-        <a href="#publications">Publications</a>
-        <a href="#presentations">Presentations</a>
-        <a href="#awards">Awards</a>
-        <a href="#service">Service</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-  </header>
-
   <main id="top">
     <!-- Left-Aligned Profile Header + Welcoming Bio (Always Visible) -->
     <section class="profile" aria-labelledby="name">
@@ -608,7 +540,7 @@
 
       <div class="bio-intro">
         <p>
-          Hi there, welcome to my academic homepage! 👋 I am a fully funded PhD researcher in Education at the University of Bristol. My research explores how <strong>computer assisted language learning</strong>, <strong>VR &amp; AI</strong>, and <strong>innovative pedagogical designs</strong> can empower language learners and educators.
+          Hi there, welcome to my academic homepage! 👋 I am a fully funded PhD researcher in Education at the University of Bristol. My research interests include <strong>computer assisted language learning</strong>, <strong>VR &amp; AI</strong>, and <strong>innovative pedagogical designs</strong>. You are very welcome to reach out to me if you share similar research interests or are interested in collaboration!
         </p>
       </div>
     </section>
