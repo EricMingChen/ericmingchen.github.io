@@ -372,6 +372,92 @@
     }
 
     /* --------------------------------------------------------------------------
+       Presentations & Academic Service Sections
+       -------------------------------------------------------------------------- */
+    .pres-list, .service-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .pres-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15.5px;
+      line-height: 1.72;
+      color: var(--text-main);
+    }
+
+    .pres-year {
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 13px;
+      background: var(--bg-pill);
+      border: 1px solid var(--border-line-dark);
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .pres-content {
+      flex: 1;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .pres-content strong {
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .service-item {
+      font-size: 15.5px;
+      line-height: 1.72;
+      color: var(--text-main);
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .service-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    .service-role {
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .service-year {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .reviewer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 13.5px;
+      background: var(--bg-pill);
+      border: 1px solid var(--border-line-dark);
+      color: var(--text-main);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 400;
+    }
+
+    /* --------------------------------------------------------------------------
        Footer (Divider Line Top)
        -------------------------------------------------------------------------- */
     footer {
@@ -428,6 +514,8 @@
         <a href="#about">About</a>
         <a href="#news">News</a>
         <a href="#publications">Publications</a>
+        <a href="#presentations">Presentations</a>
+        <a href="#service">Service</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -475,6 +563,113 @@
       <div id="pub-container">
         <p>Loading publications from ORCID...</p>
       </div>
+    </section>
+
+    <section id="presentations" aria-labelledby="pres-title">
+      <h2 id="pres-title">Presentations</h2>
+      <ul class="pres-list">
+        <li class="pres-item">
+          <span class="pres-year">[2026]</span>
+          <div class="pres-content">
+            <strong>Chen, M.</strong> (2026). <em>Virtual reality digital content creation for student engagement and vocabulary consolidation in secondary EFL Classrooms</em> [Oral Presentation]. British Association for Applied Linguistics (BAAL) Annual Conference &amp; Vocabulary Studies SIG Annual Conference, Bangor, UK.
+          </div>
+        </li>
+        <li class="pres-item">
+          <span class="pres-year">[2026]</span>
+          <div class="pres-content">
+            <strong>Chen, M.</strong> (2026). <em>Virtual Reality Digital Content Creation: Vocabulary development and learner engagement in secondary EFL classrooms</em> [Poster Presentation]. British Educational Research Association (BERA) Annual Conference &amp; Teacher Network Conference, UK.
+          </div>
+        </li>
+        <li class="pres-item">
+          <span class="pres-year">[2024–2025]</span>
+          <div class="pres-content">
+            <strong>Chen, M.</strong> (2024, 2025). <em>Conference Presentations</em>. Cambridge China Education Forum (CCEF), University of Cambridge, UK.
+          </div>
+        </li>
+        <li class="pres-item">
+          <span class="pres-year">[2024]</span>
+          <div class="pres-content">
+            <strong>Chen, M.</strong> (2024). <em>Embarking on a New Learning Frontier: VR Digital Content Creation Enhancing EFL Learning</em> [Conference Presentation]. Association for Learning Technology (ALT) Annual Conference, UK.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="service" aria-labelledby="service-title">
+      <h2 id="service-title">Academic Service &amp; Peer Review</h2>
+
+      <h3 class="category-title">Conference Organization &amp; Leadership</h3>
+      <ul class="service-list">
+        <li class="service-item">
+          <span class="service-role">Co-Chair</span>, Global Education Innovation Forum, Manchester <span class="service-year">(2026)</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Operations Division Coordinator</span>, Cambridge China Education Forum, University of Cambridge <span class="service-year">(2026)</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Lead, Early Career Researcher Forum</span>, Cambridge China Education Forum, University of Cambridge <span class="service-year">(2025)</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Language &amp; Literature Panel Coordinator</span>, Cambridge China Education Forum (CCEF), University of Cambridge <span class="service-year">(2025)</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Educational Technology Panel Coordinator</span>, Cambridge China Education Forum (CCEF), University of Cambridge <span class="service-year">(2024)</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Co-Chair</span>, Faculty of Social Sciences and Law PGR Annual Conference, University of Bristol <span class="service-year">(2024)</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Program Committee Member</span>, Subconference on ALT, 34th International Conference on Computers in Education (ICCE) <span class="service-year">(2026)</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Social Media Communicator</span>, AERA Constructivist Theory, Research and Practice SIG <span class="service-year">(2026)</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">PhD Development Lead</span>, Global PhD in Education Network <span class="service-year">(2026 – Present)</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">PhD Student Representative</span>, School of Education &amp; Research Culture Committee, University of Bristol <span class="service-year">(2023 – Present)</span>
+        </li>
+      </ul>
+
+      <h3 class="category-title">Journal Editorial &amp; Peer Review</h3>
+      <ul class="service-list">
+        <li class="service-item">
+          <span class="service-role">Copy Editor</span>: <em>Language Learning &amp; Technology</em> <span class="service-year">(2024 – Present)</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Ad-hoc Journal Reviewer</span>:
+          <div class="reviewer-tags">
+            <span class="tag">The Asia-Pacific Education Researcher</span>
+            <span class="tag">International Journal of Smart Technology and Learning</span>
+            <span class="tag">Journal of Multilingual and Multicultural Development</span>
+            <span class="tag">Journal of Computers in Education</span>
+            <span class="tag">Humanities and Social Sciences Communications</span>
+            <span class="tag">Cogent Education</span>
+            <span class="tag">Discover Education</span>
+            <span class="tag">International Journal of Electronic Business</span>
+          </div>
+        </li>
+      </ul>
+
+      <h3 class="category-title">Conference Peer Review</h3>
+      <ul class="service-list">
+        <li class="service-item">
+          <em>iLRN 2024 &amp; 2025</em> – 10th &amp; 11th International Conference of the Immersive Learning Research Network
+        </li>
+        <li class="service-item">
+          <em>AERA 2025</em> – 2025 American Educational Research Association Annual Meeting
+        </li>
+        <li class="service-item">
+          <em>ISLS 2025</em> – International Society of the Learning Sciences 2025 Annual Meeting
+        </li>
+        <li class="service-item">
+          <em>BERA 2026</em> – British Educational Research Association Annual Conference
+        </li>
+        <li class="service-item">
+          <em>CCEF 2024, 2025, 2026</em> – Cambridge China Education Forum, University of Cambridge
+        </li>
+      </ul>
     </section>
 
     <section id="contact" aria-labelledby="contact-title">
