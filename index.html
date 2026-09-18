@@ -160,14 +160,14 @@
     }
 
     .socials a {
-      padding: 5px 14px;
-      border-radius: 999px;
-      color: var(--text-main);
-      background: var(--bg-tag);
-      border: 1px solid var(--brand-border);
+      padding: 5px 12px;
+      border-radius: 6px;
+      color: #374740;
+      background: #f0f5f2;
+      border: none;
       font-weight: 500;
       font-size: 13px;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
       display: inline-flex;
       align-items: center;
     }
@@ -176,30 +176,30 @@
       text-decoration: none;
       background: var(--brand-green);
       color: #ffffff;
-      border-color: var(--brand-green);
-      box-shadow: 0 2px 8px rgba(10, 92, 68, 0.2);
     }
 
     /* --------------------------------------------------------------------------
-       Horizontal Segmented Tab Navigation Bar (方案 A)
+       Modern Segmented Navigation (Tactile Minimalist Track, Zero Harsh Lines)
        -------------------------------------------------------------------------- */
     .tab-nav {
-      margin: 20px 0 26px;
+      margin: 18px 0 34px;
       position: sticky;
       top: 0;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       z-index: 100;
-      padding: 10px 0 12px;
-      border-bottom: 1px solid var(--brand-border);
+      padding: 10px 0;
     }
 
     .tab-bar {
-      display: flex;
-      gap: 8px;
+      display: inline-flex;
+      background: #f0f5f2;
+      padding: 4px;
+      border-radius: 8px;
+      gap: 3px;
       overflow-x: auto;
-      padding-bottom: 2px;
+      max-width: 100%;
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
@@ -209,43 +209,40 @@
     }
 
     .tab-btn {
-      background: var(--bg-tag);
-      color: var(--text-muted);
-      border: 1px solid var(--brand-border);
-      padding: 8px 18px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 550;
+      background: transparent;
+      color: #556960;
+      border: none;
+      padding: 7px 18px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 500;
       cursor: pointer;
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
       user-select: none;
+      letter-spacing: -0.01em;
     }
 
     .tab-btn:hover {
-      background: #ffffff;
       color: var(--brand-green);
-      border-color: var(--brand-green);
-      box-shadow: 0 2px 8px rgba(10, 92, 68, 0.08);
-      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.5);
     }
 
     .tab-btn.active {
-      background: var(--brand-green);
-      color: #ffffff;
-      border-color: var(--brand-green);
-      box-shadow: 0 3px 12px rgba(10, 92, 68, 0.22);
+      background: #ffffff;
+      color: var(--brand-green);
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(10, 92, 68, 0.12), 0 1px 1px rgba(0, 0, 0, 0.04);
     }
 
     /* --------------------------------------------------------------------------
-       Tab Panels & Card System
+       Tab Panels & Natural Academic Layout (Zero Box Borders, Pure Whitespace)
        -------------------------------------------------------------------------- */
     .tab-panel {
       display: none;
-      animation: tabFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: tabFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .tab-panel.active {
@@ -255,7 +252,7 @@
     @keyframes tabFadeIn {
       from {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(4px);
       }
       to {
         opacity: 1;
@@ -263,82 +260,59 @@
       }
     }
 
-    .panel-card {
-      background: #ffffff;
-      border: 1px solid var(--brand-border);
-      border-radius: 12px;
-      padding: 24px 26px;
-      margin-bottom: 22px;
-      box-shadow: 0 2px 10px rgba(10, 92, 68, 0.02);
+    .section-block {
+      margin-bottom: 34px;
     }
 
-    .panel-title {
-      font-size: 19px;
+    .section-title {
+      font-size: 20px;
       font-weight: 700;
       color: var(--text-heading);
-      margin-bottom: 18px;
-      letter-spacing: -0.015em;
-      border-bottom: 2px solid var(--brand-green-tint);
-      padding-bottom: 8px;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
     }
 
-    .bio-intro {
-      padding: 16px 20px;
-      background: var(--brand-green-tint);
-      border-left: 3px solid var(--brand-green);
-      border-radius: 0 8px 8px 0;
-    }
-
-    .bio-intro p {
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.75;
+    .bio-text {
+      font-size: 15.5px;
+      line-height: 1.8;
       color: var(--text-main);
+      margin-bottom: 18px;
     }
 
-    .bio-intro strong {
+    .bio-text strong {
       color: var(--brand-green);
       font-weight: 600;
     }
 
+    /* Subtle Research Tags (Border-free Soft Tint) */
+    .research-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
     .research-tag {
-      background: var(--bg-tag);
+      background: #f0f5f2;
       color: var(--brand-green);
-      border: 1px solid var(--brand-border);
-      padding: 5px 14px;
-      border-radius: 999px;
+      border: none;
+      padding: 5px 13px;
+      border-radius: 6px;
       font-size: 13.5px;
       font-weight: 500;
       display: inline-block;
     }
 
-    .timeline-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      position: relative;
-    }
-
-    .timeline-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--brand-green);
-      margin-top: 6px;
-      flex-shrink: 0;
-      box-shadow: 0 0 0 3px var(--brand-green-tint);
-    }
-
     h3.sub-title {
-      margin: 18px 0 10px;
-      font-size: 15px;
+      margin: 22px 0 12px;
+      font-size: 15.5px;
       font-weight: 600;
       color: var(--brand-green);
       letter-spacing: -0.01em;
     }
 
     h3.category-title {
-      margin: 22px 0 12px;
+      margin: 24px 0 12px;
       font-size: 15px;
       font-weight: 600;
       color: var(--brand-green);
@@ -367,7 +341,7 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 13px;
     }
 
     .academic-item {
@@ -401,20 +375,19 @@
       color: var(--text-heading);
     }
 
-    /* Award Pill Badge */
-    .award-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+    /* Refined Academic Award Badge (Restrained, No Emoji) */
+    .award-badge {
+      display: inline-block;
       background: var(--award-bg);
       border: 1px solid var(--award-border);
       color: var(--award-text);
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 600;
-      padding: 1px 8px;
-      border-radius: 6px;
-      margin-left: 6px;
+      padding: 1px 7px;
+      border-radius: 4px;
+      margin-left: 8px;
       vertical-align: middle;
+      letter-spacing: 0.01em;
     }
 
     /* --------------------------------------------------------------------------
@@ -495,25 +468,22 @@
     }
 
     .journal-link-tag {
-      font-size: 13.5px;
-      background: var(--bg-tag);
-      border: 1px solid var(--brand-border);
+      font-size: 13px;
+      background: #f0f5f2;
+      border: none;
       color: var(--text-main);
-      padding: 4px 12px;
+      padding: 5px 12px;
       border-radius: 6px;
       font-weight: 500;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
       display: inline-flex;
       align-items: center;
     }
 
     .journal-link-tag:hover {
-      background: #ffffff;
-      border-color: var(--brand-green);
-      color: var(--brand-green);
+      background: var(--brand-green);
+      color: #ffffff;
       text-decoration: none;
-      box-shadow: 0 2px 6px rgba(10, 92, 68, 0.1);
-      transform: translateY(-1px);
     }
 
     /* --------------------------------------------------------------------------
@@ -521,12 +491,12 @@
        -------------------------------------------------------------------------- */
     footer {
       max-width: var(--max-width);
-      margin: 36px auto 0;
+      margin: 48px auto 0;
       padding: 24px clamp(16px, 4vw, 24px);
       color: var(--text-muted);
-      font-size: 13.5px;
+      font-size: 13px;
       text-align: center;
-      border-top: 1px solid var(--brand-border);
+      border-top: 1px solid rgba(10, 92, 68, 0.08);
       font-weight: 450;
     }
 
@@ -579,41 +549,38 @@
       </div>
     </header>
 
-    <!-- Horizontal Segmented Academic Navigation Bar (方案 A) -->
+    <!-- Horizontal Segmented Academic Navigation Bar -->
     <nav class="tab-nav" aria-label="Sections">
       <div class="tab-bar" role="tablist">
         <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-profile" id="tab-profile" onclick="switchTab('profile')">
-          👤 Profile
+          Profile
         </button>
         <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-publications" id="tab-publications" onclick="switchTab('publications')">
-          📚 Publications
+          Publications
         </button>
         <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-presentations" id="tab-presentations" onclick="switchTab('presentations')">
-          🎤 Presentations
+          Presentations
         </button>
         <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-service" id="tab-service" onclick="switchTab('service')">
-          🤝 Academic Service
+          Academic Service
         </button>
         <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-awards" id="tab-awards" onclick="switchTab('awards')">
-          🏅 Awards
+          Honours &amp; Awards
         </button>
       </div>
     </nav>
 
     <!-- Tab 1: Profile & About -->
     <section class="tab-panel active" id="panel-profile" role="tabpanel" aria-labelledby="tab-profile">
-      <div class="panel-card">
-        <h2 class="panel-title">About Me</h2>
-        <div class="bio-intro">
-          <p>
-            Hi there, welcome to my academic homepage! 👋 I am a fully funded PhD researcher in Education at the University of Bristol. My research interests include <strong>computer assisted language learning</strong>, <strong>VR &amp; AI</strong>, and <strong>innovative pedagogical designs</strong>. You are very welcome to reach out to me if you share similar research interests or are interested in collaboration!
-          </p>
-        </div>
+      <div class="section-block">
+        <p class="bio-text">
+          Hi there, welcome to my academic homepage! I am a fully funded PhD researcher in Education at the University of Bristol. My research explores VR. You are very welcome to reach out to me if you share similar research interests or are interested in collaboration!
+        </p>
       </div>
 
-      <div class="panel-card">
-        <h2 class="panel-title">Research Interests</h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <div class="section-block">
+        <h2 class="section-title">Research Interests</h2>
+        <div class="research-tags">
           <span class="research-tag">Computer Assisted Language Learning (CALL)</span>
           <span class="research-tag">Virtual Reality (VR) &amp; Artificial Intelligence (AI)</span>
           <span class="research-tag">Innovative Pedagogical Design</span>
@@ -621,42 +588,22 @@
         </div>
       </div>
 
-      <div class="panel-card">
-        <h2 class="panel-title">Education</h2>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div>
-            <div style="font-weight: 600; color: var(--text-heading);">Ph.D. in Education</div>
-            <div style="color: var(--text-muted); font-size: 14px;">School of Education, University of Bristol (2023 – Present)</div>
-            <div style="font-size: 13.5px; color: var(--brand-green); margin-top: 2px;">Fully funded by China Scholarship Council – University of Bristol Joint PhD Scholarship</div>
-          </div>
-        </div>
-        <div class="timeline-item" style="margin-top: 18px;">
-          <div class="timeline-dot"></div>
-          <div>
-            <div style="font-weight: 600; color: var(--text-heading);">Master of Arts in Digital Technologies, Communication and Education</div>
-            <div style="color: var(--text-muted); font-size: 14px;">The University of Manchester (2020 – 2022)</div>
-            <div style="font-size: 13.5px; color: var(--text-muted); margin-top: 2px;">Classification: High Merit</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel-card">
-        <h2 class="panel-title">Contact</h2>
+      <div class="section-block">
+        <h2 class="section-title">Contact</h2>
         <p>
-          If you are interested in research collaborations, academic exchanges, or have any questions, please feel free to reach out:
+          If you are interested in research collaborations, academic exchanges, or have any inquiries, please feel free to reach out:
         </p>
         <p style="margin-bottom: 0;">
-          ✉️ <strong>Email:</strong> <a href="mailto:Ming.Chen@bristol.ac.uk">Ming.Chen@bristol.ac.uk</a><br>
-          🏛️ <strong>Affiliation:</strong> School of Education, 35 Berkeley Square, University of Bristol, BS8 1JA, UK
+          <strong>Email:</strong> <a href="mailto:Ming.Chen@bristol.ac.uk">Ming.Chen@bristol.ac.uk</a><br>
+          <strong>Affiliation:</strong> School of Education, 35 Berkeley Square, University of Bristol, BS8 1JA, UK
         </p>
       </div>
     </section>
 
     <!-- Tab 2: Publications (Synced with ORCID) -->
     <section class="tab-panel" id="panel-publications" role="tabpanel" aria-labelledby="tab-publications">
-      <div class="panel-card">
-        <h2 class="panel-title">Publications</h2>
+      <div class="section-block">
+        <h2 class="section-title">Publications</h2>
         <div id="pub-container">
           <p>Loading publications from ORCID...</p>
         </div>
@@ -665,8 +612,8 @@
 
     <!-- Tab 3: Presentations (Refereed Conference Presentations) -->
     <section class="tab-panel" id="panel-presentations" role="tabpanel" aria-labelledby="tab-presentations">
-      <div class="panel-card">
-        <h2 class="panel-title">Peer-reviewed Conference Presentations</h2>
+      <div class="section-block">
+        <h2 class="section-title">Peer-reviewed Conference Presentations</h2>
 
         <h3 class="sub-title">Oral Presentations</h3>
         <ol class="academic-list">
@@ -687,7 +634,7 @@
         <h3 class="sub-title" style="margin-top: 28px;">Poster Presentations</h3>
         <ol class="academic-list">
           <li class="academic-item">
-            <strong>Chen, M.</strong> (2026). <em>Vocabulary development through virtual reality</em>. British Association for Applied Linguistics (BAAL) Vocabulary Studies SIG Annual Conference, Bangor, UK. <span class="award-pill">🏆 Best Poster Presentation</span>
+            <strong>Chen, M.</strong> (2026). <em>Vocabulary development through virtual reality</em>. British Association for Applied Linguistics (BAAL) Vocabulary Studies SIG Annual Conference, Bangor, UK. <span class="award-badge">Best Poster Presentation Award</span>
           </li>
           <li class="academic-item">
             <strong>Chen, M.</strong> (2026). <em>Virtual reality digital content creation: Vocabulary development and learner engagement in secondary EFL classrooms</em>. British Educational Research Association (BERA) Annual Conference &amp; Teacher Network Conference, UK.
@@ -698,8 +645,8 @@
 
     <!-- Tab 4: Academic Service & Peer Review -->
     <section class="tab-panel" id="panel-service" role="tabpanel" aria-labelledby="tab-service">
-      <div class="panel-card">
-        <h2 class="panel-title">Academic Service &amp; Peer Review</h2>
+      <div class="section-block">
+        <h2 class="section-title">Academic Service &amp; Peer Review</h2>
 
         <h3 class="sub-title">Conference Organization &amp; Leadership</h3>
         <ol class="academic-list">
@@ -788,8 +735,8 @@
 
     <!-- Tab 5: Honours & Awards -->
     <section class="tab-panel" id="panel-awards" role="tabpanel" aria-labelledby="tab-awards">
-      <div class="panel-card">
-        <h2 class="panel-title">Honours &amp; Awards</h2>
+      <div class="section-block">
+        <h2 class="section-title">Honours &amp; Awards</h2>
         <ul class="bullet-list">
           <li class="bullet-item">
             <strong>Best Poster Presentation</strong>, BAAL Vocabulary Studies SIG Annual Conference, Bangor (2026).
