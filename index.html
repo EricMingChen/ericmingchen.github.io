@@ -50,11 +50,11 @@
       width: 100%;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
       font-family: var(--font-family) !important;
     }
 
     body {
+      overflow-x: clip;
       min-height: 100vh;
       color: var(--text-main);
       background: var(--bg-main);
@@ -527,6 +527,10 @@
       .tab-nav {
         position: sticky;
         top: 0;
+        margin-left: calc(-1 * clamp(16px, 4vw, 24px));
+        margin-right: calc(-1 * clamp(16px, 4vw, 24px));
+        padding-left: clamp(16px, 4vw, 24px);
+        padding-right: 0;
       }
       .tab-nav::after {
         content: '';
@@ -818,6 +822,15 @@
       document.querySelectorAll('.tab-panel').forEach(panel => {
         panel.classList.toggle('active', panel.id === `panel-${tabKey}`);
       });
+
+      // If user has scrolled down past the navigation bar, smoothly return to top of section
+      const nav = document.querySelector('.tab-nav');
+      if (nav) {
+        const navTop = nav.getBoundingClientRect().top + window.pageYOffset;
+        if (window.scrollY > navTop) {
+          window.scrollTo({ top: navTop, behavior: 'smooth' });
+        }
+      }
 
       // Update URL hash smoothly without jump
       if (window.history && window.history.replaceState) {
