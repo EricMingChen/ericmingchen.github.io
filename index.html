@@ -204,6 +204,8 @@
       padding: 0;
       scrollbar-width: none;
       -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
 
     .tab-bar::-webkit-scrollbar {
@@ -519,8 +521,25 @@
       h1#name {
         font-size: 22px;
       }
+      /* Mobile Elegant Edge Gradient Mask: softly signals swipeability */
+      .tab-nav {
+        position: sticky;
+        top: 0;
+      }
+      .tab-nav::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 1.5px;
+        width: 38px;
+        pointer-events: none;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95));
+        transition: opacity 0.2s ease;
+      }
       .tab-bar {
-        gap: 20px;
+        gap: 22px;
+        padding-right: 28px; /* Extra padding so the last tab isn't trapped under the fade edge */
       }
       .tab-btn {
         padding: 10px 2px 12px;
@@ -783,11 +802,14 @@
     function switchTab(tabKey) {
       if (!VALID_TABS.includes(tabKey)) tabKey = 'profile';
 
-      // Update Tab Button States
+      // Update Tab Button States & Smoothly Center Active Tab on Mobile
       document.querySelectorAll('.tab-btn').forEach(btn => {
         const isCurrent = btn.id === `tab-${tabKey}`;
         btn.classList.toggle('active', isCurrent);
         btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+        if (isCurrent && window.innerWidth <= 768) {
+          btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
       });
 
       // Update Tab Panels
