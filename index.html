@@ -13,22 +13,62 @@
 
   <style>
     /* --------------------------------------------------------------------------
-       Local Self-Hosted Newsreader Fonts (100% Reliable, Zero External Dependencies)
+       Local Self-Hosted Newsreader Fonts (Standard discrete weights, 100% universal browser support)
        -------------------------------------------------------------------------- */
     @font-face {
       font-family: 'Newsreader';
       font-style: normal;
-      font-weight: 200 800;
+      font-weight: 400;
       font-display: swap;
-      src: url('fonts/Newsreader-normal.woff2') format('woff2');
+      src: url('fonts/newsreader-400-normal.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Newsreader';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('fonts/newsreader-500-normal.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Newsreader';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('fonts/newsreader-600-normal.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Newsreader';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('fonts/newsreader-700-normal.woff2') format('woff2');
     }
 
     @font-face {
       font-family: 'Newsreader';
       font-style: italic;
-      font-weight: 200 800;
+      font-weight: 400;
       font-display: swap;
-      src: url('fonts/Newsreader-italic.woff2') format('woff2');
+      src: url('fonts/newsreader-400-italic.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Newsreader';
+      font-style: italic;
+      font-weight: 500;
+      font-display: swap;
+      src: url('fonts/newsreader-500-italic.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Newsreader';
+      font-style: italic;
+      font-weight: 600;
+      font-display: swap;
+      src: url('fonts/newsreader-600-italic.woff2') format('woff2');
     }
 
     /* --------------------------------------------------------------------------
@@ -53,7 +93,7 @@
       --award-text: #854d0e;        /* Warm amber text */
       
       --max-width: 830px;           /* Stately academic reading column, single-line header balance */
-      --font-family: 'Newsreader', 'Charter', 'Bitstream Charter', 'Source Serif Pro', 'Baskerville', 'Georgia', 'Times New Roman', serif;
+      --font-family: 'Newsreader', Charter, 'Bitstream Charter', 'Source Serif Pro', Baskerville, Georgia, 'Times New Roman', Times, 'Songti SC', SimSun, serif;
     }
 
     *, *::before, *::after {
