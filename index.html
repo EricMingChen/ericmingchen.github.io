@@ -992,123 +992,17 @@
       }
     }
 
-    const FALLBACK_PUBS = [
-      {
-        "title": "Research on Motivation and Self-Efficacy in AI-Assisted L2 Learning: Where are We and Where are We Going? Insights from a Scoping Review",
-        "authors": "Zixuan Li, Ming Chen",
-        "venue": "Research Synthesis in Applied Linguistics",
-        "year": "2026",
-        "category": "Scholarship Synthesis",
-        "index_tag": "",
-        "doi": "10.1080/29984475.2026.2735862",
-        "link": "https://doi.org/10.1080/29984475.2026.2735862",
-        "orcid_type": "journal-article"
-      },
-      {
-        "title": "Sociocultural Theory as a Framework for Understanding English as a Foreign Language Vocabulary Learning Through Virtual Reality Digital Content Creation",
-        "authors": "Ming Chen",
-        "venue": "Navigating Theory",
-        "year": "2026",
-        "category": "Book Chapter",
-        "index_tag": "",
-        "doi": "10.1007/978-981-95-9563-1_21",
-        "link": "https://doi.org/10.1007/978-981-95-9563-1_21",
-        "orcid_type": "book-chapter"
-      },
-      {
-        "title": "Book Review 2025",
-        "authors": "Seeun Jeon, Fatemeh Ranjbaran Madiseh, Hastangka, Ming Chen",
-        "venue": "Journal of Interactive Media in Education",
-        "year": "2025",
-        "category": "Book Review",
-        "index_tag": "ESCI",
-        "doi": "10.5334/jime.1102",
-        "link": "https://doi.org/10.5334/jime.1102",
-        "orcid_type": "journal-article"
-      },
-      {
-        "title": "From “effectiveness” to “access”: Rethinking the logic of technology-enhanced language learning",
-        "authors": "Ming Chen",
-        "venue": "Studies in Technology Enhanced Learning",
-        "year": "2025",
-        "category": "Critical Commentary",
-        "index_tag": "",
-        "doi": "https://ojs.library.lancs.ac.uk/stel/article/view/04-02-chen-commentary/pdf",
-        "link": "https://ojs.library.lancs.ac.uk/stel/article/view/04-02-chen-commentary/pdf",
-        "orcid_type": "journal-article"
-      },
-      {
-        "title": "Book review",
-        "authors": "Ming Chen, A.Y.M. Atiquil Islam",
-        "venue": "System",
-        "year": "2025",
-        "category": "Book Review",
-        "index_tag": "SSCI",
-        "doi": "10.1016/j.system.2025.103758",
-        "link": "https://doi.org/10.1016/j.system.2025.103758",
-        "orcid_type": "journal-article"
-      },
-      {
-        "title": "Review of Using Video to Support Teacher Reflection and Development in ELT",
-        "authors": "Ming Chen, Islam, A. Y. M. Atiquil",
-        "venue": "Language Learning & Technology",
-        "year": "2025",
-        "category": "Book Review",
-        "index_tag": "SSCI",
-        "doi": "10.64152/10125/73663",
-        "link": "https://doi.org/10.64152/10125/73663",
-        "orcid_type": "journal-article"
-      },
-      {
-        "title": "Evaluating “Reading Bear”: An analysis of a multimedia phonics programme using Mayer’s principles of multimedia learning",
-        "authors": "Ming Chen",
-        "venue": "Studies in Technology Enhanced Learning",
-        "year": "2024",
-        "category": "Research Article",
-        "index_tag": "",
-        "doi": "https://ojs.library.lancs.ac.uk/stel/article/view/04-03-chen/pdf",
-        "link": "https://ojs.library.lancs.ac.uk/stel/article/view/04-03-chen/pdf",
-        "orcid_type": "journal-article"
-      },
-      {
-        "title": "Challenges Encountered by Overseas Chinese Students during Online Learning amid COVID-19",
-        "authors": "Ming Chen, Meiyan Liu, Aiqin Yu",
-        "venue": "International Journal of Smart Technology and Learning",
-        "year": "2024",
-        "category": "Research Article",
-        "index_tag": "",
-        "doi": "10.1504/IJSMARTTL.2024.10064868",
-        "link": "https://doi.org/10.1504/IJSMARTTL.2024.10064868",
-        "orcid_type": "journal-article"
-      },
-      {
-        "title": "The development of research literacy among early career teachers in China: an exploratory study",
-        "authors": "Meiyan Liu, Ming Chen, Ling Zhong, Weiyong Hua, Fengqin Pan",
-        "venue": "International Journal of Higher Education and Sustainability",
-        "year": "2024",
-        "category": "Research Article",
-        "index_tag": "",
-        "doi": "10.1504/ijhes.2024.143684",
-        "link": "https://doi.org/10.1504/ijhes.2024.143684",
-        "orcid_type": "journal-article"
-      }
-    ];
-
     async function loadPublications() {
       const container = document.getElementById('pub-container');
-      let pubs = null;
       try {
-        const res = await fetch(`publications.json?_t=${Date.now()}`, { cache: 'no-store' });
-        if (res.ok) {
-          pubs = await res.json();
+        const res = await fetch('publications.json');
+        if (!res.ok) throw new Error('Could not fetch publications.json');
+        const pubs = await res.json();
+        
+        if (!pubs || pubs.length === 0) {
+          container.innerHTML = '<p>No publications found on ORCID profile.</p>';
+          return;
         }
-      } catch (err) {
-        console.warn('Network fetch for publications.json failed or blocked by CORS, using embedded fallback cache:', err);
-      }
-
-      if (!pubs || pubs.length === 0) {
-        pubs = FALLBACK_PUBS;
-      }
 
         const grouped = {};
         CATEGORY_ORDER.forEach(cat => grouped[cat] = []);
