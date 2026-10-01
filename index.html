@@ -1026,7 +1026,7 @@
               const titleText = p.title ? (p.title.endsWith('.') ? p.title : p.title + '.') : '';
               const titleHtml = p.link ? `<a href="${p.link}" target="_blank" rel="noopener" class="apa-title">${titleText}</a>` : `<span class="apa-title">${titleText}</span>`;
               const venueStr = p.venue ? `<span class="apa-journal">${p.venue}</span>.` : '';
-              const doiStr = p.doi ? `https://doi.org/${p.doi}` : (p.link ? p.link : '');
+              const doiStr = p.doi ? (p.doi.startsWith('http') ? p.doi : `https://doi.org/${p.doi}`) : (p.link ? p.link : '');
               const doiHtml = doiStr ? `<a href="${doiStr}" target="_blank" rel="noopener" class="apa-doi">${doiStr}</a>` : '';
 
               html += `

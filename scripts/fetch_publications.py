@@ -23,6 +23,14 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PUBLICATIONS_FILE = os.path.join(SCRIPT_DIR, "..", "publications.json")
 JOURNAL_INDEX_FILE = os.path.join(SCRIPT_DIR, "..", "data", "journal_index.csv")
 
+# Custom URL overrides for publications with inactive or relocated DOIs
+URL_OVERRIDES = {
+    # STEL Vol 4 No 3: Evaluating "Reading Bear"
+    "10.21428/8c225f6e.f4a4ff76": "https://ojs.library.lancs.ac.uk/stel/article/view/04-03-chen/pdf",
+    # STEL Vol 4 No 2: From "effectiveness" to "access" (Critical Commentary)
+    "10.21428/8c225f6e.6cf3a869": "https://ojs.library.lancs.ac.uk/stel/article/view/04-02-chen-commentary/pdf"
+}
+
 def load_journal_index():
     index_dict = {}
     if not os.path.exists(JOURNAL_INDEX_FILE):
@@ -179,6 +187,12 @@ def fetch_orcid_data():
         link = f"https://doi.org/{doi}" if doi else (s.get('url', {}).get('value', '') if s.get('url') else '')
         if not link:
             link = f"https://orcid.org/{ORCID_ID}"
+
+        # Apply custom URL override if DOI is broken/inactive
+        if doi in URL_OVERRIDES:
+            override_url = URL_OVERRIDES[doi]
+            link = override_url
+            doi = override_url
 
         # Assign category
         category = assign_category(title, venue, orcid_type, doi)
