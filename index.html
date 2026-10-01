@@ -6,10 +6,20 @@
   <meta name="description" content="Ming CHEN - Academic Website & Research Portfolio" />
   <title>Ming CHEN | Academic Website</title>
 
+  <!-- High-Speed Global CDN for Newsreader Academic Typography (Cloudflare / Fastly backed) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/newsreader@5.1.1/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/newsreader@5.1.1/600.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/newsreader@5.1.1/400-italic.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/newsreader@5.1.1/600-italic.css">
+
+  <!-- Google Fonts Official Fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+
   <style>
     /* --------------------------------------------------------------------------
-       Classic Academic Serif Design System (Universal Native Typography)
-       Zero external font downloads, 100% cross-platform serif precision
+       Classic Academic Serif Design System (Universal Typography)
        -------------------------------------------------------------------------- */
     :root {
       --brand-green: #0a5c44;       /* HKU Heritage Pine Green */
@@ -30,12 +40,11 @@
       --award-text: #854d0e;        /* Warm amber text */
       
       --max-width: 830px;           /* Stately academic reading column, single-line header balance */
-      --font-family: Georgia, Cambria, 'Times New Roman', Times, Charter, 'Songti SC', SimSun, serif;
+      --font-family: 'Newsreader', Charter, 'Bitstream Charter', Georgia, Cambria, 'Times New Roman', Times, 'Songti SC', SimSun, serif;
     }
 
     *, *::before, *::after {
       box-sizing: border-box;
-      font-family: var(--font-family) !important;
     }
 
     html {
@@ -46,7 +55,11 @@
       width: 100%;
       margin: 0;
       padding: 0;
-      font-family: var(--font-family) !important;
+      font-family: var(--font-family);
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
     }
 
     body {
