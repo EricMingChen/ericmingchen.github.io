@@ -87,8 +87,7 @@ def assign_category(title, venue, orcid_type, doi=""):
     0. Critical Commentary (Explicit DOI/Title matches or commentary keywords)
     1. Scholarship Synthesis (systematic review, meta-analysis, scoping review)
     2. Book Review (ORCID type 'book-review', title starts with 'review of' or contains 'book review', or venue contains 'book review')
-    3. Book Chapter (ORCID type 'book-chapter')
-    4. Research Article (Default for 'journal-article' or unrecognized types)
+    3. Empirical Research (Default for empirical research articles and book chapters)
     """
     t_lower = (title or "").lower().strip()
     v_lower = (venue or "").lower().strip()
@@ -114,12 +113,8 @@ def assign_category(title, venue, orcid_type, doi=""):
     if o_type == 'book-review' or t_lower.startswith('review of') or 'book review' in t_lower or 'book review' in v_lower:
         return "Book Review"
 
-    # Priority 3: Book Chapter
-    if o_type == 'book-chapter':
-        return "Book Chapter"
-
-    # Priority 4: Research Article (Default)
-    return "Research Article"
+    # Priority 3: Empirical Research (Default for empirical research articles and book chapters)
+    return "Empirical Research"
 
 def fetch_orcid_data():
     headers = {
