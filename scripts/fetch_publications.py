@@ -113,8 +113,8 @@ def assign_category(title, venue, orcid_type, doi=""):
     if o_type == 'book-review' or t_lower.startswith('review of') or 'book review' in t_lower or 'book review' in v_lower:
         return "Book Review"
 
-    # Priority 3: Empirical Research (Default for empirical research articles and book chapters)
-    return "Empirical Research"
+    # Priority 3: Research Articles & Chapters (Default for research articles and book chapters)
+    return "Research Articles & Chapters"
 
 def fetch_orcid_data():
     headers = {

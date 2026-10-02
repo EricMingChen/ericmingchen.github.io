@@ -946,14 +946,14 @@
     // --------------------------------------------------------------------------
     const CATEGORY_ORDER = [
       'Scholarship Synthesis',
-      'Empirical Research',
+      'Research Articles & Chapters',
       'Book Review',
       'Critical Commentary'
     ];
 
     const CATEGORY_LABELS = {
       'Scholarship Synthesis': 'Scholarship Synthesis',
-      'Empirical Research': 'Empirical Research',
+      'Research Articles & Chapters': 'Research Articles & Chapters',
       'Book Review': 'Book Reviews',
       'Critical Commentary': 'Critical Commentaries'
     };
@@ -1003,9 +1003,9 @@
         CATEGORY_ORDER.forEach(cat => grouped[cat] = []);
         
         pubs.forEach(p => {
-          let cat = p.category || 'Empirical Research';
-          if (cat === 'Research Article' || cat === 'Book Chapter') {
-            cat = 'Empirical Research';
+          let cat = p.category || 'Research Articles & Chapters';
+          if (cat === 'Research Article' || cat === 'Book Chapter' || cat === 'Empirical Research') {
+            cat = 'Research Articles & Chapters';
           }
           if (!grouped[cat]) grouped[cat] = [];
           grouped[cat].push(p);
