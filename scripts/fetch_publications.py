@@ -85,9 +85,9 @@ def assign_category(title, venue, orcid_type, doi=""):
     """
     Priority-based publication categorization combining ORCID native types, DOIs, and keywords:
     0. Critical Commentary (Explicit DOI/Title matches or commentary keywords)
-    1. Scholarship Synthesis (systematic review, meta-analysis, scoping review)
-    2. Book Review (ORCID type 'book-review', title starts with 'review of' or contains 'book review', or venue contains 'book review')
-    3. Empirical Research (Default for empirical research articles and book chapters)
+    1. Book Review (ORCID type 'book-review', title starts with 'review of' or contains 'book review', or venue contains 'book review')
+    2. Book Chapter (ORCID type 'book-chapter')
+    3. Journal Article (Default for peer-reviewed journal articles)
     """
     t_lower = (title or "").lower().strip()
     v_lower = (venue or "").lower().strip()
@@ -100,21 +100,16 @@ def assign_category(title, venue, orcid_type, doi=""):
     if d_clean in commentary_dois or any(kw in t_lower for kw in commentary_keywords):
         return "Critical Commentary"
 
-    # Priority 1: Scholarship Synthesis (文献综述/合成类，包含 systematic review, meta-analysis, scoping review 等)
-    synthesis_keywords = [
-        'systematic review', 'meta-analysis', 'meta analysis', 
-        'scoping review', 'scoping literature review', 'scoping study', 'scoping synthesis',
-        'systematic literature review', 'systematic synthesis'
-    ]
-    if any(kw in t_lower or kw in v_lower for kw in synthesis_keywords):
-        return "Scholarship Synthesis"
-
-    # Priority 2: Book Review
+    # Priority 1: Book Review
     if o_type == 'book-review' or t_lower.startswith('review of') or 'book review' in t_lower or 'book review' in v_lower:
-        return "Book Review"
+        return "Book Reviews"
 
-    # Priority 3: Research Articles & Chapters (Default for research articles and book chapters)
-    return "Research Articles & Chapters"
+    # Priority 2: Book Chapter
+    if o_type == 'book-chapter':
+        return "Book Chapters"
+
+    # Priority 3: Journal Article (Default)
+    return "Journal Articles"
 
 def fetch_orcid_data():
     headers = {

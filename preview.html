@@ -934,17 +934,17 @@
     // Publications Loader (ORCID / publications.json)
     // --------------------------------------------------------------------------
     const CATEGORY_ORDER = [
-      'Scholarship Synthesis',
-      'Research Articles & Chapters',
-      'Book Review',
+      'Journal Articles',
+      'Book Chapters',
+      'Book Reviews',
       'Critical Commentary'
     ];
 
     const CATEGORY_LABELS = {
-      'Scholarship Synthesis': 'Scholarship Synthesis',
-      'Research Articles & Chapters': 'Research Articles & Chapters',
-      'Book Review': 'Book Reviews',
-      'Critical Commentary': 'Critical Commentaries'
+      'Journal Articles': 'Journal Articles',
+      'Book Chapters': 'Book Chapters',
+      'Book Reviews': 'Book Reviews',
+      'Critical Commentary': 'Critical Commentary'
     };
 
     function formatAuthorsAPA(authorsStr) {
@@ -992,9 +992,15 @@
         CATEGORY_ORDER.forEach(cat => grouped[cat] = []);
         
         pubs.forEach(p => {
-          let cat = p.category || 'Research Articles & Chapters';
-          if (cat === 'Research Article' || cat === 'Book Chapter' || cat === 'Empirical Research') {
-            cat = 'Research Articles & Chapters';
+          let cat = p.category || 'Journal Articles';
+          if (cat === 'Journal Article' || cat === 'Research Article' || cat === 'Research Articles & Chapters' || cat === 'Empirical Research' || cat === 'Scholarship Synthesis') {
+            cat = 'Journal Articles';
+          } else if (cat === 'Book Chapter' || cat === 'Book Chapters') {
+            cat = 'Book Chapters';
+          } else if (cat === 'Book Review' || cat === 'Book Reviews') {
+            cat = 'Book Reviews';
+          } else if (cat === 'Critical Commentary' || cat === 'Critical Commentaries') {
+            cat = 'Critical Commentary';
           }
           if (!grouped[cat]) grouped[cat] = [];
           grouped[cat].push(p);
