@@ -933,20 +933,6 @@
     // --------------------------------------------------------------------------
     // Publications Loader (ORCID / publications.json)
     // --------------------------------------------------------------------------
-    const CATEGORY_ORDER = [
-      'Journal Articles',
-      'Book Chapters',
-      'Book Reviews',
-      'Critical Commentary'
-    ];
-
-    const CATEGORY_LABELS = {
-      'Journal Articles': 'Journal Articles',
-      'Book Chapters': 'Book Chapters',
-      'Book Reviews': 'Book Reviews',
-      'Critical Commentary': 'Critical Commentary'
-    };
-
     function formatAuthorsAPA(authorsStr) {
       if (!authorsStr) return '<strong>Chen, M.</strong>';
       
@@ -979,7 +965,7 @@
     async function loadPublications() {
       const container = document.getElementById('pub-container');
       try {
-        const res = await fetch('publications.json');
+        const res = await fetch('publications.json?v=' + Date.now(), { cache: 'no-store' });
         if (!res.ok) throw new Error('Could not fetch publications.json');
         const pubs = await res.json();
         
@@ -988,52 +974,55 @@
           return;
         }
 
-        const grouped = {};
-        CATEGORY_ORDER.forEach(cat => grouped[cat] = []);
-        
+        const groups = {
+          'Journal Articles': [],
+          'Book Chapters': [],
+          'Book Reviews': [],
+          'Critical Commentary': []
+        };
+
         pubs.forEach(p => {
-          let cat = p.category || 'Journal Articles';
-          if (cat === 'Journal Article' || cat === 'Research Article' || cat === 'Research Articles & Chapters' || cat === 'Empirical Research' || cat === 'Scholarship Synthesis') {
-            cat = 'Journal Articles';
-          } else if (cat === 'Book Chapter' || cat === 'Book Chapters') {
-            cat = 'Book Chapters';
-          } else if (cat === 'Book Review' || cat === 'Book Reviews') {
-            cat = 'Book Reviews';
-          } else if (cat === 'Critical Commentary' || cat === 'Critical Commentaries') {
-            cat = 'Critical Commentary';
+          const t = (p.title || '').toLowerCase();
+          const o = (p.orcid_type || '').toLowerCase();
+          const c = (p.category || '').toLowerCase();
+          const v = (p.venue || '').toLowerCase();
+
+          if (t.includes('rethinking the logic of') || c.includes('commentary')) {
+            groups['Critical Commentary'].push(p);
+          } else if (o === 'book-chapter' || c.includes('chapter') || v.includes('navigating theory')) {
+            groups['Book Chapters'].push(p);
+          } else if (o === 'book-review' || t.includes('book review') || t.startsWith('review of') || c.includes('review')) {
+            groups['Book Reviews'].push(p);
+          } else {
+            groups['Journal Articles'].push(p);
           }
-          if (!grouped[cat]) grouped[cat] = [];
-          grouped[cat].push(p);
         });
 
         let html = '';
-        CATEGORY_ORDER.forEach(cat => {
-          const catPubs = grouped[cat];
-          if (catPubs && catPubs.length > 0) {
-            html += `<h3 class="category-title">${CATEGORY_LABELS[cat] || cat}</h3>`;
-            html += `<ul class="apa-numbered-list">`;
-            catPubs.forEach((p, index) => {
-              const numStr = `${catPubs.length - index}.`;
-              const authorsHtml = formatAuthorsAPA(p.authors);
-              const yearStr = p.year ? `(${p.year}).` : '';
-              const titleText = p.title ? (p.title.endsWith('.') ? p.title : p.title + '.') : '';
-              const titleHtml = p.link ? `<a href="${p.link}" target="_blank" rel="noopener" class="apa-title">${titleText}</a>` : `<span class="apa-title">${titleText}</span>`;
-              const venueStr = p.venue ? `<span class="apa-journal">${p.venue}</span>.` : '';
-              const doiStr = p.doi ? (p.doi.startsWith('http') ? p.doi : `https://doi.org/${p.doi}`) : (p.link ? p.link : '');
-              const doiHtml = doiStr ? `<a href="${doiStr}" target="_blank" rel="noopener" class="apa-doi">${doiStr}</a>` : '';
+        for (const [title, list] of Object.entries(groups)) {
+          if (list.length === 0) continue;
+          html += `<h3 class="category-title">${title}</h3><ul class="apa-numbered-list">`;
+          list.forEach((p, idx) => {
+            const numStr = `${list.length - idx}.`;
+            const authorsHtml = formatAuthorsAPA(p.authors);
+            const yearStr = p.year ? `(${p.year}).` : '';
+            const titleText = p.title ? (p.title.endsWith('.') ? p.title : p.title + '.') : '';
+            const titleHtml = p.link ? `<a href="${p.link}" target="_blank" rel="noopener" class="apa-title">${titleText}</a>` : `<span class="apa-title">${titleText}</span>`;
+            const venueStr = p.venue ? `<span class="apa-journal">${p.venue}</span>.` : '';
+            const doiStr = p.doi ? (p.doi.startsWith('http') ? p.doi : `https://doi.org/${p.doi}`) : (p.link ? p.link : '');
+            const doiHtml = doiStr ? `<a href="${doiStr}" target="_blank" rel="noopener" class="apa-doi">${doiStr}</a>` : '';
 
-              html += `
-                <li class="apa-item">
-                  <span class="apa-num">${numStr}</span>
-                  <div class="apa-content">
-                    ${authorsHtml} ${yearStr} ${titleHtml} ${venueStr} ${doiHtml}
-                  </div>
-                </li>
-              `;
-            });
-            html += `</ul>`;
-          }
-        });
+            html += `
+              <li class="apa-item">
+                <span class="apa-num">${numStr}</span>
+                <div class="apa-content">
+                  ${authorsHtml} ${yearStr} ${titleHtml} ${venueStr} ${doiHtml}
+                </div>
+              </li>
+            `;
+          });
+          html += `</ul>`;
+        }
 
         container.innerHTML = html || '<p>No categorized publications found.</p>';
       } catch (err) {
