@@ -778,7 +778,7 @@
             <span class="award-tag">[Best Poster Presentation Award]</span> <strong>Chen, M.</strong> (2026). <em>Vocabulary development through virtual reality</em>. British Association for Applied Linguistics (BAAL) Vocabulary Studies SIG Annual Conference, Bangor, UK.
           </li>
           <li class="academic-item">
-            <strong>Chen, M.</strong> (2026). <em>Virtual reality digital content creation: Vocabulary development and learner engagement in secondary EFL classrooms</em>. British Educational Research Association (BERA) Annual Conference &amp; Teacher Network Conference, UK.
+            <strong>Chen, M.</strong> (2026). <a href="https://www.bera.ac.uk/wp-content/uploads/2026/10/Ming-Chen.pdf" target="_blank" rel="noopener"><em>Virtual reality digital content creation: Vocabulary development and learner engagement in secondary EFL classrooms</em></a>. British Educational Research Association (BERA) Annual Conference &amp; Teacher Network Conference, UK. [<a href="https://www.bera.ac.uk/wp-content/uploads/2026/10/Ming-Chen.pdf" target="_blank" rel="noopener">Poster</a>]
           </li>
         </ol>
       </div>
@@ -1002,7 +1002,8 @@
           'Journal Articles': [],
           'Book Chapters': [],
           'Book Reviews': [],
-          'Critical Commentary': []
+          'Critical Commentary': [],
+          'Conference Posters': []
         };
 
         pubs.forEach(p => {
@@ -1017,6 +1018,8 @@
             groups['Book Chapters'].push(p);
           } else if (o === 'book-review' || t.includes('book review') || t.startsWith('review of') || c.includes('review')) {
             groups['Book Reviews'].push(p);
+          } else if (o === 'conference-poster' || c.includes('poster') || c.includes('conference')) {
+            groups['Conference Posters'].push(p);
           } else {
             groups['Journal Articles'].push(p);
           }
