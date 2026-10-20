@@ -31,6 +31,21 @@ URL_OVERRIDES = {
     "10.21428/8c225f6e.6cf3a869": "https://ojs.library.lancs.ac.uk/stel/article/view/04-02-chen-commentary/pdf"
 }
 
+# Custom manual publications (e.g. conference posters/publications not indexed in ORCID yet)
+CUSTOM_PUBLICATIONS = [
+    {
+        "title": "Virtual reality digital content creation: Vocabulary development and learner engagement in secondary EFL classrooms",
+        "authors": "Ming Chen",
+        "venue": "British Educational Research Association (BERA) Annual Conference & Teacher Network Conference",
+        "year": "2026",
+        "category": "Conference Posters",
+        "index_tag": "",
+        "doi": "https://www.bera.ac.uk/wp-content/uploads/2026/10/Ming-Chen.pdf",
+        "link": "https://www.bera.ac.uk/wp-content/uploads/2026/10/Ming-Chen.pdf",
+        "orcid_type": "conference-poster"
+    }
+]
+
 def load_journal_index():
     index_dict = {}
     if not os.path.exists(JOURNAL_INDEX_FILE):
@@ -215,7 +230,13 @@ def main():
     pubs = fetch_orcid_data()
     if not pubs:
         print("Warning: No publications retrieved from ORCID.")
-        return
+        pubs = []
+
+    # Merge custom publications if not already in ORCID data
+    existing_titles = {p.get("title", "").strip().lower() for p in pubs}
+    for cp in CUSTOM_PUBLICATIONS:
+        if cp.get("title", "").strip().lower() not in existing_titles:
+            pubs.insert(2, cp)  # Insert neatly with 2026 entries
 
     out_path = os.path.abspath(PUBLICATIONS_FILE)
     with open(out_path, 'w', encoding='utf-8') as f:
