@@ -29,18 +29,24 @@
        Clean Modern Academic Non-Serif Design System (Universal System UI)
        -------------------------------------------------------------------------- */
     :root {
-      --brand-green: #0a5c44;       /* HKU Heritage Pine Green */
-      --brand-green-hover: #064332; /* Deep Pine Green Hover */
-      --brand-green-tint: #f2f8f5;  /* Subtle celadon/jade tint for card headers */
-      --brand-green-hover-tint: #eaf3ee; /* Subtle card header hover */
-      --brand-border: #d4e7de;      /* Soft refined green-gray border */
-      --brand-border-hover: #b9d8ca;
+      --brand-primary: #0071bb;     /* PolyU Academic Sapphire Blue */
+      --brand-primary-hover: #005b96; /* Deep Blue Hover */
+      --brand-primary-tint: #f0f7fc;  /* Soft Ice/Sky Tint */
+      --brand-primary-hover-tint: #e4f0fa;
+      --brand-border: #d0e2f2;      /* Refined soft blue border */
+      --brand-border-hover: #b6d4ee;
+
+      /* Color aliases for theme compatibility */
+      --brand-green: var(--brand-primary);
+      --brand-green-hover: var(--brand-primary-hover);
+      --brand-green-tint: var(--brand-primary-tint);
+      --brand-green-hover-tint: var(--brand-primary-hover-tint);
       
       --text-heading: #0f172a;      /* Solid slate for titles */
-      --text-main: #2d3748;         /* Scholarly ink black */
+      --text-main: #334155;         /* Crisp scholarly slate black */
       --text-muted: #64748b;        /* Crisp secondary muted text */
       --bg-main: #ffffff;           /* Pure white canvas */
-      --bg-tag: #f2f8f5;            /* Pill tag background */
+      --bg-tag: #f0f7fc;            /* Pill tag background */
       
       --award-bg: #fefce8;          /* Warm golden cream for award badge */
       --award-border: #fef08a;      /* Delicate gold border */
@@ -82,16 +88,16 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Links: HKU Heritage Green */
+    /* Links: PolyU Academic Sapphire Blue */
     a {
-      color: var(--brand-green);
+      color: var(--brand-primary);
       text-decoration: none;
       transition: color 0.15s ease;
       font-weight: 500;
     }
 
     a:hover {
-      color: var(--brand-green-hover);
+      color: var(--brand-primary-hover);
       text-decoration: underline;
     }
 
@@ -131,7 +137,7 @@
       object-fit: cover;
       flex-shrink: 0;
       border: 2px solid var(--brand-border);
-      box-shadow: 0 4px 20px rgba(10, 92, 68, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 113, 187, 0.08);
       transition: transform 0.25s ease;
     }
 
@@ -180,9 +186,9 @@
       width: 36px;
       height: 36px;
       border-radius: 8px;
-      color: #374740;
-      background: #f0f5f2;
-      border: 1px solid rgba(10, 92, 68, 0.12);
+      color: #334155;
+      background: #f1f5f9;
+      border: 1px solid rgba(0, 113, 187, 0.12);
       transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
       display: inline-flex;
       align-items: center;
@@ -200,11 +206,11 @@
 
     .socials a:hover {
       text-decoration: none;
-      background: var(--brand-green);
+      background: var(--brand-primary);
       color: #ffffff;
-      border-color: var(--brand-green);
+      border-color: var(--brand-primary);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(10, 92, 68, 0.22);
+      box-shadow: 0 4px 12px rgba(0, 113, 187, 0.22);
     }
 
     .socials a:hover svg {
@@ -376,8 +382,8 @@
     }
 
     .research-tag {
-      background: #f0f5f2;
-      color: var(--brand-green);
+      background: #f0f7fc;
+      color: var(--brand-primary);
       border: none;
       padding: 4px 13px;
       border-radius: 6px;
@@ -560,7 +566,7 @@
 
     .journal-link-tag {
       font-size: 13.5px;
-      background: #f0f5f2;
+      background: #f1f5f9;
       border: none;
       color: var(--text-main);
       padding: 4px 12px;
@@ -572,7 +578,7 @@
     }
 
     .journal-link-tag:hover {
-      background: var(--brand-green);
+      background: var(--brand-primary);
       color: #ffffff;
       text-decoration: none;
     }
