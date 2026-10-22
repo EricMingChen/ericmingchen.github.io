@@ -336,6 +336,7 @@
 
     .tab-panel.active {
       display: block;
+      min-height: calc(100vh - 120px);
     }
 
     @keyframes tabFadeIn {
@@ -911,13 +912,17 @@
     function switchTab(tabKey) {
       if (!VALID_TABS.includes(tabKey)) tabKey = 'profile';
 
-      // Update Tab Button States & Smoothly Center Active Tab on Mobile
+      // Update Tab Button States & Smoothly Center Active Tab on Mobile (without scrolling window)
       document.querySelectorAll('.tab-btn').forEach(btn => {
         const isCurrent = btn.id === `tab-${tabKey}`;
         btn.classList.toggle('active', isCurrent);
         btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
         if (isCurrent && window.innerWidth <= 768) {
-          btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          const bar = document.querySelector('.tab-bar');
+          if (bar) {
+            const scrollLeft = btn.offsetLeft - (bar.clientWidth - btn.clientWidth) / 2;
+            bar.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+          }
         }
       });
 
@@ -926,12 +931,12 @@
         panel.classList.toggle('active', panel.id === `panel-${tabKey}`);
       });
 
-      // If user has scrolled down past the navigation bar, smoothly return to top of section
-      const nav = document.querySelector('.tab-nav');
-      if (nav) {
-        const navTop = nav.getBoundingClientRect().top + window.pageYOffset;
-        if (window.scrollY > navTop) {
-          window.scrollTo({ top: navTop, behavior: 'smooth' });
+      // If user has scrolled down past the hero header, keep the navigation bar neatly pinned at top
+      const header = document.querySelector('.profile-hero');
+      if (header) {
+        const navThreshold = header.offsetTop + header.offsetHeight;
+        if (window.scrollY > navThreshold) {
+          window.scrollTo({ top: navThreshold, behavior: 'instant' });
         }
       }
 
