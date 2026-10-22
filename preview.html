@@ -488,38 +488,38 @@
     }
 
     /* --------------------------------------------------------------------------
-       Numbered Chicago (Author-Date) Publications List
+       Numbered APA 7th Publications List
        -------------------------------------------------------------------------- */
-    .chicago-numbered-list, .apa-numbered-list {
+    .apa-numbered-list {
       list-style: none;
       padding: 0;
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 14px;
     }
 
-    .chicago-item, .apa-item {
+    .apa-item {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 10px;
       font-size: 15.5px;
-      line-height: 1.74;
+      line-height: 1.72;
       font-weight: 400;
       color: var(--text-main);
     }
 
-    .chicago-num, .apa-num {
+    .apa-num {
       font-weight: 600;
       color: var(--brand-primary);
       flex-shrink: 0;
       width: 24px;
       text-align: right;
       font-size: 14px;
-      line-height: 1.74;
+      line-height: 1.72;
     }
 
-    .chicago-content, .apa-content {
+    .apa-content {
       flex: 1;
       min-width: 0;
       text-align: left;
@@ -527,28 +527,27 @@
       overflow-wrap: anywhere;
     }
 
-    .chicago-content strong, .apa-content strong {
+    .apa-content strong {
       font-weight: 600;
       color: var(--text-heading);
     }
 
-    .chicago-title, .apa-title {
-      color: var(--text-heading);
+    .apa-title {
+      color: var(--text-main);
       font-weight: 500;
-      text-decoration: none;
     }
 
-    .chicago-title:hover, .apa-title:hover {
+    .apa-title:hover {
       color: var(--brand-primary);
       text-decoration: underline;
     }
 
-    .chicago-venue, .apa-journal {
+    .apa-journal {
       font-style: italic;
       color: var(--text-main);
     }
 
-    .chicago-doi, .apa-doi {
+    .apa-doi {
       color: var(--brand-primary);
       font-size: 14px;
       font-weight: 500;
@@ -962,33 +961,24 @@
     });
 
     // --------------------------------------------------------------------------
-    // Publications Loader (Chicago Style Author-Date / publications.json)
+    // Publications Loader (APA 7th Edition / publications.json)
     // --------------------------------------------------------------------------
-    function formatAuthorsChicago(authorsStr) {
-      if (!authorsStr) return '<strong>Chen, Ming</strong>';
+    function formatAuthorsAPA(authorsStr) {
+      if (!authorsStr) return '<strong>Chen, M.</strong>';
       
       const raw = authorsStr.replace(/Islam,\s*A\.\s*Y\.\s*M\.\s*Atiquil/gi, 'A. Y. M. Atiquil Islam');
-      const parts = raw.split(',').map(a => a.trim()).filter(Boolean);
+      const authors = raw.split(',').map(a => a.trim()).filter(Boolean);
       
-      const formattedList = parts.map((name, idx) => {
-        const isChen = name.includes('Chen') && (name.includes('Ming') || name.includes('M.'));
-        const tokens = name.split(/\s+/);
-        
-        if (tokens.length >= 2) {
-          const lastName = tokens[tokens.length - 1];
-          const firstName = tokens.slice(0, tokens.length - 1).join(' ');
-          
-          if (idx === 0) {
-            // First author in Chicago: Last, First
-            return isChen ? '<strong>Chen, Ming</strong>' : `${lastName}, ${firstName}`;
-          } else {
-            // Subsequent authors in Chicago: First Last
-            return isChen ? '<strong>Ming Chen</strong>' : `${firstName} ${lastName}`;
-          }
+      const formattedList = authors.map(name => {
+        if (name.includes('Chen') && (name.includes('Ming') || name.includes('M.'))) {
+          return '<strong>Chen, M.</strong>';
         }
         
-        if (isChen) {
-          return idx === 0 ? '<strong>Chen, Ming</strong>' : '<strong>Ming Chen</strong>';
+        const parts = name.split(/\s+/);
+        if (parts.length >= 2) {
+          const lastName = parts[parts.length - 1];
+          const initials = parts.slice(0, parts.length - 1).map(p => p[0].toUpperCase() + '.').join(' ');
+          return `${lastName}, ${initials}`;
         }
         return name;
       });
@@ -996,20 +986,11 @@
       if (formattedList.length === 1) {
         return formattedList[0];
       } else if (formattedList.length === 2) {
-        return `${formattedList[0]}, and ${formattedList[1]}`;
+        return `${formattedList[0]}, & ${formattedList[1]}`;
       } else {
         const lastAuthor = formattedList.pop();
-        return `${formattedList.join(', ')}, and ${lastAuthor}`;
+        return `${formattedList.join(', ')}, & ${lastAuthor}`;
       }
-    }
-
-    function formatTitleChicago(title) {
-      if (!title) return '';
-      let clean = title.trim().replace(/[“”"]/g, "'");
-      if (!/[.!?]$/.test(clean)) {
-        clean += '.';
-      }
-      return `“${clean}”`;
     }
 
     async function loadPublications() {
@@ -1054,39 +1035,22 @@
         let html = '';
         for (const [title, list] of Object.entries(groups)) {
           if (list.length === 0) continue;
-          html += `<h3 class="category-title">${title}</h3><ul class="chicago-numbered-list">`;
+          html += `<h3 class="category-title">${title}</h3><ul class="apa-numbered-list">`;
           list.forEach((p, idx) => {
             const numStr = `${list.length - idx}.`;
-            let authorsHtml = formatAuthorsChicago(p.authors);
-            if (!authorsHtml.endsWith('.')) {
-              authorsHtml += '.';
-            }
-            const yearStr = p.year ? `${p.year}.` : '';
-            const rawTitle = formatTitleChicago(p.title);
-            const titleHtml = p.link
-              ? `<a href="${p.link}" target="_blank" rel="noopener" class="chicago-title">${rawTitle}</a>`
-              : `<span class="chicago-title">${rawTitle}</span>`;
-            
-            let venueHtml = '';
-            if (p.venue) {
-              const catLower = (p.category || '').toLowerCase();
-              if (catLower.includes('chapter')) {
-                venueHtml = `In <span class="chicago-venue">${p.venue}</span>.`;
-              } else if (catLower.includes('poster')) {
-                venueHtml = `Poster presented at the <span class="chicago-venue">${p.venue}</span>.`;
-              } else {
-                venueHtml = `<span class="chicago-venue">${p.venue}</span>.`;
-              }
-            }
-
+            const authorsHtml = formatAuthorsAPA(p.authors);
+            const yearStr = p.year ? `(${p.year}).` : '';
+            const titleText = p.title ? (p.title.endsWith('.') ? p.title : p.title + '.') : '';
+            const titleHtml = p.link ? `<a href="${p.link}" target="_blank" rel="noopener" class="apa-title">${titleText}</a>` : `<span class="apa-title">${titleText}</span>`;
+            const venueStr = p.venue ? `<span class="apa-journal">${p.venue}</span>.` : '';
             const doiStr = p.doi ? (p.doi.startsWith('http') ? p.doi : `https://doi.org/${p.doi}`) : (p.link ? p.link : '');
-            const doiHtml = doiStr ? `<a href="${doiStr}" target="_blank" rel="noopener" class="chicago-doi">${doiStr}</a>` : '';
+            const doiHtml = doiStr ? `<a href="${doiStr}" target="_blank" rel="noopener" class="apa-doi">${doiStr}</a>` : '';
 
             html += `
-              <li class="chicago-item">
-                <span class="chicago-num">${numStr}</span>
-                <div class="chicago-content">
-                  ${authorsHtml} ${yearStr} ${titleHtml} ${venueHtml} ${doiHtml}
+              <li class="apa-item">
+                <span class="apa-num">${numStr}</span>
+                <div class="apa-content">
+                  ${authorsHtml} ${yearStr} ${titleHtml} ${venueStr} ${doiHtml}
                 </div>
               </li>
             `;
