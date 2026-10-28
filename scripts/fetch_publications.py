@@ -43,6 +43,17 @@ CUSTOM_PUBLICATIONS = [
         "doi": "https://www.bera.ac.uk/wp-content/uploads/2026/10/Ming-Chen.pdf",
         "link": "https://www.bera.ac.uk/wp-content/uploads/2026/10/Ming-Chen.pdf",
         "orcid_type": "conference-poster"
+    },
+    {
+        "title": "From Research Ideas to Classroom Practice: Lessons from a Pilot Study",
+        "authors": "Ming Chen",
+        "venue": "The Research Centre for Teaching, Learning and Curriculum (TLC) Blog, University of Bristol",
+        "year": "2026",
+        "category": "Blog Posts",
+        "index_tag": "",
+        "doi": "https://ctlc.blogs.bristol.ac.uk/2026/10/28/from-research-ideas-to-classroom-practice-lessons-from-a-pilot-study/",
+        "link": "https://ctlc.blogs.bristol.ac.uk/2026/10/28/from-research-ideas-to-classroom-practice-lessons-from-a-pilot-study/",
+        "orcid_type": "blog-post"
     }
 ]
 
